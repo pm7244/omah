@@ -1,0 +1,210 @@
+// ROOM CATEGORY BHK
+
+ const FetchCategory5 = async () => {
+    fetch(`${import.meta.env.VITE_CMS_URL}api/getallsub_category`)
+      .then((res) => res.json())
+      .then((data) => {
+        const formattedOptions = data.data.map((item) => ({
+          value: item.sub_cat_id,
+          label: item.title,
+        }));
+        setOptions5(formattedOptions);
+      });
+  };
+
+
+//   PROJECT TITLE
+<div className="box">
+<div className="box-body space-y-5">
+  <label htmlFor="input-label1" className="ti-form-label">
+    Project Title
+  </label>
+  <input
+    type="text"
+    name="project_title"
+    value={values.project_title}
+    onChange={(e) => {
+      handleInputChange(e);
+    }}
+    id="input-label1"
+    className="ti-form-input"
+    placeholder="Project Title"
+  />
+</div>
+</div>
+
+//DESCRIPTION 
+{/* <div className="box">
+<div className="box-body space-y-5">
+  <label htmlFor="input-label1" className="ti-form-label">
+    Project Meta Description
+  </label>
+  <textarea
+    rows={4}
+    name="project_meta_desc"
+    value={values.project_meta_desc}
+    onChange={(e) => {
+      handleInputChange(e);
+    }}
+    className="ti-form-input"
+    placeholder="Project Meta Description"
+  ></textarea>
+</div>
+</div> */}
+
+
+// Project Short Description
+
+<div className="box">
+<div className="box-body space-y-5">
+  <label htmlFor="input-label1" className="ti-form-label">
+    Project Short Description
+  </label>
+  <textarea
+    rows={4}
+    name="short_des"
+    value={values.short_des}
+    onChange={(e) => {
+      handleInputChange(e);
+    }}
+    className="ti-form-input"
+    placeholder="Project Short Description"
+  ></textarea>
+</div>
+</div>
+
+// iFrame Link
+{/* <div className="box">
+<div className="box-body space-y-5">
+  <label htmlFor="input-label1" className="ti-form-label">
+    iFrame Link
+  </label>
+  <textarea
+    rows={4}
+    name="iframe_link"
+    value={values.iframe_link}
+    onChange={(e) => {
+      handleInputChange(e);
+    }}
+    className="ti-form-input"
+    placeholder="Enter iFRame link of project's location"
+  ></textarea>
+</div>
+</div> */}
+
+
+// Video
+ <div className="box">
+                  <div className="box-header">Video</div>
+                  <div className="box-body space-y-4">
+                    {values.video && values.video.length > 0 ? (
+                      <>
+                        <div className="flex items-center gap-4">
+                          <button
+                            type="button"
+                            className="ti-btn rounded-md ti-btn-outline ti-btn-outline-primary"
+                            onClick={() => setManagerOpener(6)}
+                          >
+                            Change Video <i className="ti ti-video-plus"></i>
+                          </button>
+                          <button
+                            type="button"
+                            className="ti-btn rounded-md ti-btn-outline ti-btn-outline-danger"
+                            onClick={() => {
+                              setValues({ ...values, video: "" });
+                              toast.success("Video removed successfully");
+                            }}
+                          >
+                            Remove Video <i className="ti ti-trash"></i>
+                          </button>
+                        </div>
+                        <video
+                          controls
+                          className="box-img-top h-52 rounded-t-sm"
+                        >
+                          <source
+                            src={`${import.meta.env.VITE_CMS_URL}${
+                              values.video
+                            }`}
+                            type="video/mp4"
+                          />
+                          Your browser does not support the video tag.
+                        </video>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        className="ti-btn rounded-md ti-btn-outline ti-btn-outline-primary"
+                        onClick={() => setManagerOpener(6)}
+                      >
+                        Add Video <i className="ti ti-video-plus"></i>
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+
+// Rera Id
+{/* <div className="box">
+<div className="box-body space-y-5">
+  <label htmlFor="input-label1" className="ti-form-label">
+    Rera Id
+  </label>
+  <input
+    type="text"
+    name="rera_id"
+    value={values.rera_id}
+    onChange={(e) => {
+      handleInputChange(e);
+    }}
+    id="input-label1"
+    className="ti-form-input"
+    placeholder="Enter Rera Id"
+  />
+</div>
+</div> */}
+
+// Latitude
+<div className="box">
+<div className="box-body space-y-5">
+  <label htmlFor="input-label1" className="ti-form-label">
+    Latitude
+  </label>
+  <input
+    type="number"
+    name="latitude"
+    value={values.latitude}
+    onChange={(e) => {
+      handleInputChange(e);
+    }}
+    id="input-label1"
+    className="ti-form-input"
+    placeholder="Enter Latitude for project's location"
+  />
+</div>
+</div>
+
+
+// Longitude
+        // <div className="box">
+        //     <div className="box-body space-y-5">
+        //     <label htmlFor="input-label1" className="ti-form-label">
+        //         Longitude
+        //     </label>
+        //         <input
+        //             type="number"
+        //             name="longitude"
+        //             value={values.longitude}
+        //             onChange={(e) => {
+        //             handleInputChange(e);
+        //             }}
+        //             id="input-label1"
+        //             className="ti-form-input"
+        //             placeholder="Enter Longitude for project's location"
+        //         />
+        //     </div>
+        // </div>
+
+
+
+// Cover Url
