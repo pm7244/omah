@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1deb3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 19, 2026 at 07:38 AM
--- Server version: 8.0.45-0ubuntu0.24.04.1
--- PHP Version: 8.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Feb 09, 2026 at 08:19 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,17 +28,17 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `about_content` (
-  `ac_id` int NOT NULL,
-  `type` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `image` text COLLATE utf8mb4_general_ci NOT NULL,
-  `layout` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `sort_order` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `ip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` tinyint NOT NULL
+  `ac_id` int(11) NOT NULL,
+  `type` varchar(150) NOT NULL,
+  `image` text NOT NULL,
+  `layout` varchar(80) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `des` text NOT NULL,
+  `sort_order` varchar(50) NOT NULL,
+  `ip` varchar(30) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -46,8 +46,8 @@ CREATE TABLE `about_content` (
 --
 
 INSERT INTO `about_content` (`ac_id`, `type`, `image`, `layout`, `title`, `des`, `sort_order`, `ip`, `created_at`, `updated_at`, `status`) VALUES
-(1, '', '[\"home page/craft.png?width=3024&height=1701&x=0&y=1232\"]', 'text-left', 'Our Craft', 'We don’t just cater, we compose.\nEach menu is custom-designed, inspired\nby your story, and brought to life with\nflavours drawn from across India and\nbeyond.\n', '1', '::1', '2025-06-28 00:00:00', '2025-06-28 00:00:00', 1),
-(4, '', '[\"home page/flavours.png?width=800&height=450&x=0&y=339\"]', 'text-right', 'Flavours of Home', 'India’s culinary heritage is vast, diverse,\nand deeply soulful.\nAt OMAH, we honour its roots and bring\nits richness to the modern table, with\nelegance, emotion, and intention in every\nbite.', '2', '::1', '2025-06-28 00:00:00', '2025-06-28 00:00:00', 1),
+(1, '', '[\"new.png?width=720&height=405&x=0&y=0\"]', 'text-left', 'Our Craft', 'We don’t just cater, we compose.\nEach menu is custom-designed, inspired\nby your story, and brought to life with\nflavours drawn from across India and\nbeyond.\n', '1', '::1', '2025-06-28 00:00:00', '2025-06-28 00:00:00', 1),
+(4, '', '[\"craft.png?width=800&height=1200&x=0&y=0\"]', 'text-right', 'Flavours of Home', 'India’s culinary heritage is vast, diverse,\nand deeply soulful.\nAt OMAH, we honour its roots and bring\nits richness to the modern table, with\nelegance, emotion, and intention in every\nbite.', '2', '::1', '2025-06-28 00:00:00', '2025-06-28 00:00:00', 1),
 (5, '', '[\"home page/regal.png?width=1920&height=1080&x=0&y=0\"]', 'default', 'Regal Weddings', 'From intimate rituals to grand destination weddings,\nOMAH brings grace, warmth, and soul to every celebration.\nWe understand how special this day is, and we’re here to\nmake it even more unforgettable.\nFrom welcome dinners to post-wedding brunches, we make\nevery meal part of the memory.', '3', '::1', '2025-06-28 00:00:00', '2025-06-28 00:00:00', 1),
 (6, '', '[\"home page/bespoke.png?width=1024&height=576&x=0&y=574\"]', 'text-right', 'Bespoke Settings', 'For those who seek something more personal, we\noffer fully customised tables and styling. We curate\nprops and settings that fit your themes.\nWe can tailor the entire dining atmosphere to\nreflect your story and setting.\nNo templates. No repetition. An experience made\njust for you.\n\n', '4', '::1', '2025-06-28 00:00:00', '2025-06-28 00:00:00', 1),
 (7, 'text-image', '[\"home page/effortless.jpg?width=2731&height=1536&x=0&y=2311\"]', 'text-left', 'Effortless Dining', 'At OMAH, we believe that luxury is not just about what’s served, but how it’s experienced. With our floating buffets, guests no longer need to wait in line. Our team brings the food straight to your tables—warm, fresh, and beautifully plated. It’s thoughtful service designed for comfort, elegance, and ease.\n', '5', '::1', '2025-07-17 00:00:00', '2025-07-17 00:00:00', 1),
@@ -61,18 +61,18 @@ INSERT INTO `about_content` (`ac_id`, `type`, `image`, `layout`, `title`, `des`,
 --
 
 CREATE TABLE `address` (
-  `address_id` int NOT NULL,
-  `name` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `address_id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
   `latitude` float NOT NULL,
   `longitude` float NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `address` text COLLATE utf8mb4_general_ci NOT NULL,
-  `city` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `phone_no` varchar(25) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `address` text NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `phone_no` varchar(25) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `ip` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -89,15 +89,15 @@ INSERT INTO `address` (`address_id`, `name`, `latitude`, `longitude`, `email`, `
 --
 
 CREATE TABLE `enquiries` (
-  `enquiry_id` int NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `phone_no` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
-  `message` text COLLATE utf8mb4_general_ci NOT NULL,
-  `enquiry_status` tinyint(1) NOT NULL DEFAULT '0',
-  `ip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `enquiry_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone_no` varchar(13) NOT NULL,
+  `message` text NOT NULL,
+  `enquiry_status` tinyint(1) NOT NULL DEFAULT 0,
+  `ip` varchar(30) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -121,22 +121,22 @@ INSERT INTO `enquiries` (`enquiry_id`, `name`, `email`, `phone_no`, `message`, `
 --
 
 CREATE TABLE `home` (
-  `id` int NOT NULL,
-  `video` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_image` text COLLATE utf8mb4_general_ci NOT NULL,
-  `heroimage_text` text COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_title` text COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_sub_title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_text` text COLLATE utf8mb4_general_ci NOT NULL,
-  `mission_slider` text COLLATE utf8mb4_general_ci NOT NULL,
-  `mission_title` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
-  `mission_des` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `ip` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` tinyint NOT NULL
+  `id` int(11) NOT NULL,
+  `video` varchar(50) NOT NULL,
+  `hero_image` text NOT NULL,
+  `heroimage_text` text NOT NULL,
+  `hero_title` text NOT NULL,
+  `hero_sub_title` varchar(100) NOT NULL,
+  `hero_text` text NOT NULL,
+  `mission_slider` text NOT NULL,
+  `mission_title` varchar(500) NOT NULL,
+  `mission_des` varchar(500) NOT NULL,
+  `meta_title` varchar(50) NOT NULL,
+  `meta_des` text NOT NULL,
+  `ip` varchar(30) DEFAULT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -155,29 +155,29 @@ INSERT INTO `home` (`id`, `video`, `hero_image`, `heroimage_text`, `hero_title`,
 --
 
 CREATE TABLE `home_content` (
-  `hc_id` int NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `image1` text COLLATE utf8mb4_general_ci NOT NULL,
-  `image1_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image1_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `image1_btn` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `slug1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `image1_url` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `image_2` text COLLATE utf8mb4_general_ci NOT NULL,
-  `image2_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image2_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `image2_btn` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `image2_url` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `text_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `text_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `text_btn` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `text_url` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `sort_order` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `slug2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `ip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `hc_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `image1` text NOT NULL,
+  `image1_title` varchar(70) NOT NULL,
+  `image1_des` text NOT NULL,
+  `image1_btn` varchar(50) NOT NULL,
+  `slug1` varchar(255) DEFAULT NULL,
+  `image1_url` varchar(100) NOT NULL,
+  `image_2` text NOT NULL,
+  `image2_title` varchar(70) NOT NULL,
+  `image2_des` text NOT NULL,
+  `image2_btn` varchar(50) NOT NULL,
+  `image2_url` varchar(70) NOT NULL,
+  `text_title` varchar(70) NOT NULL,
+  `text_des` text NOT NULL,
+  `text_btn` varchar(50) NOT NULL,
+  `text_url` varchar(70) NOT NULL,
+  `sort_order` varchar(50) NOT NULL,
+  `slug2` varchar(255) DEFAULT NULL,
+  `ip` varchar(30) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -196,25 +196,25 @@ INSERT INTO `home_content` (`hc_id`, `type`, `image1`, `image1_title`, `image1_d
 --
 
 CREATE TABLE `project` (
-  `p_id` int NOT NULL,
-  `pc_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `image_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `img_tagline` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `video` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `v_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `v_des` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `listing_image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `img_title` text COLLATE utf8mb4_general_ci NOT NULL,
-  `img_des` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL,
-  `ip` tinyint NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `p_id` int(11) NOT NULL,
+  `pc_id` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `image_name` varchar(255) NOT NULL,
+  `img_tagline` varchar(255) NOT NULL,
+  `video` varchar(255) NOT NULL,
+  `v_title` varchar(255) NOT NULL,
+  `v_des` varchar(255) NOT NULL,
+  `listing_image` varchar(255) NOT NULL,
+  `img_title` text NOT NULL,
+  `img_des` varchar(255) NOT NULL,
+  `meta_title` varchar(100) NOT NULL,
+  `meta_des` text NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `ip` tinyint(4) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -235,13 +235,13 @@ INSERT INTO `project` (`p_id`, `pc_id`, `image`, `name`, `slug`, `image_name`, `
 --
 
 CREATE TABLE `project_industry_map` (
-  `pcm_id` int NOT NULL,
-  `p_id` int NOT NULL,
-  `pc_id` int NOT NULL,
-  `ip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `pcm_id` int(11) NOT NULL,
+  `p_id` int(11) NOT NULL,
+  `pc_id` int(11) NOT NULL,
+  `ip` varchar(30) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -269,27 +269,27 @@ INSERT INTO `project_industry_map` (`pcm_id`, `p_id`, `pc_id`, `ip`, `status`, `
 --
 
 CREATE TABLE `service_content` (
-  `sc_id` int NOT NULL,
-  `parent_id` int NOT NULL,
-  `banner_image` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
-  `slider` text COLLATE utf8mb4_general_ci NOT NULL,
-  `card_images` text COLLATE utf8mb4_general_ci NOT NULL,
-  `card_text` text COLLATE utf8mb4_general_ci NOT NULL,
-  `sub_title` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `tagline` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `slug` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL DEFAULT '1',
-  `sort_order` varchar(4) COLLATE utf8mb4_general_ci NOT NULL,
-  `ip` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `image` text COLLATE utf8mb4_general_ci NOT NULL,
-  `layout` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `video` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_des` text COLLATE utf8mb4_general_ci NOT NULL
+  `sc_id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `banner_image` varchar(500) NOT NULL,
+  `slider` text NOT NULL,
+  `card_images` text NOT NULL,
+  `card_text` text NOT NULL,
+  `sub_title` varchar(150) NOT NULL,
+  `tagline` varchar(70) NOT NULL,
+  `slug` varchar(250) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `sort_order` varchar(4) NOT NULL,
+  `ip` varchar(250) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp(),
+  `image` text NOT NULL,
+  `layout` varchar(40) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `des` text NOT NULL,
+  `video` varchar(70) NOT NULL,
+  `meta_title` varchar(70) NOT NULL,
+  `meta_des` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -297,9 +297,9 @@ CREATE TABLE `service_content` (
 --
 
 INSERT INTO `service_content` (`sc_id`, `parent_id`, `banner_image`, `slider`, `card_images`, `card_text`, `sub_title`, `tagline`, `slug`, `status`, `sort_order`, `ip`, `created_at`, `updated_at`, `image`, `layout`, `title`, `des`, `video`, `meta_title`, `meta_des`) VALUES
-(2, 0, '[\"banners/b1.png?width=962&height=541&x=188&y=0\"]', '[\"grazing table/grazing1.png?width=1536&height=864&x=0&y=80\",\"grazing table/table1.png?width=1716&height=965&x=0&y=0\",\"grazing table/table2.png?width=1300&height=731&x=0&y=8\"]', '[\"banners/c4.png\"]', '', 'Updated Subtitle', 'Updated Tagline', 'grazing-tables', 1, '2', '::1', '2025-07-18 11:28:15', '2025-07-18 11:28:15', '[\"luxury1.jpg?width=5462&height=3072&x=0&y=0\"]', '', 'Grazing Tables', 'Ring in forever with menus that impress.\nCocktail bites, gourmet mains, and luxury spreads — all served with flair.\nA promise sealed in flavour.\n', '[]', '', ''),
+(2, 0, '[\"banners/b1.png?width=962&height=541&x=188&y=0\"]', '[\"grazing table/grazing1.png?width=1536&height=864&x=0&y=80\",\"grazing table/table1.png?width=1716&height=965&x=0&y=0\",\"grazing table/table2.png?width=1300&height=731&x=0&y=8\"]', '[\"banners/c4.png\"]', '', 'Updated Subtitle', 'Updated Tagline', 'grazing-tables', 1, '2', '::1', '2025-07-18 11:28:15', '2025-07-18 11:28:15', '[\"luxury1.jpg?width=5462&height=3072&x=0&y=0\"]', '', 'Grazing tables', 'Ring in forever with menus that impress.\nCocktail bites, gourmet mains, and luxury spreads — all served with flair.\nA promise sealed in flavour.\n', '[]', '', ''),
 (3, 0, '[\"banners/b4.png?width=1920&height=1080&x=0&y=0\"]', '[\"corporate events/freepik__expand__72625.png?width=1216&height=684&x=0&y=10\",\"corporate events/festive2.png?width=1536&height=864&x=0&y=122\"]', '[\"banners/c1.png\"]', '', 'Updated Subtitle', 'Updated Tagline', 'corporate-events', 1, '3', '::1', '2025-07-18 11:29:15', '2025-07-18 11:29:15', '[\"five.png?width=1920&height=1080&x=0&y=0\"]', '', 'Corporate Events', 'OMAH brings refined vegetarian catering to boardrooms and ballrooms alike. From curated canapés to gourmet spreads, we craft menus that reflect your brand\'s professionalism and taste — served with precision, elegance, and flair.', '[\"contact.mp4\"]', '', ''),
-(4, 0, '[\"banners/b3.png?width=1920&height=1080&x=0&y=0\"]', '[\"thematic events/events2.png?width=1536&height=864&x=0&y=116\",\"thematic events/events1.png?width=1536&height=864&x=0&y=94\"]', '[\"banners/c2.png?width=1620&height=911&x=0&y=523\"]', '', 'Updated Subtitle', 'Updated Tagline', 'thematic-events', 1, '4', '::1', '2025-07-18 11:29:28', '2025-07-18 11:29:28', '[\"two.png?width=1920&height=1080&x=0&y=0\"]', '', 'Thematic Events', 'Celebrate motherhood with gentle, graceful indulgence.\nOur soft, satvik flavours and elegant presentation honour this sacred moment.\nBecause new beginnings deserve thoughtful celebration.\n', '[\"contact.mp4\"]', '', ''),
+(4, 0, '[\"banners/b3.png?width=1920&height=1080&x=0&y=0\"]', '[\"thematic events/events2.png?width=1536&height=864&x=0&y=116\",\"thematic events/events1.png?width=1536&height=864&x=0&y=94\"]', '[\"banners/c2.png?width=1620&height=911&x=0&y=523\"]', '', 'Updated Subtitle', 'Updated Tagline', 'thematic-events', 1, '4', '::1', '2025-07-18 11:29:28', '2025-07-18 11:29:28', '[\"two.png?width=1920&height=1080&x=0&y=0\"]', '', 'Thematic events', 'Celebrate motherhood with gentle, graceful indulgence.\nOur soft, satvik flavours and elegant presentation honour this sacred moment.\nBecause new beginnings deserve thoughtful celebration.\n', '[\"contact.mp4\"]', '', ''),
 (17, 0, '[\"banners/b2.png?width=1920&height=1080&x=0&y=0\"]', '[\"weddings/grand luxury1.jpg?width=4096&height=2304&x=0&y=0\",\"weddings/Frame 3.png?width=1284&height=722&x=0&y=32\",\"weddings/Frame 1.png?width=1280&height=720&x=0&y=34\"]', '[\"banners/c3.png\"]', '', 'Updated Subtitle', 'Updated Tagline', 'weddings', 1, '1', '::1', '2025-07-18 11:26:52', '2025-07-18 11:26:52', '[\"five.png?width=1920&height=1080&x=0&y=0\"]', 'custom-layout', 'Weddings', 'Every wedding is a story — OMAH ensures it\'s told through flavour, elegance, and detail. From intimate rituals to grand receptions, we offer bespoke culinary experiences that honour tradition while embracing timeless sophistication.', '[\"[\\\"contact.mp4\\\"]\"]', 'Updated Meta Title for SEO', 'Updated Meta Description for better search visibility.');
 
 -- --------------------------------------------------------
@@ -309,23 +309,23 @@ INSERT INTO `service_content` (`sc_id`, `parent_id`, `banner_image`, `slider`, `
 --
 
 CREATE TABLE `service_content_map` (
-  `scm_id` int NOT NULL,
-  `sc_id` int NOT NULL,
-  `type` varchar(80) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `layout` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image1` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image1_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image1_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `image2` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image2_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image2_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `sort_order` varchar(10) COLLATE utf8mb4_general_ci DEFAULT '0',
-  `status` tinyint DEFAULT '1',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `scm_id` int(11) NOT NULL,
+  `sc_id` int(11) NOT NULL,
+  `type` varchar(80) DEFAULT NULL,
+  `layout` varchar(70) NOT NULL,
+  `image1` varchar(70) NOT NULL,
+  `image1_title` varchar(70) NOT NULL,
+  `image1_des` text NOT NULL,
+  `image2` varchar(70) NOT NULL,
+  `image2_title` varchar(70) NOT NULL,
+  `image2_des` text NOT NULL,
+  `title` varchar(70) NOT NULL,
+  `des` text NOT NULL,
+  `sort_order` varchar(10) DEFAULT '0',
+  `status` tinyint(4) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ip` varchar(30) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -367,22 +367,22 @@ INSERT INTO `service_content_map` (`scm_id`, `sc_id`, `type`, `layout`, `image1`
 --
 
 CREATE TABLE `service_content_map_11` (
-  `scm_id` int NOT NULL,
-  `sc_id` int NOT NULL,
-  `type` varchar(80) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `image1` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image1_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image1_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `image2` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image2_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `image2_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `sort_order` varchar(10) COLLATE utf8mb4_general_ci DEFAULT '0',
-  `status` tinyint DEFAULT '1',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `scm_id` int(11) NOT NULL,
+  `sc_id` int(11) NOT NULL,
+  `type` varchar(80) DEFAULT NULL,
+  `image1` varchar(70) NOT NULL,
+  `image1_title` varchar(70) NOT NULL,
+  `image1_des` text NOT NULL,
+  `image2` varchar(70) NOT NULL,
+  `image2_title` varchar(70) NOT NULL,
+  `image2_des` text NOT NULL,
+  `title` varchar(70) NOT NULL,
+  `des` text NOT NULL,
+  `sort_order` varchar(10) DEFAULT '0',
+  `status` tinyint(4) DEFAULT 1,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `ip` varchar(30) NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -405,7 +405,7 @@ INSERT INTO `service_content_map_11` (`scm_id`, `sc_id`, `type`, `image1`, `imag
 --
 
 CREATE TABLE `store_setting` (
-  `store_id` int NOT NULL,
+  `store_id` int(11) NOT NULL,
   `name` varchar(225) NOT NULL,
   `tagline` varchar(825) NOT NULL,
   `overview` text NOT NULL,
@@ -422,10 +422,10 @@ CREATE TABLE `store_setting` (
   `meta_title` varchar(825) NOT NULL,
   `meta_desc` text NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   `ip` varchar(225) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `store_setting`
@@ -442,14 +442,14 @@ INSERT INTO `store_setting` (`store_id`, `name`, `tagline`, `overview`, `logo1`,
 --
 
 CREATE TABLE `team` (
-  `id` int NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `designation` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `ip` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `status` tinyint(1) DEFAULT '1',
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `id` int(11) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `designation` varchar(100) DEFAULT NULL,
+  `ip` varchar(50) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 1,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -469,13 +469,13 @@ INSERT INTO `team` (`id`, `image`, `name`, `designation`, `ip`, `status`, `creat
 --
 
 CREATE TABLE `users` (
-  `user_id` int NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL DEFAULT '1',
-  `ip` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `user_id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `ip` varchar(30) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -496,17 +496,17 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `status`, `ip`, `created
 --
 
 CREATE TABLE `web_about` (
-  `id` int NOT NULL,
-  `hero_image` text COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_title` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `short_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL,
-  `ip` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` int(11) NOT NULL,
+  `hero_image` text NOT NULL,
+  `hero_title` varchar(50) NOT NULL,
+  `hero_des` text NOT NULL,
+  `short_id` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `meta_title` varchar(255) NOT NULL,
+  `meta_des` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -524,17 +524,17 @@ INSERT INTO `web_about` (`id`, `hero_image`, `hero_title`, `hero_des`, `short_id
 --
 
 CREATE TABLE `web_contact` (
-  `id` int NOT NULL,
-  `video` text COLLATE utf8mb4_general_ci NOT NULL,
-  `video_tag` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `form_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL,
-  `ip` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` int(11) NOT NULL,
+  `video` text NOT NULL,
+  `video_tag` varchar(255) NOT NULL,
+  `hero_des` text NOT NULL,
+  `form_title` varchar(255) NOT NULL,
+  `meta_title` varchar(255) NOT NULL,
+  `meta_des` text NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -551,14 +551,14 @@ INSERT INTO `web_contact` (`id`, `video`, `video_tag`, `hero_des`, `form_title`,
 --
 
 CREATE TABLE `web_footer` (
-  `id` int NOT NULL,
-  `footer_logo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `footer_description` text COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `ip` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` int(11) NOT NULL,
+  `footer_logo` varchar(255) NOT NULL,
+  `footer_description` text NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -575,22 +575,22 @@ INSERT INTO `web_footer` (`id`, `footer_logo`, `footer_description`, `status`, `
 --
 
 CREATE TABLE `web_home` (
-  `home_id` int NOT NULL,
-  `c_image` text COLLATE utf8mb4_general_ci NOT NULL,
-  `video` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `webpage_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `project_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `projects_status` tinyint NOT NULL,
-  `About_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `About_status` tinyint NOT NULL,
-  `ip` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_desc` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `short_des` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL
+  `home_id` int(11) NOT NULL,
+  `c_image` text NOT NULL,
+  `video` varchar(255) NOT NULL,
+  `webpage_title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `project_title` varchar(255) NOT NULL,
+  `projects_status` tinyint(4) NOT NULL,
+  `About_title` varchar(255) NOT NULL,
+  `About_status` tinyint(4) NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `meta_title` varchar(255) NOT NULL,
+  `meta_desc` varchar(500) NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `short_des` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -607,22 +607,22 @@ INSERT INTO `web_home` (`home_id`, `c_image`, `video`, `webpage_title`, `title`,
 --
 
 CREATE TABLE `web_industry` (
-  `id` int NOT NULL,
-  `hero_image` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_title` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `hero_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_description` text COLLATE utf8mb4_general_ci NOT NULL,
-  `title` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `slug` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `dimension` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1960/600',
-  `short_description` text COLLATE utf8mb4_general_ci NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci NOT NULL,
-  `ip` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `hero_image` varchar(150) NOT NULL,
+  `hero_title` varchar(70) NOT NULL,
+  `hero_des` text NOT NULL,
+  `meta_title` varchar(250) NOT NULL,
+  `meta_description` text NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `dimension` varchar(100) NOT NULL DEFAULT '1960/600',
+  `short_description` text NOT NULL,
+  `description` text NOT NULL,
+  `ip` varchar(20) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `sort_order` int NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `sort_order` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -639,20 +639,20 @@ INSERT INTO `web_industry` (`id`, `hero_image`, `hero_title`, `hero_des`, `meta_
 --
 
 CREATE TABLE `web_team` (
-  `t_id` int NOT NULL,
-  `banner_img` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `slider1_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `slider1_img` text COLLATE utf8mb4_general_ci NOT NULL,
-  `slider2_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `slider2_img` text COLLATE utf8mb4_general_ci NOT NULL,
-  `img_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `image` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_des` text COLLATE utf8mb4_general_ci NOT NULL,
-  `status` tinyint NOT NULL,
-  `ip` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `t_id` int(11) NOT NULL,
+  `banner_img` varchar(255) NOT NULL,
+  `slider1_title` varchar(255) NOT NULL,
+  `slider1_img` text NOT NULL,
+  `slider2_title` varchar(255) NOT NULL,
+  `slider2_img` text NOT NULL,
+  `img_title` varchar(255) NOT NULL,
+  `image` text NOT NULL,
+  `meta_title` varchar(500) NOT NULL,
+  `meta_des` text NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -660,7 +660,7 @@ CREATE TABLE `web_team` (
 --
 
 INSERT INTO `web_team` (`t_id`, `banner_img`, `slider1_title`, `slider1_img`, `slider2_title`, `slider2_img`, `img_title`, `image`, `meta_title`, `meta_des`, `status`, `ip`, `created_at`, `updated_at`) VALUES
-(1, '[\"team/a45221c681f6de6f28f406cf576c1950ffa8bd8e (1).png?width=1920&height=1080&x=0&y=0\"]', 'The Team', '[\"team/img1.jpg?width=4096&height=2304&x=0&y=427\",\"team/img2.png?width=3420&height=1924&x=0&y=163\",\"team/Untitled design.png?width=1283&height=722&x=0&y=21\"]', 'The Food', '[\"destination.png?width=5941&height=3342&x=0&y=90\",\"destination2.png?width=1615&height=908&x=0&y=18\",\"getaway2.png?width=1665&height=937&x=0&y=87\",\"three.png?width=1920&height=1080&x=0&y=0\",\"seven.png?width=1920&height=1080&x=0&y=0\"]', 'Testimonial', '[\"luxury1.jpg?width=5462&height=3072&x=0&y=0\"]', 'Omah - meta title', 'Omah - meta des', 1, '::1', '2026-01-24 15:24:13', '2026-03-14 15:17:24');
+(1, '[\"team/a45221c681f6de6f28f406cf576c1950ffa8bd8e (1).png?width=1920&height=1080&x=0&y=0\"]', 'The Team', '[\"team/img1.jpg?width=4096&height=2304&x=0&y=427\",\"team/img2.png?width=3420&height=1924&x=0&y=163\",\"team/Untitled design.png?width=1283&height=722&x=0&y=21\"]', 'The Food', '[\"destination.png?width=5941&height=3342&x=0&y=90\",\"destination2.png?width=1615&height=908&x=0&y=18\",\"getaway2.png?width=1665&height=937&x=0&y=87\",\"three.png?width=1920&height=1080&x=0&y=0\",\"seven.png?width=1920&height=1080&x=0&y=0\"]', 'The BTS', '[\"luxury1.jpg?width=5462&height=3072&x=0&y=0\"]', 'Omah - meta title', 'Omah - meta des', 1, '::1', '2026-01-24 15:24:13', '2026-01-29 10:56:34');
 
 --
 -- Indexes for dumped tables
@@ -788,115 +788,115 @@ ALTER TABLE `web_team`
 -- AUTO_INCREMENT for table `about_content`
 --
 ALTER TABLE `about_content`
-  MODIFY `ac_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `enquiries`
 --
 ALTER TABLE `enquiries`
-  MODIFY `enquiry_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `enquiry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `home`
 --
 ALTER TABLE `home`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `home_content`
 --
 ALTER TABLE `home_content`
-  MODIFY `hc_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `hc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `p_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `project_industry_map`
 --
 ALTER TABLE `project_industry_map`
-  MODIFY `pcm_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `pcm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `service_content`
 --
 ALTER TABLE `service_content`
-  MODIFY `sc_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `sc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `service_content_map`
 --
 ALTER TABLE `service_content_map`
-  MODIFY `scm_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+  MODIFY `scm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
 
 --
 -- AUTO_INCREMENT for table `service_content_map_11`
 --
 ALTER TABLE `service_content_map_11`
-  MODIFY `scm_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `scm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `store_setting`
 --
 ALTER TABLE `store_setting`
-  MODIFY `store_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `web_about`
 --
 ALTER TABLE `web_about`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `web_contact`
 --
 ALTER TABLE `web_contact`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `web_footer`
 --
 ALTER TABLE `web_footer`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `web_home`
 --
 ALTER TABLE `web_home`
-  MODIFY `home_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `home_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `web_industry`
 --
 ALTER TABLE `web_industry`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `web_team`
 --
 ALTER TABLE `web_team`
-  MODIFY `t_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
