@@ -157,7 +157,7 @@ export const MenuItems = [
           {
             id: 90,
             path: `/cms/pages/web_about`,
-            title: "Web_About",
+            title: "About",
             type: "link",
             active: false,
             selected: false,
@@ -165,13 +165,21 @@ export const MenuItems = [
   
           {
             id: 97,
-
             path: `/cms/pages/contact`,
             title: "Contact",
             type: "link",
             active: false,
             selected: false,
           },
+            {
+            id: 93,
+            path: `/cms/pages/web_team`,
+            title: "Team",
+            type: "link",
+            active: false,
+            selected: false,
+          },
+
           // {
           //   id: 101,
           //   path: `/cms/pages/web-career`,

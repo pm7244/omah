@@ -114,7 +114,7 @@ const Contact = () => {
     <div>
       <PageHeader currentpage="Contact Us" activepage="Pages" mainpage="Contact Us" />
 
-      <div className="grid grid-cols-12 gap-x-6">
+      <div className="">
         <div className="col-span-12 xxl:col-span-8">
           {/* Video Upload Section */}
           <div className="box">
@@ -148,7 +148,7 @@ const Contact = () => {
               {video.length > 0 && (
                 <video
                   controls
-                  className="box-img-top h-52 rounded-md mt-3"
+                  className="box-img-top h-52 w-full rounded-md mt-3"
                   src={`${import.meta.env.VITE_CMS_URL}api/transform/${video[0]}`}
                 />
               )}

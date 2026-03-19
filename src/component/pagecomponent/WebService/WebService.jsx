@@ -148,9 +148,8 @@ const WebPreProjects = () => {
 
     const apiUrl =
       editingContentIndex !== null && contentData[editingContentIndex]?.sc_id
-        ? `${import.meta.env.VITE_CMS_URL}api/updatebyidservicecontent/${
-            contentData[editingContentIndex].sc_id
-          }`
+        ? `${import.meta.env.VITE_CMS_URL}api/updatebyidservicecontent/${contentData[editingContentIndex].sc_id
+        }`
         : `${import.meta.env.VITE_CMS_URL}api/createservicecontent`;
 
     const method =
@@ -214,8 +213,7 @@ const WebPreProjects = () => {
     if (window.confirm("Are you sure you want to delete this content?")) {
       if (content.sc_id) {
         fetch(
-          `${import.meta.env.VITE_CMS_URL}api/deletebyidservicecontent/${
-            content.sc_id
+          `${import.meta.env.VITE_CMS_URL}api/deletebyidservicecontent/${content.sc_id
           }`,
           {
             method: "DELETE",
@@ -354,27 +352,25 @@ const WebPreProjects = () => {
                       <button
                         type="button"
                         onClick={() => setManagerOpener(1)}
-                        className="ti-btn ti-btn-outline-primary"
+className="ti-btn ti-btn-outline-primary w-full text-center"
                       >
                         {heroImage.length > 0
                           ? "Change Hero Image"
                           : "Upload Hero Image"}
                       </button>
                       {heroImage.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
+                        <div className="space-y-3">
                           {heroImage.map((img, index) => (
-                            <div key={index} className="relative">
+                            <div key={index} className="relative w-full">
                               <img
-                                src={`${
-                                  import.meta.env.VITE_CMS_URL
-                                }api/transform/${img}`}
-                                className="h-20 w-32 rounded-sm object-cover border"
+                                src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                className="w-full h-32 object-cover rounded-md border"
                                 alt="Hero"
                               />
                               <button
                                 type="button"
                                 onClick={() => setHeroImage([])}
-                                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm shadow"
                               >
                                 ×
                               </button>
@@ -382,6 +378,7 @@ const WebPreProjects = () => {
                           ))}
                         </div>
                       )}
+
                     </div>
                   </div>
                 </div>
@@ -605,9 +602,8 @@ const WebPreProjects = () => {
                                     {contentImage.map((img, index) => (
                                       <div key={index} className="relative">
                                         <img
-                                          src={`${
-                                            import.meta.env.VITE_CMS_URL
-                                          }api/transform/${img}`}
+                                          src={`${import.meta.env.VITE_CMS_URL
+                                            }api/transform/${img}`}
                                           className="h-16 w-20 rounded-sm object-cover border"
                                           alt="Preview"
                                         />
@@ -671,15 +667,13 @@ const WebPreProjects = () => {
                             <td>
                               {item.image && item.image.length > 0 ? (
                                 <img
-                                  src={`${
-                                    import.meta.env.VITE_CMS_URL
-                                  }api/transform/${item.image[0]}`}
+                                  src={`${import.meta.env.VITE_CMS_URL
+                                    }api/transform/${item.image[0]}`}
                                   className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
                                   alt="Content"
                                   onClick={() =>
                                     window.open(
-                                      `${
-                                        import.meta.env.VITE_CMS_URL
+                                      `${import.meta.env.VITE_CMS_URL
                                       }api/transform/${item.image[0]}`,
                                       "_blank"
                                     )
@@ -717,11 +711,10 @@ const WebPreProjects = () => {
                                   type="button"
                                   onClick={() => handleMoveContent(index, "up")}
                                   disabled={index === 0}
-                                  className={`ti-btn ti-btn-soft-info ti-btn-sm ${
-                                    index === 0
+                                  className={`ti-btn ti-btn-soft-info ti-btn-sm ${index === 0
                                       ? "opacity-50 cursor-not-allowed"
                                       : ""
-                                  }`}
+                                    }`}
                                   title="Move Up"
                                 >
                                   <i className="ti ti-arrow-up"></i>
@@ -732,11 +725,10 @@ const WebPreProjects = () => {
                                     handleMoveContent(index, "down")
                                   }
                                   disabled={index === contentData.length - 1}
-                                  className={`ti-btn ti-btn-soft-info ti-btn-sm ${
-                                    index === contentData.length - 1
+                                  className={`ti-btn ti-btn-soft-info ti-btn-sm ${index === contentData.length - 1
                                       ? "opacity-50 cursor-not-allowed"
                                       : ""
-                                  }`}
+                                    }`}
                                   title="Move Down"
                                 >
                                   <i className="ti ti-arrow-down"></i>

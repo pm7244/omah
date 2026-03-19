@@ -59,6 +59,9 @@ import BuyersGuide from "./component/pagecomponent/BuyersGuide/BuyersGuide";
 import BuyersAdd from "./component/pagecomponent/BuyersGuide/AddBuyers";
 import BuyersEdit from "./component/pagecomponent/BuyersGuide/EditBuyers";
 
+import WebTeam from "./component/pagecomponent/web_team/team.jsx"
+import CreateTeam from "./component/pagecomponent/web_team/create.jsx"
+import EditTeam from "./component/pagecomponent/web_team/edit.jsx"
 
 
 
@@ -161,6 +164,7 @@ const router = createBrowserRouter([
             path: `service/add-new`,
             element: <AddPreProjects />,
           },
+          
             {
             path : "/cms/projects/AddNewSpecification",
             element: <AddNewSpecification  />,
@@ -284,6 +288,18 @@ const router = createBrowserRouter([
           {
             path: `blog`,
             element: <Blog />,
+          },
+           {
+            path: `web_team`,
+            element: <WebTeam />,
+          },
+          {
+            path: `web_team/create`,
+            element: <CreateTeam />,
+          },
+          {
+            path: `web_team/edit/:id`,
+            element: <EditTeam />,
           },
           {
             path: `contact`,

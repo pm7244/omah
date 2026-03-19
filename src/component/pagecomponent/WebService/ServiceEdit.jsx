@@ -8,12 +8,13 @@ import { useNavigate, useParams } from "react-router-dom";
 const ServiceEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  
+
   const [values, setValues] = useState({
     parent_id: 0,
     sub_title: "",
     tagline: "",
     title: "",
+    card_text:"",
     slug: "",
     des: "",
     sort_order: 0,
@@ -23,7 +24,12 @@ const ServiceEdit = () => {
   });
 
   const [image, setImage] = useState([]);
+  const [bannerImage, setBannerImage] = useState([]);
+  const [sliderImage, setSliderImage] = useState([]);
+  const [cardImage, setCardImage] = useState([]);
+
   const [video, setVideo] = useState([]);
+
   const [managerOpener, setManagerOpener] = useState(0);
   const [parentOptions, setParentOptions] = useState([]);
 
@@ -43,6 +49,7 @@ const ServiceEdit = () => {
     // Text-Image fields (text + 1 image)
     text_title: "",
     text_des: "",
+    layout: "",
   });
   const [contentImage1, setContentImage1] = useState([]);
   const [contentImage2, setContentImage2] = useState([]);
@@ -52,7 +59,7 @@ const ServiceEdit = () => {
   // Content type options
   const contentTypeOptions = [
     { value: "image1", label: "Image 1 (Single Image)" },
-    { value: "image2", label: "Image 2 (Two Images)" },
+    // { value: "image2", label: "Image 2 (Two Images)" },
     { value: "text-image", label: "Text with Image" },
   ];
 
@@ -79,13 +86,14 @@ const ServiceEdit = () => {
       .then((data) => {
         if (data.status && data.data) {
           const serviceData = data.data;
-          
+
           // Set main service values
           setValues({
             parent_id: serviceData.parent_id || 0,
             sub_title: serviceData.sub_title || "",
             tagline: serviceData.tagline || "",
             title: serviceData.title || "",
+            card_text: serviceData.card_text || "",
             slug: serviceData.slug || "",
             des: serviceData.des || "",
             sort_order: serviceData.sort_order || 0,
@@ -93,22 +101,26 @@ const ServiceEdit = () => {
             meta_des: serviceData.meta_des || "",
             status: serviceData.status || 1
           });
-          
-          // Set images and videos
-          setImage(serviceData.image || []);
-          setVideo(serviceData.video || []);
-          
+
+          // Set images and videos - ensure they are arrays
+          setImage(Array.isArray(serviceData.image) ? serviceData.image : []);
+          setVideo(Array.isArray(serviceData.video) ? serviceData.video : []);
+          setBannerImage(Array.isArray(serviceData.banner_image) ? serviceData.banner_image : []);
+          setSliderImage(Array.isArray(serviceData.slider) ? serviceData.slider : []);
+          setCardImage(Array.isArray(serviceData.card_images) ? serviceData.card_images : []);
+
           // Set content management data
           if (serviceData.map_items && serviceData.map_items.length > 0) {
             const formattedMapItems = serviceData.map_items.map(item => ({
               content_type: item.type,
-              image1: item.image1 || [],
+              image1: Array.isArray(item.image1) ? item.image1 : [],
               image1_title: item.image1_title || "",
               image1_des: item.image1_des || "",
-              image_2: item.image2 || [],
+              image_2: Array.isArray(item.image2) ? item.image2 : [],
               image2_title: item.image2_title || "",
               image2_des: item.image2_des || "",
               text_title: item.title || "",
+              layout: item.layout || "",
               text_des: item.des || "",
             }));
             setContentData(formattedMapItems);
@@ -137,13 +149,13 @@ const ServiceEdit = () => {
               value: item.sc_id,
               label: item.title || `Service ID: ${item.sc_id}`
             }));
-          
+
           // Add "No Parent" option
           const options = [
             { value: 0, label: "No Parent (Main Service)" },
             ...parents
           ];
-          
+
           setParentOptions(options);
         }
       })
@@ -164,6 +176,8 @@ const ServiceEdit = () => {
       image2_title: "",
       image2_des: "",
       text_title: "",
+      layout: "",
+
       text_des: "",
     });
     setContentImage1([]);
@@ -221,19 +235,20 @@ const ServiceEdit = () => {
     // Create new content item for local state
     const newContentItem = {
       content_type: currentContent.content_type,
-      image1: currentContent.content_type === "image1" 
-        ? contentImage1 
-        : currentContent.content_type === "text-image" 
-        ? contentImageText
-        : currentContent.content_type === "image2"
+      image1: currentContent.content_type === "image1"
         ? contentImage1
-        : [],
+        : currentContent.content_type === "text-image"
+          ? contentImageText
+          : currentContent.content_type === "image2"
+            ? contentImage1
+            : [],
       image1_title: currentContent.image1_title || "",
       image1_des: currentContent.image1_des || "",
       image_2: currentContent.content_type === "image2" ? contentImage2 : [],
       image2_title: currentContent.image2_title || "",
       image2_des: currentContent.image2_des || "",
       text_title: currentContent.text_title || "",
+      layout: currentContent.layout || "",
       text_des: currentContent.text_des || "",
     };
 
@@ -248,7 +263,7 @@ const ServiceEdit = () => {
       setContentData(prev => [...prev, newContentItem]);
       toast.success("Content added successfully");
     }
-    
+
     resetContentForm();
   };
 
@@ -262,6 +277,8 @@ const ServiceEdit = () => {
       image2_title: "",
       image2_des: "",
       text_title: "",
+      layout: "",
+
       text_des: "",
     });
     setContentImage1([]);
@@ -280,7 +297,7 @@ const ServiceEdit = () => {
 
   const handleEditContent = (index) => {
     const content = contentData[index];
-    
+
     setCurrentContent({
       content_type: content.content_type,
       image1_title: content.image1_title || "",
@@ -288,6 +305,8 @@ const ServiceEdit = () => {
       image2_title: content.image2_title || "",
       image2_des: content.image2_des || "",
       text_title: content.text_title || "",
+      layout: content.layout || "",
+
       text_des: content.text_des || "",
     });
 
@@ -305,14 +324,14 @@ const ServiceEdit = () => {
       setContentImage1([]);
       setContentImage2([]);
     }
-    
+
     setEditingContentIndex(index);
     setShowContentForm(true);
   };
 
   const handleMoveContent = (index, direction) => {
     const newIndex = direction === 'up' ? index - 1 : index + 1;
-    
+
     if (newIndex < 0 || newIndex >= contentData.length) {
       return; // Can't move beyond boundaries
     }
@@ -320,7 +339,7 @@ const ServiceEdit = () => {
     // Create a copy of the array and swap items
     const updatedContent = [...contentData];
     [updatedContent[index], updatedContent[newIndex]] = [updatedContent[newIndex], updatedContent[index]];
-    
+
     // Update local state immediately for UI feedback
     setContentData(updatedContent);
     toast.success(`Content moved ${direction} successfully`);
@@ -330,7 +349,7 @@ const ServiceEdit = () => {
     const { name, value } = e.target;
     setValues((prev) => {
       const newState = { ...prev, [name]: value };
-      
+
       // Auto-generate slug from title
       if (name === "title") {
         newState.slug = value
@@ -340,7 +359,7 @@ const ServiceEdit = () => {
           .replace(/-+/g, "-")
           .trim();
       }
-      
+
       return newState;
     });
   };
@@ -367,26 +386,54 @@ const ServiceEdit = () => {
       return;
     }
 
+    // Function to properly format media arrays
+    const formatMediaArray = (mediaArray) => {
+      if (!mediaArray || mediaArray.length === 0) return [];
+
+      return mediaArray.map(item => {
+        // If item is a string, use it directly
+        if (typeof item === 'string') {
+          return item;
+        }
+        // If item is an object with filename property
+        if (typeof item === 'object' && item.filename) {
+          return item.filename;
+        }
+        // Convert to string as fallback
+        return String(item);
+      });
+    };
+
     const formData = {
       ...values,
       sub_title: values.sub_title || "",
       tagline: values.tagline || "",
-      image: JSON.stringify(image),
-      video: JSON.stringify(video),
+      // Send as properly formatted arrays (not stringified)
+      image: formatMediaArray(image),
+      video: formatMediaArray(video),
+      banner_image: formatMediaArray(bannerImage),
+      slider: formatMediaArray(sliderImage),
+      card_images: formatMediaArray(cardImage),
+
+
       map_items: contentData.map((item, index) => ({
         type: item.content_type,
-        image1: item.content_type === "text-image" ? item.image1 : item.image1,
+        image1: formatMediaArray(item.image1 || []),
         image1_title: item.image1_title || "",
         image1_des: item.image1_des || "",
-        image2: item.content_type === "image2" ? item.image_2 : [],
+        image2: item.content_type === "image2" ? formatMediaArray(item.image_2 || []) : [],
         image2_title: item.image2_title || "",
         image2_des: item.image2_des || "",
         title: item.text_title || "",
+        layout: item.layout || "",
+
         des: item.text_des || "",
         sort_order: index + 1,
         status: 1
       }))
     };
+
+    console.log("Submitting data:", formData); // For debugging
 
     fetch(`${import.meta.env.VITE_CMS_URL}api/updatebyidservicecontent/${id}`, {
       method: "PUT",
@@ -460,829 +507,1045 @@ const ServiceEdit = () => {
       ratio={16 / 9}
       type="image"
     />
-  ) : (
-    <>
-      <PageHeader
-        currentpage="Edit Service"
-        activepage="Pages"
-        mainpage="Service"
+  ) :
+
+    managerOpener === 6 ? (
+      <Filemanagermain
+        file={bannerImage}
+        fileSetter={setBannerImage}
+        openSetter={setManagerOpener}
+        maxFiles={1}
+        ratio={16 / 9}
+        type="image"
       />
+    ) :
+      managerOpener === 7 ? (
+        <Filemanagermain
+          file={sliderImage}
+          fileSetter={setSliderImage}
+          openSetter={setManagerOpener}
+          maxFiles={1}
+          ratio={16 / 9}
+          type="image"
+        />
+      ) :
+      
+       managerOpener === 8 ? (
+        <Filemanagermain
+          file={cardImage}
+          fileSetter={setCardImage}
+          openSetter={setManagerOpener}
+          maxFiles={1}
+          ratio={16 / 9}
+          type="image"
+        />
+      ) :(
+        <>
+          <PageHeader
+            currentpage="Edit Service"
+            activepage="Pages"
+            mainpage="Service"
+          />
 
-      <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12">
-          <div className="box">
-            <div className="box-header">
-              <div className="flex items-center">
-                <button
-                  type="button"
-                  onClick={() => navigate("/cms/pages/service")}
-                  className="ti-btn ti-btn-sm mr-3 p-2 rounded-full"
-                  style={{ backgroundColor: '#5A66F1', color: 'white' }}
-                >
-                  <i className="ti ti-arrow-left text-sm"></i>
-                </button>
-              </div>
-            </div>
-            
-            <form onSubmit={handleSubmit}>
-              <div className="box-body">
-                <div className="grid grid-cols-12 gap-6">
-                  {/* Left Column */}
-                  <div className="col-span-12 xxl:col-span-8">
-                    
-                    {/* Parent Service */}
-                    <div className="box">
-                      <div className="box-body space-y-5">
-                        <label htmlFor="parent_id" className="ti-form-label">
-                          Parent Service
-                        </label>
-                        <Select
-                          name="parent_id"
-                          options={parentOptions}
-                          value={parentOptions.find(option => option.value === values.parent_id)}
-                          onChange={handleSelectChange}
-                          placeholder="Select Parent Service"
-                          className="ti-form-select"
-                        />
-                        <small className="text-gray-500">
-                          Select "No Parent" to create a main service, or choose an existing service to create a sub-service.
-                        </small>
-                      </div>
-                    </div>
-
-                    {/* Sub Title */}
-                    <div className="box">
-                      <div className="box-body space-y-5">
-                        <label htmlFor="sub_title" className="ti-form-label">
-                          Sub Title
-                        </label>
-                        <input
-                          type="text"
-                          name="sub_title"
-                          value={values.sub_title}
-                          onChange={handleInputChange}
-                          id="sub_title"
-                          className="ti-form-input"
-                          placeholder="Enter Sub Title"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Tagline */}
-                    <div className="box">
-                      <div className="box-body space-y-5">
-                        <label htmlFor="tagline" className="ti-form-label">
-                          Tagline
-                        </label>
-                        <input
-                          type="text"
-                          name="tagline"
-                          value={values.tagline}
-                          onChange={handleInputChange}
-                          id="tagline"
-                          className="ti-form-input"
-                          placeholder="Enter Tagline"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Title */}
-                    <div className="box">
-                      <div className="box-body space-y-5">
-                        <label htmlFor="title" className="ti-form-label">
-                          Title <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="title"
-                          value={values.title}
-                          onChange={handleInputChange}
-                          id="title"
-                          className="ti-form-input"
-                          placeholder="Enter Title"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Description */}
-                    <div className="box">
-                      <div className="box-body space-y-5">
-                        <label htmlFor="des" className="ti-form-label">
-                          Description <span className="text-red-500">*</span>
-                        </label>
-                        <textarea
-                          name="des"
-                          value={values.des}
-                          onChange={handleInputChange}
-                          id="des"
-                          className="ti-form-input"
-                          rows="6"
-                          placeholder="Enter Description"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Meta Title */}
-                    <div className="box">
-                      <div className="box-body space-y-5">
-                        <label htmlFor="meta_title" className="ti-form-label">
-                          Meta Title
-                        </label>
-                        <input
-                          type="text"
-                          name="meta_title"
-                          value={values.meta_title}
-                          onChange={handleInputChange}
-                          id="meta_title"
-                          className="ti-form-input"
-                          placeholder="Enter Meta Title"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Meta Description */}
-                    <div className="box">
-                      <div className="box-body space-y-5">
-                        <label htmlFor="meta_des" className="ti-form-label">
-                          Meta Description
-                        </label>
-                        <textarea
-                          name="meta_des"
-                          value={values.meta_des}
-                          onChange={handleInputChange}
-                          id="meta_des"
-                          className="ti-form-input"
-                          rows="3"
-                          placeholder="Enter Meta Description"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Column */}
-                  <div className="col-span-12 xxl:col-span-4">
-                    
-                    {/* Slug */}
-                    <div className="box">
-                      <div className="box-body space-y-4">
-                        <label htmlFor="slug" className="ti-form-label">
-                          Slug
-                        </label>
-                        <input
-                          type="text"
-                          name="slug"
-                          value={values.slug}
-                          onChange={handleInputChange}
-                          id="slug"
-                          className="ti-form-input"
-                          placeholder="Auto-generated from title"
-                        />
-                        <small className="text-gray-500">
-                          URL-friendly version of the title. Auto-generated but can be modified.
-                        </small>
-                      </div>
-                    </div>
-
-                    {/* Sort Order */}
-                    <div className="box">
-                      <div className="box-body space-y-4">
-                        <label htmlFor="sort_order" className="ti-form-label">
-                          Sort Order
-                        </label>
-                        <input
-                          type="number"
-                          name="sort_order"
-                          value={values.sort_order}
-                          onChange={handleInputChange}
-                          id="sort_order"
-                          className="ti-form-input"
-                          placeholder="Enter Sort Order"
-                          min="0"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Status */}
-                    <div className="box">
-                      <div className="box-header">
-                        <h5 className="box-title">Status</h5>
-                      </div>
-                      <div className="box-body">
-                        <Select
-                          name="status"
-                          options={statusOptions}
-                          value={statusOptions.find(option => option.value === values.status)}
-                          onChange={handleSelectChange}
-                          placeholder="Select Status"
-                          className="ti-form-select"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Image Upload */}
-                    <div className="box">
-                      <div className="box-header">
-                        <h5 className="box-title">Service Image</h5>
-                      </div>
-                      <div className="box-body space-y-4">
-                        <button
-                          type="button"
-                          onClick={() => setManagerOpener(1)}
-                          className="ti-btn ti-btn-outline-primary w-full"
-                        >
-                          <i className="ti ti-upload mr-2"></i>
-                          {image.length > 0 ? "Change Image" : "Upload Image"}
-                        </button>
-                        
-                        {image.length > 0 && (
-                          <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Preview:</label>
-                            <div className="flex flex-wrap gap-2">
-                              {image.map((img, index) => (
-                                <div key={index} className="relative">
-                                  <img
-                                    src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
-                                    className="h-20 w-24 rounded-sm object-cover border"
-                                    alt="Preview"
-                                  />
-                                  <button
-                                    type="button"
-                                    onClick={() => setImage(prev => prev.filter((_, i) => i !== index))}
-                                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
-                                  >
-                                    ×
-                                  </button>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Video Upload */}
-                    <div className="box">
-                      <div className="box-header">
-                        <h5 className="box-title">Service Video</h5>
-                      </div>
-                      <div className="box-body space-y-4">
-                        <button
-                          type="button"
-                          onClick={() => setManagerOpener(2)}
-                          className="ti-btn ti-btn-primary w-full"
-                        >
-                          <i className="ti ti-video mr-2"></i>
-                          {video.length > 0 ? "Change Video" : "Upload Video"}
-                        </button>
-                        
-                        {video.length > 0 && (
-                          <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Selected Video:</label>
-                            <div className="flex flex-wrap gap-2">
-                              {video.map((vid, index) => (
-                                <div key={index} className="relative bg-gray-100 p-2 rounded">
-                                  <span className="text-sm">{vid}</span>
-                                  <button
-                                    type="button"
-                                    onClick={() => setVideo(prev => prev.filter((_, i) => i !== index))}
-                                    className="ml-2 text-red-500 hover:text-red-700"
-                                  >
-                                    ×
-                                  </button>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Submit Buttons */}
-                    <div className="box">
-                      <div className="box-body">
-                        <div className="flex gap-3">
-                          <button
-                            type="submit"
-                            className="ti-btn ti-btn-primary flex-1"
-                          >
-                            <i className="ti ti-check mr-2"></i>Update Service
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => navigate("/cms/pages/service")}
-                            className="ti-btn ti-btn-outline-secondary"
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+          <div className="grid grid-cols-12 gap-6">
+            <div className="col-span-12">
+              <div className="box">
+                <div className="box-header">
+                  <div className="flex items-center">
+                    <button
+                      type="button"
+                      onClick={() => navigate("/cms/pages/service")}
+                      className="ti-btn ti-btn-sm mr-3 p-2 rounded-full"
+                      style={{ backgroundColor: '#5A66F1', color: 'white' }}
+                    >
+                      <i className="ti ti-arrow-left text-sm"></i>
+                    </button>
                   </div>
                 </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
 
-      {/* Content Management Section */}
-      <div className="grid grid-cols-12 gap-x-6 mt-6">
-        <div className="col-span-12">
-          <div className="box">
-            <div className="box-header flex justify-between items-center">
-              <h5 className="box-title">Content Management</h5>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowContentForm(true);
-                  setEditingContentIndex(null);
-                }}
-                className="ti-btn ti-btn-primary"
-              >
-                <i className="ti ti-plus mr-2"></i>Add New Content
-              </button>
-            </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="box-body">
+                    <div className="grid grid-cols-12 gap-6">
+                      {/* Left Column */}
+                      <div className="col-span-12 xxl:col-span-8">
 
-            {/* Content Form */}
-            {showContentForm && (
-              <div className="box-body border-b">
-                <div className="grid grid-cols-12 gap-4">
-                  {/* Content Type Selection */}
-                  <div className="col-span-12 md:col-span-6 lg:col-span-3">
-                    <label className="ti-form-label text-sm font-medium">
-                      Content Type <span className="text-red-500">*</span>
-                    </label>
-                    <Select
-                      value={contentTypeOptions.find(opt => opt.value === currentContent.content_type)}
-                      onChange={handleContentTypeChange}
-                      options={contentTypeOptions}
-                      placeholder="Select content type..."
-                      className="text-sm"
-                    />
-                  </div>
-
-                  {/* Dynamic Fields based on Content Type */}
-                  {currentContent.content_type && (
-                    <div className="col-span-12">
-                      <div className="grid grid-cols-12 gap-4">
-                        
-                        {/* IMAGE1 TYPE FIELDS - Only image1 fields without button text/url */}
-                        {currentContent.content_type === "image1" && (
-                          <>
-                            {/* Image1 Upload */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Upload Image <span className="text-red-500">*</span>
-                              </label>
-                              <div className="space-y-2">
-                                <button
-                                  type="button"
-                                  onClick={() => setManagerOpener(3)}
-                                  className="ti-btn ti-btn-outline-primary ti-btn-sm w-full"
-                                >
-                                  {contentImage1.length > 0 ? "Change Image" : "Select Image"}
-                                </button>
-                                {contentImage1.length > 0 && (
-                                  <div className="flex flex-wrap gap-2">
-                                    {contentImage1.map((img, index) => (
-                                      <div key={index} className="relative">
-                                        <img
-                                          src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
-                                          className="h-16 w-20 rounded-sm object-cover border"
-                                          alt="Preview"
-                                        />
-                                        <button
-                                          type="button"
-                                          onClick={() => setContentImage1([])}
-                                          className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
-                                        >
-                                          ×
-                                        </button>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-
-                            {/* Image1 Title */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Image Title <span className="text-red-500">*</span>
-                              </label>
-                              <input
-                                type="text"
-                                name="image1_title"
-                                value={currentContent.image1_title}
-                                onChange={handleContentInputChange}
-                                className="ti-form-input text-sm"
-                                placeholder="Enter image title..."
-                              />
-                            </div>
-
-                            {/* Image1 Description */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Image Description
-                              </label>
-                              <textarea
-                                name="image1_des"
-                                value={currentContent.image1_des}
-                                onChange={handleContentInputChange}
-                                className="ti-form-input text-sm"
-                                placeholder="Enter image description..."
-                                rows="3"
-                              />
-                            </div>
-                          </>
-                        )}
-
-                        {/* IMAGE2 TYPE FIELDS - Two separate image sections without button text/url */}
-                        {currentContent.content_type === "image2" && (
-                          <>
-                            {/* First Image Section */}
-                            <div className="col-span-12">
-                              <h6 className="text-sm font-semibold mb-3 text-gray-700 border-b pb-2">First Image Section</h6>
-                            </div>
-                            
-                            {/* First Image Upload */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Upload First Image <span className="text-red-500">*</span>
-                              </label>
-                              <div className="space-y-2">
-                                <button
-                                  type="button"
-                                  onClick={() => setManagerOpener(3)}
-                                  className="ti-btn ti-btn-outline-primary ti-btn-sm w-full"
-                                >
-                                  {contentImage1.length > 0 ? "Change First Image" : "Select First Image"}
-                                </button>
-                                {contentImage1.length > 0 && (
-                                  <div className="flex flex-wrap gap-2">
-                                    {contentImage1.map((img, index) => (
-                                      <div key={index} className="relative">
-                                        <img
-                                          src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
-                                          className="h-16 w-20 rounded-sm object-cover border"
-                                          alt="Preview"
-                                        />
-                                        <button
-                                          type="button"
-                                          onClick={() => setContentImage1([])}
-                                          className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
-                                        >
-                                          ×
-                                        </button>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-
-                            {/* First Image Title */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                First Image Title <span className="text-red-500">*</span>
-                              </label>
-                              <input
-                                type="text"
-                                name="image1_title"
-                                value={currentContent.image1_title}
-                                onChange={handleContentInputChange}
-                                className="ti-form-input text-sm"
-                                placeholder="Enter first image title..."
-                              />
-                            </div>
-
-                            {/* First Image Description */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                First Image Description
-                              </label>
-                              <textarea
-                                name="image1_des"
-                                value={currentContent.image1_des}
-                                onChange={handleContentInputChange}
-                                className="ti-form-input text-sm"
-                                placeholder="Enter first image description..."
-                                rows="3"
-                              />
-                            </div>
-
-                            {/* Second Image Section */}
-                            <div className="col-span-12">
-                              <h6 className="text-sm font-semibold mb-3 text-gray-700 mt-6 border-b pb-2">Second Image Section</h6>
-                            </div>
-                            
-                            {/* Second Image Upload */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Upload Second Image <span className="text-red-500">*</span>
-                              </label>
-                              <div className="space-y-2">
-                                <button
-                                  type="button"
-                                  onClick={() => setManagerOpener(4)}
-                                  className="ti-btn ti-btn-outline-primary ti-btn-sm w-full"
-                                >
-                                  {contentImage2.length > 0 ? "Change Second Image" : "Select Second Image"}
-                                </button>
-                                {contentImage2.length > 0 && (
-                                  <div className="flex flex-wrap gap-2">
-                                    {contentImage2.map((img, index) => (
-                                      <div key={index} className="relative">
-                                        <img
-                                          src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
-                                          className="h-16 w-20 rounded-sm object-cover border"
-                                          alt="Preview"
-                                        />
-                                        <button
-                                          type="button"
-                                          onClick={() => setContentImage2([])}
-                                          className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
-                                        >
-                                          ×
-                                        </button>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-
-                            {/* Second Image Title */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Second Image Title <span className="text-red-500">*</span>
-                              </label>
-                              <input
-                                type="text"
-                                name="image2_title"
-                                value={currentContent.image2_title}
-                                onChange={handleContentInputChange}
-                                className="ti-form-input text-sm"
-                                placeholder="Enter second image title..."
-                              />
-                            </div>
-
-                            {/* Second Image Description */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Second Image Description
-                              </label>
-                              <textarea
-                                name="image2_des"
-                                value={currentContent.image2_des}
-                                onChange={handleContentInputChange}
-                                className="ti-form-input text-sm"
-                                placeholder="Enter second image description..."
-                                rows="3"
-                              />
-                            </div>
-                          </>
-                        )}
-
-                        {/* TEXT-IMAGE TYPE FIELDS - Shows text fields and image1 fields without button/url */}
-                        {currentContent.content_type === "text-image" && (
-                          <>
-                            {/* Text Fields Section */}
-                            <div className="col-span-12">
-                              <h6 className="text-sm font-semibold mb-3 text-gray-700">Text Section</h6>
-                            </div>
-                            
-                            {/* Text Title */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Text Title <span className="text-red-500">*</span>
-                              </label>
-                              <input
-                                type="text"
-                                name="text_title"
-                                value={currentContent.text_title}
-                                onChange={handleContentInputChange}
-                                className="ti-form-input text-sm"
-                                placeholder="Enter text title..."
-                              />
-                            </div>
-
-                            {/* Text Description */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Text Description
-                              </label>
-                              <textarea
-                                name="text_des"
-                                value={currentContent.text_des}
-                                onChange={handleContentInputChange}
-                                className="ti-form-input text-sm"
-                                placeholder="Enter text description..."
-                                rows="3"
-                              />
-                            </div>
-
-                            {/* Image Fields Section */}
-                            <div className="col-span-12">
-                              <h6 className="text-sm font-semibold mb-3 text-gray-700 mt-4">Image Section</h6>
-                            </div>
-
-                            {/* Image Upload */}
-                            <div className="col-span-12 md:col-span-6">
-                              <label className="ti-form-label text-sm font-medium">
-                                Upload Image <span className="text-red-500">*</span>
-                              </label>
-                              <div className="space-y-2">
-                                <button
-                                  type="button"
-                                  onClick={() => setManagerOpener(5)}
-                                  className="ti-btn ti-btn-outline-primary ti-btn-sm w-full"
-                                >
-                                  {contentImageText.length > 0 ? "Change Image" : "Select Image"}
-                                </button>
-                                {contentImageText.length > 0 && (
-                                  <div className="flex flex-wrap gap-2">
-                                    {contentImageText.map((img, index) => (
-                                      <div key={index} className="relative">
-                                        <img
-                                          src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
-                                          className="h-16 w-20 rounded-sm object-cover border"
-                                          alt="Preview"
-                                        />
-                                        <button
-                                          type="button"
-                                          onClick={() => setContentImageText([])}
-                                          className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
-                                        >
-                                          ×
-                                        </button>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </>
-                        )}
-
-                        {/* Action Buttons */}
-                        <div className="col-span-12 flex justify-end gap-2 mt-4">
-                          <button
-                            type="button"
-                            onClick={handleAddContent}
-                            className="ti-btn ti-btn-primary"
-                          >
-                            {editingContentIndex !== null ? "Update Content" : "Add Content"}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={resetContentForm}
-                            className="ti-btn ti-btn-outline-secondary"
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Content Table */}
-            <div className="overflow-auto table-bordered">
-              <table className="ti-custom-table ti-custom-table-head">
-                <thead className="border">
-                  <tr>
-                    <th className="w-1">#</th>
-                    <th>Content Type</th>
-                    <th>Image</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {contentData.map((item, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>
-                        <span className="ti-badge bg-primary/10 text-primary text-xs">
-                          {item.content_type === "image1" ? "Image 1" : 
-                           item.content_type === "image2" ? "Image 2" : 
-                           item.content_type === "text-image" ? "Text & Image" : 
-                           item.content_type}
-                        </span>
-                      </td>
-                      <td>
-                        {item.content_type === "image2" ? (
-                          <div className="flex gap-1">
-                            <img
-                              src={`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`}
-                              className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
-                              alt="Content 1"
-                              onClick={() => window.open(`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`, '_blank')}
+                        {/* Parent Service */}
+                        <div className="box">
+                          <div className="box-body space-y-5">
+                            <label htmlFor="parent_id" className="ti-form-label">
+                              Parent Service
+                            </label>
+                            <Select
+                              name="parent_id"
+                              options={parentOptions}
+                              value={parentOptions.find(option => option.value === values.parent_id)}
+                              onChange={handleSelectChange}
+                              placeholder="Select Parent Service"
+                              className="ti-form-select"
                             />
-                            {item.image_2 && item.image_2.length > 0 && (
-                              <img
-                                src={`${import.meta.env.VITE_CMS_URL}api/transform/${item.image_2[0]}`}
-                                className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
-                                alt="Content 2"
-                                onClick={() => window.open(`${import.meta.env.VITE_CMS_URL}api/transform/${item.image_2[0]}`, '_blank')}
-                              />
+                            <small className="text-gray-500">
+                              Select "No Parent" to create a main service, or choose an existing service to create a sub-service.
+                            </small>
+                          </div>
+                        </div>
+
+                        {/* Sub Title */}
+                        <div className="box">
+                          <div className="box-body space-y-5">
+                            <label htmlFor="sub_title" className="ti-form-label">
+                              Sub Title
+                            </label>
+                            <input
+                              type="text"
+                              name="sub_title"
+                              value={values.sub_title}
+                              onChange={handleInputChange}
+                              id="sub_title"
+                              className="ti-form-input"
+                              placeholder="Enter Sub Title"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Tagline */}
+                        <div className="box">
+                          <div className="box-body space-y-5">
+                            <label htmlFor="tagline" className="ti-form-label">
+                              Tagline
+                            </label>
+                            <input
+                              type="text"
+                              name="tagline"
+                              value={values.tagline}
+                              onChange={handleInputChange}
+                              id="tagline"
+                              className="ti-form-input"
+                              placeholder="Enter Tagline"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <div className="box">
+                          <div className="box-body space-y-5">
+                            <label htmlFor="title" className="ti-form-label">
+                              Title <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="title"
+                              value={values.title}
+                              onChange={handleInputChange}
+                              id="title"
+                              className="ti-form-input"
+                              placeholder="Enter Title"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        {/* Description */}
+                        <div className="box">
+                          <div className="box-body space-y-5">
+                            <label htmlFor="des" className="ti-form-label">
+                              Description <span className="text-red-500">*</span>
+                            </label>
+                            <textarea
+                              name="des"
+                              value={values.des}
+                              onChange={handleInputChange}
+                              id="des"
+                              className="ti-form-input"
+                              rows="6"
+                              placeholder="Enter Description"
+                              required
+                            />
+                          </div>
+                        </div>
+
+
+                        {/* Image Upload */}
+                        <div className="box">
+                          <div className="box-header">
+                            <h5 className="box-title">Banner Image</h5>
+                          </div>
+                          <div className="box-body space-y-4">
+                            <button
+                              type="button"
+                              onClick={() => setManagerOpener(6)}
+                              className="ti-btn ti-btn-outline-primary w-full"
+                            >
+                              <i className="ti ti-upload mr-2"></i>
+                              {bannerImage.length > 0 ? "Change Banner Image" : "Upload Banner Image"}
+                            </button>
+
+                            {bannerImage.length > 0 && (
+                              <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Preview:</label>
+                                <div className="flex flex-wrap gap-2">
+                                  {bannerImage.map((img, index) => (
+                                    <div key={index} className="relative w-full">
+                                      <img
+                                        src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                        className="h-32 w-full rounded-sm object-cover border"
+                                        alt="Preview"
+                                      />
+                                      <button
+                                        type="button"
+                                        onClick={() => setBannerImage(prev => prev.filter((_, i) => i !== index))}
+                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                      >
+                                        ×
+                                      </button>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
                             )}
                           </div>
-                        ) : item.content_type === "text-image" && item.image1 && item.image1.length > 0 ? (
-                          <img
-                            src={`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`}
-                            className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
-                            alt="Content"
-                            onClick={() => window.open(`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`, '_blank')}
-                          />
-                        ) : item.content_type === "image1" && item.image1 && item.image1.length > 0 ? (
-                          <img
-                            src={`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`}
-                            className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
-                            alt="Content"
-                            onClick={() => window.open(`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`, '_blank')}
-                          />
-                        ) : (
-                          <span className="text-gray-400 text-sm">No image</span>
-                        )}
-                      </td>
-                      <td>
-                        <div className="max-w-32 truncate text-sm">
-                          {item.content_type === "image1" ? item.image1_title : 
-                           item.content_type === "image2" ? item.image1_title : 
-                           item.content_type === "text-image" ? item.text_title : 
-                           "No title"}
                         </div>
-                      </td>
-                      <td>
-                        <div className="max-w-40 truncate text-sm">
-                          {item.content_type === "image1" ? item.image1_des : 
-                           item.content_type === "image2" ? item.image1_des : 
-                           item.content_type === "text-image" ? item.text_des : 
-                           "No description"}
+
+                        <div className="box">
+                          <div className="box-header">
+                            <h5 className="box-title">Slider Image</h5>
+                          </div>
+                          <div className="box-body space-y-4">
+                            <button
+                              type="button"
+                              onClick={() => setManagerOpener(7)}
+                              className="ti-btn ti-btn-outline-primary w-full"
+                            >
+                              <i className="ti ti-upload mr-2"></i>
+                              {sliderImage.length > 0 ? "Change Image" : "Upload Image"}
+                            </button>
+
+                            {sliderImage.length > 0 && (
+                              <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Preview:</label>
+                                <div className="flex flex-wrap gap-2">
+                                  {sliderImage.map((img, index) => (
+                                    <div key={index} className="relative w-full">
+                                      <img
+                                        src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                        className="h-32 w-full rounded-sm object-cover border"
+                                        alt="Preview"
+                                      />
+                                      <button
+                                        type="button"
+                                        onClick={() => setSliderImage(prev => prev.filter((_, i) => i !== index))}
+                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                      >
+                                        ×
+                                      </button>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </td>
-                      <td>
-                        <div className="flex gap-1">
-                          <button
-                            type="button"
-                            onClick={() => handleMoveContent(index, 'up')}
-                            disabled={index === 0}
-                            className={`ti-btn ti-btn-soft-info ti-btn-sm ${index === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            title="Move Up"
-                          >
-                            <i className="ti ti-arrow-up"></i>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleMoveContent(index, 'down')}
-                            disabled={index === contentData.length - 1}
-                            className={`ti-btn ti-btn-soft-info ti-btn-sm ${index === contentData.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            title="Move Down"
-                          >
-                            <i className="ti ti-arrow-down"></i>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleEditContent(index)}
-                            className="ti-btn ti-btn-soft-primary ti-btn-sm"
-                            title="Edit"
-                          >
-                            <i className="ti ti-edit"></i>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleDeleteContent(index)}
-                            className="ti-btn ti-btn-soft-danger ti-btn-sm"
-                            title="Delete"
-                          >
-                            <i className="ti ti-trash"></i>
-                          </button>
+
+                        {/* Meta Title */}
+                        <div className="box">
+                          <div className="box-body space-y-5">
+                            <label htmlFor="meta_title" className="ti-form-label">
+                              Meta Title
+                            </label>
+                            <input
+                              type="text"
+                              name="meta_title"
+                              value={values.meta_title}
+                              onChange={handleInputChange}
+                              id="meta_title"
+                              className="ti-form-input"
+                              placeholder="Enter Meta Title"
+                            />
+                          </div>
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                  {contentData.length === 0 && (
-                    <tr>
-                      <td colSpan="6" className="text-center text-gray-500 py-8">
-                        No content available
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+
+                        {/* Meta Description */}
+                        <div className="box">
+                          <div className="box-body space-y-5">
+                            <label htmlFor="meta_des" className="ti-form-label">
+                              Meta Description
+                            </label>
+                            <textarea
+                              name="meta_des"
+                              value={values.meta_des}
+                              onChange={handleInputChange}
+                              id="meta_des"
+                              className="ti-form-input"
+                              rows="3"
+                              placeholder="Enter Meta Description"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Column */}
+                      <div className="col-span-12 xxl:col-span-4">
+
+                        {/* Slug */}
+                        <div className="box">
+                          <div className="box-body space-y-4">
+                            <label htmlFor="slug" className="ti-form-label">
+                              Slug
+                            </label>
+                            <input
+                              type="text"
+                              name="slug"
+                              value={values.slug}
+                              onChange={handleInputChange}
+                              id="slug"
+                              className="ti-form-input"
+                              placeholder="Auto-generated from title"
+                            />
+                            <small className="text-gray-500">
+                              URL-friendly version of the title. Auto-generated but can be modified.
+                            </small>
+                          </div>
+                        </div>
+
+                        {/* Sort Order */}
+                        <div className="box">
+                          <div className="box-body space-y-4">
+                            <label htmlFor="sort_order" className="ti-form-label">
+                              Sort Order
+                            </label>
+                            <input
+                              type="number"
+                              name="sort_order"
+                              value={values.sort_order}
+                              onChange={handleInputChange}
+                              id="sort_order"
+                              className="ti-form-input"
+                              placeholder="Enter Sort Order"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Status */}
+                        <div className="box">
+                          <div className="box-header">
+                            <h5 className="box-title">Status</h5>
+                          </div>
+                          <div className="box-body">
+                            <Select
+                              name="status"
+                              options={statusOptions}
+                              value={statusOptions.find(option => option.value === values.status)}
+                              onChange={handleSelectChange}
+                              placeholder="Select Status"
+                              className="ti-form-select"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Image Upload */}
+                        <div className="box">
+                          <div className="box-header">
+                            <h5 className="box-title">Service Image</h5>
+                          </div>
+                          <div className="box-body space-y-4">
+                            <button
+                              type="button"
+                              onClick={() => setManagerOpener(1)}
+                              className="ti-btn ti-btn-outline-primary w-full"
+                            >
+                              <i className="ti ti-upload mr-2"></i>
+                              {image.length > 0 ? "Change Image" : "Upload Image"}
+                            </button>
+
+                            {image.length > 0 && (
+                              <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Preview:</label>
+                                <div className="flex flex-wrap gap-2">
+                                  {image.map((img, index) => (
+                                    <div key={index} className="relative">
+                                      <img
+                                        src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                        className="h-20 w-24 rounded-sm object-cover border"
+                                        alt="Preview"
+                                      />
+                                      <button
+                                        type="button"
+                                        onClick={() => setImage(prev => prev.filter((_, i) => i !== index))}
+                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                      >
+                                        ×
+                                      </button>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                           <div className="box">
+                          <div className="box-body space-y-5">
+                            <label htmlFor="sub_title" className="ti-form-label">
+                              Card Text
+                            </label>
+                            <input
+                              type="text"
+                              name="card_text"
+                              value={values.card_text}
+                              onChange={handleInputChange}
+                              id="sub_title"
+                              className="ti-form-input"
+                              placeholder="Enter  Card Text"
+                            />
+                          </div>
+                        </div>
+
+                              <div className="box">
+                          <div className="box-header">
+                            <h5 className="box-title">Card Image</h5>
+                          </div>
+                          <div className="box-body space-y-4">
+                            <button
+                              type="button"
+                              onClick={() => setManagerOpener(8)}
+                              className="ti-btn ti-btn-outline-primary w-full"
+                            >
+                              <i className="ti ti-upload mr-2"></i>
+                              {cardImage.length > 0 ? "Change Image" : "Upload Image"}
+                            </button>
+
+                            {cardImage.length > 0 && (
+                              <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Preview:</label>
+                                <div className="flex flex-wrap gap-2">
+                                  {cardImage.map((img, index) => (
+                                    <div key={index} className="relative w-full">
+                                      <img
+                                        src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                        className="h-32 w-full rounded-sm object-cover border"
+                                        alt="Preview"
+                                      />
+                                      <button
+                                        type="button"
+                                        onClick={() => setCardImage(prev => prev.filter((_, i) => i !== index))}
+                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                      >
+                                        ×
+                                      </button>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Video Upload */}
+                        <div className="box">
+                          <div className="box-header">
+                            <h5 className="box-title">Service Video</h5>
+                          </div>
+                          <div className="box-body space-y-4">
+                            <button
+                              type="button"
+                              onClick={() => setManagerOpener(2)}
+                              className="ti-btn ti-btn-primary w-full"
+                            >
+                              <i className="ti ti-video mr-2"></i>
+                              {video.length > 0 ? "Change Video" : "Upload Video"}
+                            </button>
+
+                            {video.length > 0 && (
+                              <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700">Selected Video:</label>
+                                <div className="flex flex-wrap gap-2">
+                                  {video.map((vid, index) => (
+                                    <div key={index} className="relative bg-gray-100 p-2 rounded">
+                                      <span className="text-sm">{vid}</span>
+                                      <button
+                                        type="button"
+                                        onClick={() => setVideo(prev => prev.filter((_, i) => i !== index))}
+                                        className="ml-2 text-red-500 hover:text-red-700"
+                                      >
+                                        ×
+                                      </button>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Submit Buttons */}
+                        <div className="box">
+                          <div className="box-body">
+                            <div className="flex gap-3">
+                              <button
+                                type="submit"
+                                className="ti-btn ti-btn-primary flex-1"
+                              >
+                                <i className="ti ti-check mr-2"></i>Update Service
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => navigate("/cms/pages/service")}
+                                className="ti-btn ti-btn-outline-secondary"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </>
-  );
+
+          {/* Content Management Section */}
+          <div className="grid grid-cols-12 gap-x-6 mt-6">
+            <div className="col-span-12">
+              <div className="box">
+                <div className="box-header flex justify-between items-center">
+                  <h5 className="box-title">Content Management</h5>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowContentForm(true);
+                      setEditingContentIndex(null);
+                    }}
+                    className="ti-btn ti-btn-primary"
+                  >
+                    <i className="ti ti-plus mr-2"></i>Add New Content
+                  </button>
+                </div>
+
+                {/* Content Form */}
+                {showContentForm && (
+                  <div className="box-body border-b">
+                    <div className="grid grid-cols-12 gap-4">
+                      {/* Content Type Selection */}
+                      <div className="col-span-12 md:col-span-6 lg:col-span-3">
+                        <label className="ti-form-label text-sm font-medium">
+                          Content Type <span className="text-red-500">*</span>
+                        </label>
+                        <Select
+                          value={contentTypeOptions.find(opt => opt.value === currentContent.content_type)}
+                          onChange={handleContentTypeChange}
+                          options={contentTypeOptions}
+                          placeholder="Select content type..."
+                          className="text-sm"
+                        />
+                      </div>
+
+                      {/* Dynamic Fields based on Content Type */}
+                      {currentContent.content_type && (
+                        <div className="col-span-12">
+                          <div className="grid grid-cols-12 gap-4">
+
+                            {/* IMAGE1 TYPE FIELDS - Only image1 fields without button text/url */}
+                            {currentContent.content_type === "image1" && (
+                              <>
+                                {/* Image1 Upload */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Upload Image <span className="text-red-500">*</span>
+                                  </label>
+                                  <div className="space-y-2">
+                                    <button
+                                      type="button"
+                                      onClick={() => setManagerOpener(3)}
+                                      className="ti-btn ti-btn-outline-primary ti-btn-sm w-full"
+                                    >
+                                      {contentImage1.length > 0 ? "Change Image" : "Select Image"}
+                                    </button>
+                                    {contentImage1.length > 0 && (
+                                      <div className="flex flex-wrap gap-2">
+                                        {contentImage1.map((img, index) => (
+                                          <div key={index} className="relative">
+                                            <img
+                                              src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                              className="h-16 w-20 rounded-sm object-cover border"
+                                              alt="Preview"
+                                            />
+                                            <button
+                                              type="button"
+                                              onClick={() => setContentImage1([])}
+                                              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                            >
+                                              ×
+                                            </button>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* Image1 Title */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Image Title <span className="text-red-500">*</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="image1_title"
+                                    value={currentContent.image1_title}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                    placeholder="Enter image title..."
+                                  />
+                                </div>
+
+                                {/* Image1 Description */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Image Description
+                                  </label>
+                                  <textarea
+                                    name="image1_des"
+                                    value={currentContent.image1_des}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                    placeholder="Enter image description..."
+                                    rows="3"
+                                  />
+                                </div>
+                              </>
+                            )}
+
+                            {/* IMAGE2 TYPE FIELDS - Two separate image sections without button text/url */}
+                            {currentContent.content_type === "image2" && (
+                              <>
+                                {/* First Image Section */}
+                                <div className="col-span-12">
+                                  <h6 className="text-sm font-semibold mb-3 text-gray-700 border-b pb-2">First Image Section</h6>
+                                </div>
+
+                                {/* First Image Upload */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Upload First Image <span className="text-red-500">*</span>
+                                  </label>
+                                  <div className="space-y-2">
+                                    <button
+                                      type="button"
+                                      onClick={() => setManagerOpener(3)}
+                                      className="ti-btn ti-btn-outline-primary ti-btn-sm w-full"
+                                    >
+                                      {contentImage1.length > 0 ? "Change First Image" : "Select First Image"}
+                                    </button>
+                                    {contentImage1.length > 0 && (
+                                      <div className="flex flex-wrap gap-2">
+                                        {contentImage1.map((img, index) => (
+                                          <div key={index} className="relative">
+                                            <img
+                                              src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                              className="h-16 w-20 rounded-sm object-cover border"
+                                              alt="Preview"
+                                            />
+                                            <button
+                                              type="button"
+                                              onClick={() => setContentImage1([])}
+                                              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                            >
+                                              ×
+                                            </button>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* First Image Title */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    First Image Title <span className="text-red-500">*</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="image1_title"
+                                    value={currentContent.image1_title}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                    placeholder="Enter first image title..."
+                                  />
+                                </div>
+
+                                {/* First Image Description */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    First Image Description
+                                  </label>
+                                  <textarea
+                                    name="image1_des"
+                                    value={currentContent.image1_des}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                    placeholder="Enter first image description..."
+                                    rows="3"
+                                  />
+                                </div>
+
+                                {/* Second Image Section */}
+                                <div className="col-span-12">
+                                  <h6 className="text-sm font-semibold mb-3 text-gray-700 mt-6 border-b pb-2">Second Image Section</h6>
+                                </div>
+
+                                {/* Second Image Upload */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Upload Second Image <span className="text-red-500">*</span>
+                                  </label>
+                                  <div className="space-y-2">
+                                    <button
+                                      type="button"
+                                      onClick={() => setManagerOpener(4)}
+                                      className="ti-btn ti-btn-outline-primary ti-btn-sm w-full"
+                                    >
+                                      {contentImage2.length > 0 ? "Change Second Image" : "Select Second Image"}
+                                    </button>
+                                    {contentImage2.length > 0 && (
+                                      <div className="flex flex-wrap gap-2">
+                                        {contentImage2.map((img, index) => (
+                                          <div key={index} className="relative">
+                                            <img
+                                              src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                              className="h-16 w-20 rounded-sm object-cover border"
+                                              alt="Preview"
+                                            />
+                                            <button
+                                              type="button"
+                                              onClick={() => setContentImage2([])}
+                                              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                            >
+                                              ×
+                                            </button>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* Second Image Title */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Second Image Title <span className="text-red-500">*</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="image2_title"
+                                    value={currentContent.image2_title}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                    placeholder="Enter second image title..."
+                                  />
+                                </div>
+
+                                {/* Second Image Description */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Second Image Description
+                                  </label>
+                                  <textarea
+                                    name="image2_des"
+                                    value={currentContent.image2_des}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                    placeholder="Enter second image description..."
+                                    rows="3"
+                                  />
+                                </div>
+                              </>
+                            )}
+
+                            {/* TEXT-IMAGE TYPE FIELDS - Shows text fields and image1 fields without button/url */}
+                            {currentContent.content_type === "text-image" && (
+                              <>
+                                {/* Text Fields Section */}
+                                <div className="col-span-12">
+                                  <h6 className="text-sm font-semibold mb-3 text-gray-700">Text Section</h6>
+                                </div>
+
+                                {/* Text Title */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Text Title <span className="text-red-500">*</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="text_title"
+                                    value={currentContent.text_title}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                    placeholder="Enter text title..."
+                                  />
+                                </div>
+
+                                {/* <div className="col-span-12 md:col-span-6">
+                              <label className="ti-form-label text-sm font-medium">
+                                Layout <span className="text-red-500">*</span>
+                              </label>
+                              <input
+                                type="text"
+                                name="layout"
+                                value={currentContent.layout}
+                                onChange={handleContentInputChange}
+                                className="ti-form-input text-sm"
+                                placeholder="Enter layout title..."
+                              />
+                            </div> */}
+
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Layout <span className="text-red-500">*</span>
+                                  </label>
+
+                                  <select
+                                    name="layout"
+                                    value={currentContent.layout}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                  >
+                                    <option value="">Select Layout</option>
+                                    <option value="layout-1">Layout 1</option>
+                                    <option value="layout-2">Layout 2</option>
+                                    <option value="layout-3">Layout 3</option>
+                                  </select>
+                                </div>
+
+
+                                {/* Text Description */}
+                                <div className="col-span-12 md:col-span-6">
+                                  <label className="ti-form-label text-sm font-medium">
+                                    Text Description
+                                  </label>
+                                  <textarea
+                                    name="text_des"
+                                    value={currentContent.text_des}
+                                    onChange={handleContentInputChange}
+                                    className="ti-form-input text-sm"
+                                    placeholder="Enter text description..."
+                                    rows="3"
+                                  />
+                                </div>
+
+                                <div className="col-span-12 md:col-span-6">
+                                  {/* Image Fields Section */}
+                                  {/* <div className="col-span-12">
+                              <h6 className="text-sm font-semibold mb-3 text-gray-700 mt-4">Image Section</h6>
+                            </div> */}
+
+                                  {/* Image Upload */}
+                                  <div className="col-span-12 md:col-span-6">
+                                    <label className="ti-form-label text-sm font-medium">
+                                      Upload Image <span className="text-red-500">*</span>
+                                    </label>
+                                    <div className="space-y-2">
+                                      <button
+                                        type="button"
+                                        onClick={() => setManagerOpener(5)}
+                                        className="ti-btn ti-btn-outline-primary ti-btn-sm w-full"
+                                      >
+                                        {contentImageText.length > 0 ? "Change Image" : "Select Image"}
+                                      </button>
+                                      {contentImageText.length > 0 && (
+                                        <div className="flex flex-wrap gap-2">
+                                          {contentImageText.map((img, index) => (
+                                            <div key={index} className="relative">
+                                              <img
+                                                src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                                className="h-16 w-20 rounded-sm object-cover border"
+                                                alt="Preview"
+                                              />
+                                              <button
+                                                type="button"
+                                                onClick={() => setContentImageText([])}
+                                                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                                              >
+                                                ×
+                                              </button>
+                                            </div>
+                                          ))}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+
+                            {/* Action Buttons */}
+                            <div className="col-span-12 flex justify-end gap-2 mt-4">
+                              <button
+                                type="button"
+                                onClick={handleAddContent}
+                                className="ti-btn ti-btn-primary"
+                              >
+                                {editingContentIndex !== null ? "Update Content" : "Add Content"}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={resetContentForm}
+                                className="ti-btn ti-btn-outline-secondary"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Content Table */}
+                <div className="overflow-auto table-bordered">
+                  <table className="ti-custom-table ti-custom-table-head">
+                    <thead className="border">
+                      <tr>
+                        <th className="w-1">#</th>
+                        <th>Content Type</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Layout</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {contentData.map((item, index) => (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>
+                            <span className="ti-badge bg-primary/10 text-primary text-xs">
+                              {item.content_type === "image1" ? "Image 1" :
+                                //  item.content_type === "image2" ? "Image 2" : 
+                                item.content_type === "text-image" ? "Text & Image" :
+                                  item.content_type}
+                            </span>
+                          </td>
+                          <td>
+                            {item.content_type === "image2" ? (
+                              <div className="flex gap-1">
+                                <img
+                                  src={`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`}
+                                  className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
+                                  alt="Content 1"
+                                  onClick={() => window.open(`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`, '_blank')}
+                                />
+                                {item.image_2 && item.image_2.length > 0 && (
+                                  <img
+                                    src={`${import.meta.env.VITE_CMS_URL}api/transform/${item.image_2[0]}`}
+                                    className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
+                                    alt="Content 2"
+                                    onClick={() => window.open(`${import.meta.env.VITE_CMS_URL}api/transform/${item.image_2[0]}`, '_blank')}
+                                  />
+                                )}
+                              </div>
+                            ) : item.content_type === "text-image" && item.image1 && item.image1.length > 0 ? (
+                              <img
+                                src={`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`}
+                                className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
+                                alt="Content"
+                                onClick={() => window.open(`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`, '_blank')}
+                              />
+                            ) : item.content_type === "image1" && item.image1 && item.image1.length > 0 ? (
+                              <img
+                                src={`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`}
+                                className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
+                                alt="Content"
+                                onClick={() => window.open(`${import.meta.env.VITE_CMS_URL}api/transform/${item.image1[0]}`, '_blank')}
+                              />
+                            ) : (
+                              <span className="text-gray-400 text-sm">No image</span>
+                            )}
+                          </td>
+                          <td>
+                            <div className="max-w-32 truncate text-sm">
+                              {item.content_type === "image1" ? item.image1_title :
+                                item.content_type === "image2" ? item.image1_title :
+                                  item.content_type === "text-image" ? item.text_title :
+                                    "No title"}
+                            </div>
+                          </td>
+                          <td>
+                            <div className="max-w-40 truncate text-sm">
+                              {item.content_type === "image1" ? item.image1_des :
+                                item.content_type === "image2" ? item.image1_des :
+                                  item.content_type === "text-image" ? item.text_des :
+                                    "No description"}
+                            </div>
+                          </td>
+
+                          <td>
+                            <div className="max-w-40 truncate text-sm">
+                              {item.content_type === "image1" ? item.layout :
+                                item.content_type === "image2" ? item.layout :
+                                  item.content_type === "text-image" ? item.layout :
+                                    "No description"}
+                            </div>
+                          </td>
+                          <td>
+                            <div className="flex gap-1">
+                              <button
+                                type="button"
+                                onClick={() => handleMoveContent(index, 'up')}
+                                disabled={index === 0}
+                                className={`ti-btn ti-btn-soft-info ti-btn-sm ${index === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                title="Move Up"
+                              >
+                                <i className="ti ti-arrow-up"></i>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleMoveContent(index, 'down')}
+                                disabled={index === contentData.length - 1}
+                                className={`ti-btn ti-btn-soft-info ti-btn-sm ${index === contentData.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                title="Move Down"
+                              >
+                                <i className="ti ti-arrow-down"></i>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleEditContent(index)}
+                                className="ti-btn ti-btn-soft-primary ti-btn-sm"
+                                title="Edit"
+                              >
+                                <i className="ti ti-edit"></i>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleDeleteContent(index)}
+                                className="ti-btn ti-btn-soft-danger ti-btn-sm"
+                                title="Delete"
+                              >
+                                <i className="ti ti-trash"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                      {contentData.length === 0 && (
+                        <tr>
+                          <td colSpan="6" className="text-center text-gray-500 py-8">
+                            No content available
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      );
 };
 
 export default ServiceEdit;

@@ -240,8 +240,8 @@ const About = () => {
       layout: finalLayout,               // Send layout to backend
       title: title,                      // Send title directly to backend  
       des: description,                  // Send description directly to backend
-      sort_order: editingContentIndex !== null ? 
-        contentData[editingContentIndex].sort_order || (contentData.length + 1).toString() : 
+      sort_order: editingContentIndex !== null ?
+        contentData[editingContentIndex].sort_order || (contentData.length + 1).toString() :
         (contentData.length + 1).toString(), // Assign next sort order
       status: 1
     };
@@ -249,7 +249,7 @@ const About = () => {
     const apiUrl = editingContentIndex !== null && contentData[editingContentIndex]?.ac_id
       ? `${import.meta.env.VITE_CMS_URL}api/updatebyidaboutcontent/${contentData[editingContentIndex].ac_id}`
       : `${import.meta.env.VITE_CMS_URL}api/createaboutcontent`;
-      
+
     const method = editingContentIndex !== null && contentData[editingContentIndex]?.ac_id ? "PUT" : "POST";
 
     console.log("Sending payload:", contentPayload);
@@ -285,7 +285,7 @@ const About = () => {
       text_title: "",
       text_des: "",
     });
-    
+
     setContentImageText([]);
     setContentImage1([]);
     setShowContentForm(false);
@@ -302,7 +302,7 @@ const About = () => {
       text_title: content.text_title || content.title || "",
       text_des: content.text_des || content.des || "",
     });
-    
+
     const imageData = content.image1 || [];
     if (content.type === "image1" || content.content_type === "image1") {
       setContentImage1(imageData);
@@ -311,7 +311,7 @@ const About = () => {
       setContentImageText(imageData);
       setContentImage1([]);
     }
-    
+
     setEditingContentIndex(index);
     setShowContentForm(true);
   };
@@ -350,10 +350,10 @@ const About = () => {
     console.log(`=== Moving content ${direction} ===`);
     console.log('Original index:', index);
     console.log('Content data length:', contentData.length);
-    
+
     const newIndex = direction === 'up' ? index - 1 : index + 1;
     console.log('New index:', newIndex);
-    
+
     if (newIndex < 0 || newIndex >= contentData.length) {
       console.log('Cannot move beyond boundaries');
       return; // Can't move beyond boundaries
@@ -363,12 +363,12 @@ const About = () => {
     const updatedContent = [...contentData];
     console.log('Before swap - Item1:', updatedContent[index]);
     console.log('Before swap - Item2:', updatedContent[newIndex]);
-    
+
     [updatedContent[index], updatedContent[newIndex]] = [updatedContent[newIndex], updatedContent[index]];
-    
+
     console.log('After swap - Item1:', updatedContent[index]);
     console.log('After swap - Item2:', updatedContent[newIndex]);
-    
+
     // Update local state immediately for UI feedback
     setContentData(updatedContent);
 
@@ -376,7 +376,7 @@ const About = () => {
     try {
       const item1 = updatedContent[index];
       const item2 = updatedContent[newIndex];
-      
+
       if (item1.ac_id && item2.ac_id) {
         // Prepare proper image data
         const getImageData = (item) => {
@@ -424,12 +424,12 @@ const About = () => {
             body: JSON.stringify(updateData2),
           })
         ];
-        
+
         const results = await Promise.all(promises);
         console.log('Update results:', results);
-        
+
         const allSuccessful = results.every(response => response.ok);
-        
+
         if (allSuccessful) {
           console.log('All updates successful');
           toast.success(`Content moved ${direction} successfully`);
@@ -484,7 +484,7 @@ const About = () => {
               activepage="Pages"
               mainpage="About"
             />
-            <div className="grid grid-cols-12 gap-x-6">
+            <div className="">
               <div className="col-span-12 xxl:col-span-8">
                 <div className="box mt-5">
                   <div className="box-body space-y-4">
@@ -503,9 +503,8 @@ const About = () => {
                       {heroImage && heroImage.length > 0 && (
                         <div className="mt-2">
                           <img
-                            src={`${
-                              import.meta.env.VITE_CMS_URL
-                            }api/transform/${heroImage[0]}`}
+                            src={`${import.meta.env.VITE_CMS_URL
+                              }api/transform/${heroImage[0]}`}
                             className="box-img-top h-40 w-full rounded-t-sm object-cover"
                             alt="Hero Image"
                           />
@@ -729,33 +728,23 @@ const About = () => {
                                           : "Select Image"}
                                       </button>
                                       {contentImageText.length > 0 && (
-                                        <div className="flex flex-wrap gap-2">
-                                          {contentImageText.map(
-                                            (img, index) => (
-                                              <div
-                                                key={index}
-                                                className="relative"
-                                              >
-                                                <img
-                                                  src={`${
-                                                    import.meta.env
-                                                      .VITE_CMS_URL
-                                                  }api/transform/${img}`}
-                                                  className="h-16 w-20 rounded-sm object-cover border"
-                                                  alt="Preview"
-                                                />
-                                                <button
-                                                  type="button"
-                                                  onClick={() =>
-                                                    setContentImageText([])
-                                                  }
-                                                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
-                                                >
-                                                  ×
-                                                </button>
-                                              </div>
-                                            )
-                                          )}
+                                        <div className="w-full">
+                                          {contentImageText.map((img, index) => (
+                                            <div key={index} className="relative w-full">
+                                              <img
+                                                src={`${import.meta.env.VITE_CMS_URL}api/transform/${img}`}
+                                                className="w-full h-32 rounded-sm object-cover border"
+                                                alt="Preview"
+                                              />
+
+                                              <button
+                                                type="button"
+                                                onClick={() => setContentImageText([])}
+                                                className=" top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm"
+                                              >x
+                                              </button>
+                                            </div>
+                                          ))}
                                         </div>
                                       )}
                                     </div>
@@ -790,9 +779,8 @@ const About = () => {
                                               className="relative"
                                             >
                                               <img
-                                                src={`${
-                                                  import.meta.env.VITE_CMS_URL
-                                                }api/transform/${img}`}
+                                                src={`${import.meta.env.VITE_CMS_URL
+                                                  }api/transform/${img}`}
                                                 className="h-16 w-20 rounded-sm object-cover border"
                                                 alt="Preview"
                                               />
@@ -899,25 +887,23 @@ const About = () => {
                             </td>
                             <td>
                               <span className="badge bg-secondary text-white px-2 py-1 rounded text-xs">
-                                {item.layout === "text-left" 
-                                  ? "Text Left" 
-                                  : item.layout === "text-right" 
-                                  ? "Text Right" 
-                                  : "Default"}
+                                {item.layout === "text-left"
+                                  ? "Text Left"
+                                  : item.layout === "text-right"
+                                    ? "Text Right"
+                                    : "Default"}
                               </span>
                             </td>
                             <td>
                               {item.image1 && item.image1.length > 0 ? (
                                 <img
-                                  src={`${
-                                    import.meta.env.VITE_CMS_URL
-                                  }api/transform/${item.image1[0]}`}
+                                  src={`${import.meta.env.VITE_CMS_URL
+                                    }api/transform/${item.image1[0]}`}
                                   className="h-12 w-16 rounded-sm object-cover border cursor-pointer"
                                   alt="Content"
                                   onClick={() =>
                                     window.open(
-                                      `${
-                                        import.meta.env.VITE_CMS_URL
+                                      `${import.meta.env.VITE_CMS_URL
                                       }api/transform/${item.image1[0]}`,
                                       "_blank"
                                     )
@@ -934,8 +920,8 @@ const About = () => {
                                 {item.type === "image1"
                                   ? item.image1_title
                                   : item.type === "text-image"
-                                  ? item.text_title
-                                  : "No title"}
+                                    ? item.text_title
+                                    : "No title"}
                               </div>
                             </td>
                             <td>
@@ -943,8 +929,8 @@ const About = () => {
                                 {item.type === "image1"
                                   ? item.image1_des
                                   : item.type === "text-image"
-                                  ? item.text_des
-                                  : "No description"}
+                                    ? item.text_des
+                                    : "No description"}
                               </div>
                             </td>
                             <td>

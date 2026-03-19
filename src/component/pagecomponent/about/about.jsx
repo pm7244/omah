@@ -504,15 +504,16 @@ const About = () => {
       fileSetter={setContentImageText}
       openSetter={setManagerOpener}
       maxFiles={1}
-      ratio={16 / 9}
+         ratio={16 / 9}
       type="image"
     />
   ) : (
     <div>
       <PageHeader currentpage="About" activepage="Pages" mainpage="About" />
       <div className="grid grid-cols-12 gap-x-6">
-        <div className="col-span-12 xxl:col-span-8">
+        <div className="col-span-12">
           {/* Hero Title */}
+          
           <div className="box">
             <div className="box-body space-y-5">
               <label className="ti-form-label text-dark-grey">Hero Title</label>
