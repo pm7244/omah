@@ -2,27 +2,34 @@ const connection = require("../connection");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+// =========================
+// REGISTER USER
+// =========================
 const register = async (req, res) => {
   try {
     const { username, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    if (!username || !password) {
-      return res.status(400).json({
+    const sql = `INSERT INTO users (username, password, status, ip) VALUES (?, ?, ?, ?)`;
+
+    const data = await connection.query(sql, [
+      username,
+      hashedPassword,
+      1,       // default active
+      "::1",
+    ]);
+
+    if (data) {
+      return res.status(200).json({
+        status: true,
+        message: "User created successfully",
+      });
+    } else {
+      res.status(500).json({
         status: false,
-        message: "Username and password are required",
+        message: "Failed to create user",
       });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const sql = `INSERT INTO users (username, password, ip) VALUES (?, ?, ?)`;
-
-    const data = await connection.query(sql, [username, hashedPassword, "::1"]);
-
-    return res.status(200).json({
-      status: true,
-      message: "User created successfully",
-    });
-
   } catch (error) {
     res.status(500).json({
       status: false,
@@ -31,58 +38,62 @@ const register = async (req, res) => {
   }
 };
 
-
+// =========================
+// LOGIN USER
+// =========================
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const sql = "SELECT * FROM users WHERE username = ?";
+    // Fetch only active users
+    const sql = "SELECT * FROM users WHERE username = ? AND status = 1";
     const data = await connection.query(sql, [username]);
     const user = data[0];
 
-    if (!user[0].username || !user[0].password) {
+    // If no active user found
+    if (!user || user.length === 0) {
       return res.status(401).json({
-        error: "Authentication failed: user and password not found",
+        error: "User does not exist or is inactive",
       });
     }
 
     const storedPassword = user[0].password;
 
-    try {
-      const passwordMatch = await bcrypt.compare(password, storedPassword);
+    const passwordMatch = await bcrypt.compare(password, storedPassword);
 
-      if (!passwordMatch) {
-        return res.status(401).json({
-          error: "Authentication failed",
-        });
-      }
-
-      const token = jwt.sign({ userId: user.id }, "jwttoken", {
-        expiresIn: "24h",
-      });
-      res.cookie("jwt", token);
-      console.log(token);
-
-      res.status(200).json({ token });
-    } catch (error) {
-      console.error("Error comparing passwords: ", error);
-      res.status(500).json({
-        error: error.message,
+    if (!passwordMatch) {
+      return res.status(401).json({
+        error: "Invalid credentials",
       });
     }
+
+    // Create token with user ID
+    const token = jwt.sign({ userId: user[0].id }, "jwttoken", {
+      expiresIn: "24h",
+    });
+
+    // Store JWT in cookie
+    res.cookie("jwt", token);
+
+    res.status(200).json({
+      message: "Login successful",
+      token,
+    });
   } catch (error) {
-    console.error("Error logging in: ", error);
     res.status(500).json({
       error: error.message,
     });
   }
 };
 
+// =========================
+// LOGOUT USER
+// =========================
 const logout = async (req, res) => {
   try {
     res.clearCookie("jwt");
     res.status(200).json({
-      message: "logout successfull",
+      message: "Logout successful",
     });
   } catch (error) {
     res.status(500).json({

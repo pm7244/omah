@@ -1,0 +1,809 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('include/head') %>
+
+
+    <style>
+.iconbuttomcard {
+  width: 120px; /* adjust if needed */
+  animation: rotate360 3s linear infinite;
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+    </style>
+</head>
+
+<body>
+  <div data-barba="wrapper">
+
+    <!-- start header -->
+    <%- include('include/header') %>
+      <!-- end header -->
+      <!-- PAGE MAIN -->
+      <div class="js-smooth-scroll bg-white" id="page-wrapper" data-barba="container">
+        <main class="page-wrapper__content">
+          <!-- section MASTHEAD FULLSCREEN -->
+          <section class="section section-masthead section-fullheight text-left bg-dark-1"
+            data-arts-os-animation="data-arts-os-animation" data-arts-theme-text="light"
+            data-background-color="var(--color-dark-1)">
+            <div class="section-masthead__inner section-fullheight__inner container-fluid">
+              <header class="row section-masthead__header justify-content-left">
+                <div class="col-lg-6">
+                  <section
+                    class="section section-content clearfix pt-medium pb-medium container-fluid container-fluid_paddings"
+                    data-arts-os-animation="data-arts-os-animation">
+                    <div class="section-content__inner">
+                      <div class="w-100"></div>
+                      <div class="section__headline mb-1 mb-md-2"></div>
+                      <div class="w-100"></div>
+
+                      <div class="w-100"></div>
+                      <div class="section-content__text " data-split-text-type="lines" data-split-text-set="lines">
+                        <div class="section-content__heading  mb-1" data-split-text-type="lines,words"
+                          data-split-text-set="words">
+                          <h3 style="color: #ffffff;">
+                            <!-- <%= home.hero_title %> -->
+                          </h3>
+                        </div>
+
+                        <p style="color: #ffffff;">
+                          <!-- <%= home.hero_text %> -->
+                        </p>
+                        <!-- <p>Here at OMAH, we like to test the limits of how much food can move
+                                                    us. We go beyond food. We create experiences that stay with you.</p> -->
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+                <!-- Scroll Button -->
+                <div class="section-masthead__wrapper-scroll-down section-masthead__wrapper-scroll-down_left">
+                  <div class="circle-button js-circle-button" data-arts-os-animation="true">
+                    <div class="circle-button__outer">
+                      <div class="circle-button__wrapper-label">
+                        <div class="circle-button__label small-caps">Scroll Down</div>
+                      </div>
+                    </div>
+                    <div class="circle-button__inner">
+                      <div class="circle-button__circle" data-arts-scroll-down data-arts-cursor
+                        data-arts-cursor-hide-native="true" data-arts-cursor-scale="0">
+                        <svg class="svg-circle" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="circle" cx="30" cy="30" r="29" fill="none"></circle>
+                        </svg>
+                      </div>
+                      <div class="circle-button__icon circle-button__icon-touch">
+                        <svg enable-background="new 0 0 64 64" height="512" viewBox="0 0 64 64" width="512"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="m32 8c-1.104 0-2 .896-2 2v39.899l-14.552-15.278c-.761-.799-2.026-.832-2.828-.069-.8.762-.831 2.027-.069 2.827l16.62 17.449c.756.756 1.76 1.172 2.829 1.172 1.068 0 2.073-.416 2.862-1.207l16.586-17.414c.762-.8.73-2.065-.069-2.827-.799-.763-2.065-.731-2.827.069l-14.552 15.342v-39.963c0-1.104-.896-2-2-2z">
+                          </path>
+                        </svg>
+                      </div>
+                      <div class="circle-button__icon circle-button__icon-mouse">
+                        <svg class="svg-mouse" width="23px" height="35px" viewBox="0 0 23 35"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path class="svg-mouse__border"
+                            d="M11.5,0 C5.15875132,0 0,5.23135343 0,11.6610111 L0,23.3396542 C0,29.7691456 5.15875132,35 11.5,35 C17.8412487,35 23,29.7693119 23,23.3396542 L23,11.6610111 C23,5.23135343 17.8410847,0 11.5,0 Z M21.7222404,23.3396542 C21.7222404,29.0545544 17.136538,33.7037222 11.5,33.7037222 C5.86346203,33.7037222 1.27775956,29.0545544 1.27775956,23.3396542 L1.27775956,11.6610111 C1.27775956,5.946111 5.86346203,1.29627781 11.5,1.29627781 C17.136538,1.29627781 21.7222404,5.94594466 21.7222404,11.6610111 L21.7222404,23.3396542 Z">
+                          </path>
+                          <path class="svg-mouse__wheel"
+                            d="M11.5,4 C11.2238902,4 11,4.28321727 11,4.63321727 L11,10.3667827 C11,10.7167827 11.2238902,11 11.5,11 C11.7761098,11 12,10.7167827 12,10.3667827 L12,4.63321727 C11.9998717,4.28321727 11.7761098,4 11.5,4 Z">
+                          </path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </header>
+            </div>
+
+            <!-- VIDEO BACKGROUND -->
+            <div class="section-image section-masthead__background section-masthead__background_fullscreen">
+              <div class="section-image__wrapper js-transition-img" data-arts-parallax data-arts-parallax-factor="0.15">
+                <video autoplay loop muted playsinline preload="auto"
+                  style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:1;">
+                  <source src="<%= JSON.parse(home.video)[0] %>" type="video/mp4">
+
+                </video>
+
+              </div>
+              <div class="overlay overlay_dark-30 section-masthead__overlay"></div>
+            </div>
+          </section>
+
+
+
+
+
+
+          <section class="cardsection" style="background-image: url('https://res.cloudinary.com/djcc1bova/image/upload/v1751628137/1_tkvye0.png'); background-size: cover; padding-top: 5% ;
+               background-repeat: no-repeat;">
+
+            <div class="carousel-wrapper">
+              <div class="carousel-track">
+
+
+                <% if (serviceContentMap && serviceContentMap.length) { %>
+                  <% serviceContentMap.forEach(item=> { %>
+
+                    <div class="card">
+                      <a href="/service_details/<%= item.slug %>">
+                        <h2 class="cardtext">
+                          <%= item.title %>
+                        </h2>
+
+                   
+
+                      </a>
+
+                           <img src="/<%= item.card_images || 'banners/default.png' %>" alt="<%= item.title %>" />
+
+
+                        <img class="iconcard" src="/banners/logo.jpeg" alt="">
+
+
+
+                    </div>
+
+
+                    <% }) %>
+                      <% } %>
+
+
+
+              </div>
+
+              <div style="text-align: center;">
+                <img class="iconbuttomcard" src="/banners/whitelogo.png" alt="">
+              </div>
+
+
+            </div>
+
+
+          </section>
+
+
+
+ 
+
+          <style>
+            .imageshero {
+              width: 100%;
+              min-height: 80vh;
+              /* or 400px */
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            }
+
+            
+          </style>
+
+          
+
+
+
+
+
+          <section class="section section-masthead section-fullheight text-left bg-dark-1"
+            data-arts-os-animation="data-arts-os-animation" data-arts-theme-text="light"
+            data-background-color="var(--color-dark-1)"
+            style="background-image: url('https://res.cloudinary.com/djcc1bova/image/upload/v1751628137/1_tkvye0.png');">
+
+            <div class="section-masthead__inner section-fullheight__inner container-fluid">
+              <header class="row section-masthead__header justify-content-center">
+                <div class="col">
+                  <div class="section-content__heading split-text js-split-text mb-1" data-split-text-type="lines,words"
+                    data-split-text-set="words">
+                    <img class="iconbuttomcard1" src="/banners/whitelogo.png" alt="">
+
+
+
+                    <div class="section-content__text split-text js-split-text">
+                      <p style="color: #ffffff;"><%- home.heroimage_text %></p>
+                    </div>
+                  </div>
+                </div>
+              </header>
+            </div>
+
+            <div class="section-image section-masthead__background section-masthead__background_fullscreen">
+              <div class="section-image__wrapper js-transition-img" data-arts-parallax="data-arts-parallax"
+                data-arts-parallax-factor="0.15">
+                <img src="<%= JSON.parse(home.hero_image)[0] %>" alt="Background"
+                  style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:1;"
+                  class="js-transition-img__transformed-el" />
+              </div>
+              <div class="overlay overlay_dark-30 section-masthead__overlay"></div>
+            </div>
+
+          </section>
+
+
+
+          <% AboutcontentRows.forEach((item)=> { %>
+
+            <% if (item.layout==='default' ) { %>
+              <!-- HERO SECTION -->
+              <section class="hero-section imageshero " style="background-image:url('/<%= item.image %>')">
+                <div class="content textcenter">
+                  <h2 style="color: #ccb561; ">
+                    <%= item.title %>
+                  </h2>
+
+                  <div>
+                    <p style="color: #ffffff;">
+                      <%- item.des %>
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <% } else if (item.layout==='text-right' ) { %>
+                <!-- Image Left / Text Right (NO STYLE CHANGE) -->
+                <div class="container-fluid no-gutters bg-light-1">
+                  <div class="row no-gutters align-items-center"
+                    style="background-image: url('https://res.cloudinary.com/djcc1bova/image/upload/v1751628137/1_tkvye0.png'); background-size: cover;">
+
+                    <div class="col-lg-6">
+                      <section class="section section-image section_h-800">
+                        <div class="section-image__wrapper">
+                       
+                            <img src="/<%= item.image %>" alt="" class="lazy-bg" data-src="/<%= item.image %>">
+                      
+                        </div>
+                      </section>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <section
+                        class="section section-content clearfix pt-medium pb-medium container-fluid container-fluid_paddings"
+                        data-arts-os-animation>
+                        <div class="section-content__inner mb-1">
+                          <h2 style="color: #ccb561; text-transform: none !important;">
+                            <%= item.title %>
+                          </h2>
+
+
+                          <!-- <div class="section-content__text split-text js-split-text" >
+                             <h2 style="color: #ccb561 !important;">asjkdhajksdhaksdjhakjsdhakj</h2>
+                            </div> -->
+                          <div class="section-content__text split-text js-split-text">
+                            <p style="color: #ffffff;"><%- item.des %></p>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+
+                  </div>
+                </div>
+
+                <% } else if (item.layout==='text-left' ) { %>
+                  <!-- Text Left / Image Right (NO STYLE CHANGE) -->
+                  <div class="container-fluid no-gutters bg-light-1">
+                    <div class="row no-gutters align-items-center"
+                      style="background-image: url('https://res.cloudinary.com/djcc1bova/image/upload/v1751628137/1_tkvye0.png'); background-size: cover;">
+
+                      <div class="col-lg-6">
+                        <section
+                          class="section section-content clearfix pt-medium pb-medium container-fluid container-fluid_paddings"
+                          data-arts-os-animation>
+                          <div class="section-content__inner mb-1">
+                            <h2 style="color: #ccb561; text-transform: none !important;">
+                              <%= item.title %>
+                            </h2>
+
+
+                            <!-- <div class="section-content__text split-text js-split-text" >
+                             <h2 style="color: #ccb561 !important;">asjkdhajksdhaksdjhakjsdhakj</h2>
+                            </div> -->
+                            <div class="section-content__text split-text js-split-text">
+                              <p style="color: #ffffff;"><%- item.des %></p>
+                            </div>
+                          </div>
+                        </section>
+                      </div>
+
+                      <div class="col-lg-6">
+                        <section class="section section-image section_h-800">
+                          <div class="section-image__wrapper">
+                       
+                              <img src="/<%= item.image %>" alt="" class="lazy-bg" data-src="/<%= item.image %>">
+                   
+                          </div>
+                        </section>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <% } %>
+
+                    <% }) %>
+
+
+
+
+                      <section class="mission-section">
+                        <div class="image-carousel-wrapper">
+
+
+                          <div class="image-carousel-content">
+                            <section
+                              class="section section-content clearfix pt-medium pb-medium container-fluid container-fluid_paddings"
+                              data-arts-os-animation>
+                              <div class="section-content__inner">
+                                <div class="section-content__inner mb-1">
+                                  <h2 style="color: #ccb561; text-transform: none !important; z-index: 999999;">
+                                    <%= home.mission_title %>
+                                  </h2>
+
+                                  <div class="section-content__text split-text js-split-text">
+                                    <p style="color: #ffffff; z-index: 99999;"><%- home.mission_des %></p>
+                                  </div>
+                                </div>
+                            </section>
+                          </div>
+
+                          <div class="image-carousel-track" style="background-color: aqua;">
+                            <% if (missionSlider && missionSlider.length) { %>
+                              <% missionSlider.forEach(img=> { %>
+                                <div class="image-con col-12 col-sm-6 col-lg-4">
+                                  <img src="/<%= img %>" alt="Mission Image">
+                                </div>
+                                <% }) %>
+                                  <% } %>
+                          </div>
+
+                        </div>
+                      </section>
+
+
+
+
+
+                      <style>
+                        .image-carousel-wrapper::after {
+                          content: "";
+                          position: absolute;
+                          inset: 0;
+                          background: rgba(59, 59, 59, 0.6);
+                          /* BLACK opacity */
+                          background: linear-gradient(to right, black, rgba(0, 0, 0, 0.445), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+                          z-index: 9;
+                        }
+
+
+
+
+
+
+
+
+
+
+                        .image-carousel-wrapper {
+                          width: 100%;
+                          height: 100vh;
+                          position: relative;
+                        }
+
+                        .image-carousel-track {
+                          width: 100%;
+                          height: 100%;
+                          display: flex;
+                          z-index: 1;
+                        }
+
+                        .image-con {
+                          width: calc(100/3);
+                          height: 100%;
+                          padding: 0;
+                          z-index: 1;
+                        }
+
+                        .image-con img {
+                          width: 100%;
+                          height: 100%;
+                          object-fit: cover;
+                          z-index: 1;
+                        }
+
+                        .image-carousel-content {
+                          position: absolute;
+                          left: 13.5px;
+                          bottom: 20%;
+                          z-index: 9999;
+                        }
+
+                        .image-carousel-content h2,
+                        p {
+                          color: #ffffff;
+                        }
+                      </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </main>
+        <!-- PAGE FOOTER -->
+        <%- include('include/footer') %>
+          <!-- - PAGE FOOTER -->
+      </div>
+      <!-- - PAGE MAIN -->
+  </div>
+  <canvas id="js-webgl"></canvas>
+  <!-- PhotoSwipe -->
+
+  <!-- - PhotoSwipe -->
+<script>
+   function initCarousel() {
+              const existingTrack = document.querySelector('.carousel-track');
+              if (existingTrack && existingTrack.carouselCleanup) {
+                existingTrack.carouselCleanup();
+              }
+
+              const track = document.querySelector('.carousel-track');
+              const cards = document.querySelectorAll('.card');
+              
+              if (!track || cards.length === 0) return;
+
+              const clonedCards = track.querySelectorAll('.card[data-cloned="true"]');
+              clonedCards.forEach(clone => clone.remove());
+
+              track.style.transform = 'translateX(0)';
+
+              const cardCount = cards.length;
+              let currentIndex = 0;
+              let intervalId = null;
+              let isAutoScrollPaused = false;
+
+              const cardsArray = Array.from(cards);
+              cardsArray.forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('data-cloned', 'true');
+                track.appendChild(clone);
+              });
+
+              function getScrollDistance() {
+                const wrapperWidth = track.parentElement.offsetWidth;
+                const trackStyle = window.getComputedStyle(track);
+                const cardStyle = window.getComputedStyle(cards[0]);
+                const cardPercent = parseFloat(cardStyle.width);
+                const gapPercent = wrapperWidth * parseFloat(trackStyle.gap) / 100;
+                
+                return cardPercent + gapPercent;
+              }
+
+              function moveToIndex(index, animate = true) {
+                const scrollDistance = getScrollDistance();
+                if (scrollDistance === 0) return;
+                
+                currentIndex = index;
+                const translateX = currentIndex * scrollDistance;
+                
+                if (!animate) {
+                  track.style.transition = 'none';
+                }
+                
+                track.style.transform = `translateX(-${translateX}px)`;
+                
+                if (!animate) {
+                  setTimeout(() => {
+                    track.style.transition = 'transform 0.8s ease-in-out';
+                  }, 50);
+                }
+
+                if (currentIndex >= cardCount) {
+                  setTimeout(() => {
+                    track.style.transition = 'none';
+                    currentIndex = 0;
+                    track.style.transform = translateX(0);
+                    setTimeout(() => {
+                      track.style.transition = 'transform 0.8s ease-in-out';
+                    }, 50);
+                  }, 800);
+                }
+              }
+
+              function moveCarousel() {
+                moveToIndex(currentIndex + 1);
+              }
+
+              function movePrevious() {
+                if (currentIndex > 0) {
+                  moveToIndex(currentIndex - 1);
+                } else {
+                  currentIndex = cardCount;
+                  moveToIndex(cardCount, false);
+                  setTimeout(() => {
+                    moveToIndex(cardCount - 1);
+                  }, 50);
+                }
+              }
+
+              function startCarousel() {
+                if (intervalId) clearInterval(intervalId);
+                if (!isAutoScrollPaused) {
+                  intervalId = setInterval(moveCarousel, 3000);
+                }
+              }
+
+              function stopCarousel() {
+                if (intervalId) {
+                  clearInterval(intervalId);
+                  intervalId = null;
+                }
+              }
+
+              startCarousel();
+
+              let touchStartX = 0;
+              let touchEndX = 0;
+              let touchStartY = 0;
+              let touchEndY = 0;
+              let isDragging = false;
+              let hasMoved = false;
+
+              function handleTouchStart(e) {
+                touchStartX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                touchStartY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+                isDragging = true;
+                hasMoved = false;
+                stopCarousel();
+              }
+
+              function handleTouchMove(e) {
+                if (!isDragging) return;
+                
+                touchEndX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                touchEndY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+                
+                const diffX = touchStartX - touchEndX;
+                const diffY = touchStartY - touchEndY;
+                const minSwipeDistance = 50;
+
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > minSwipeDistance && !hasMoved) {
+                  hasMoved = true;
+                  
+                  if (diffX > 0) {
+                    moveCarousel();
+                  } else {
+                    movePrevious();
+                  }
+
+                  isAutoScrollPaused = true;
+                  setTimeout(() => {
+                    isAutoScrollPaused = false;
+                    startCarousel();
+                  }, 3000);
+                }
+              }
+
+              function handleTouchEnd(e) {
+                if (!isDragging) return;
+                isDragging = false;
+
+                if (!hasMoved) {
+                  startCarousel();
+                }
+
+                touchStartX = 0;
+                touchEndX = 0;
+                touchStartY = 0;
+                touchEndY = 0;
+                hasMoved = false;
+              }
+
+              track.addEventListener('touchstart', handleTouchStart, { passive: true });
+              track.addEventListener('touchmove', handleTouchMove, { passive: true });
+              track.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+              track.addEventListener('mousedown', handleTouchStart);
+              track.addEventListener('mousemove', handleTouchMove);
+              track.addEventListener('mouseup', handleTouchEnd);
+              track.addEventListener('mouseleave', (e) => {
+                if (isDragging) {
+                  handleTouchEnd(e);
+                }
+              });
+
+              let resizeTimeout;
+              const handleResize = () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                  const scrollDistance = getScrollDistance();
+                  if (scrollDistance === 0) return;
+                  track.style.transition = 'none';
+                  const translateX = currentIndex * scrollDistance;
+                  track.style.transform = `translateX(-${translateX}px)`;
+                  setTimeout(() => {
+                    track.style.transition = 'transform 0.8s ease-in-out';
+                  }, 50);
+                }, 250);
+              };
+              
+              window.addEventListener('resize', handleResize);
+
+              const cleanup = () => {
+                stopCarousel();
+                track.removeEventListener('mouseenter', stopCarousel);
+                track.removeEventListener('mouseleave', startCarousel);
+                track.removeEventListener('touchstart', handleTouchStart);
+                track.removeEventListener('touchmove', handleTouchMove);
+                track.removeEventListener('touchend', handleTouchEnd);
+                track.removeEventListener('mousedown', handleTouchStart);
+                track.removeEventListener('mousemove', handleTouchMove);
+                track.removeEventListener('mouseup', handleTouchEnd);
+                window.removeEventListener('resize', handleResize);
+              };
+
+              track.carouselCleanup = cleanup;
+
+              return cleanup;
+            }
+
+            function setupCarousel() {
+              setTimeout(() => {
+                console.log('Initializing carousel...');
+                initCarousel();
+              }, 300);
+            }
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', setupCarousel);
+            } else {
+              setupCarousel();
+            }
+
+            window.addEventListener('pageshow', function(event) {
+              console.log('pageshow event');
+              if (event.persisted) {
+                setupCarousel();
+              }
+            });
+
+            if (typeof barba !== 'undefined') {
+              console.log('Barba.js detected, setting up hooks');
+              
+              barba.hooks.beforeLeave(() => {
+                console.log('Barba beforeLeave');
+                const track = document.querySelector('.carousel-track');
+                if (track && track.carouselCleanup) {
+                  track.carouselCleanup();
+                }
+              });
+
+              barba.hooks.afterEnter(() => {
+                console.log('Barba afterEnter');
+                setupCarousel();
+              });
+
+              barba.hooks.after(() => {
+                console.log('Barba after');
+                setupCarousel();
+              });
+            }
+
+            let menuObserverTimeout;
+            const menuButton = document.getElementById('js-burger');
+            if (menuButton) {
+              menuButton.addEventListener('click', function() {
+                console.log('Menu button clicked');
+                clearTimeout(menuObserverTimeout);
+                menuObserverTimeout = setTimeout(() => {
+                  const carousel = document.querySelector('.carousel-track');
+                  if (carousel) {
+                    console.log('Re-initializing carousel after menu navigation');
+                    setupCarousel();
+                  }
+                }, 1000);
+              });
+            }
+
+            document.addEventListener('click', function(e) {
+              const isMenuLink = e.target.closest('.menu-overlay a');
+              if (isMenuLink) {
+                console.log('Menu link clicked:', isMenuLink.href);
+                setTimeout(() => {
+                  const carousel = document.querySelector('.carousel-track');
+                  if (carousel) {
+                    console.log('Re-initializing carousel after menu link click');
+                    setupCarousel();
+                  }
+                }, 800);
+              }
+            }, true);
+
+            let observerTimeout;
+            const observer = new MutationObserver((mutations) => {
+              clearTimeout(observerTimeout);
+              observerTimeout = setTimeout(() => {
+                const carousel = document.querySelector('.carousel-track');
+                const hasCards = document.querySelectorAll('.card').length > 0;
+                
+                if (carousel && hasCards) {
+                  if (!carousel.carouselCleanup) {
+                    console.log('Carousel detected by observer, initializing...');
+                    setupCarousel();
+                  }
+                }
+              }, 200);
+            });
+
+            observer.observe(document.body, {
+              childList: true,
+              subtree: true
+            });
+
+            window.addEventListener('popstate', function() {
+              console.log('popstate event');
+              setTimeout(setupCarousel, 500);
+            });
+
+            window.addEventListener('refreshCarousel', function() {
+              console.log('Manual carousel refresh triggered');
+              setupCarousel();
+            });
+
+            let checkCount = 0;
+            const forceCheckInterval = setInterval(() => {
+              checkCount++;
+              const carousel = document.querySelector('.carousel-track');
+              const hasCards = document.querySelectorAll('.card').length > 0;
+              
+              if (carousel && hasCards && !carousel.carouselCleanup) {
+                console.log('Force check: initializing carousel');
+                setupCarousel();
+              }
+              
+              if (checkCount >= 5) {
+                clearInterval(forceCheckInterval);
+              }
+            }, 2000);
+
+</script>
+
+  <!-- - Slider Textures Shaders -->
+  <!-- VENDOR SCRIPTS -->
+  <script src="js/vendor.js"></script>
+  <!-- - VENDOR SCRIPTS -->
+  <!-- COMPONENTS -->
+  <script src="js/components.js"></script>
+  <!-- - COMPONENTS -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?callback=Function.prototype&amp;key=AIzaSyBwR_TrF6h7-pMxkKv_q2t8BXX3w6QuFOc"
+    async>
+  
+  
+  </script>
+
+    
+</body>
+
+</html>

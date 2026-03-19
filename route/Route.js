@@ -20,6 +20,10 @@ const industryCategory = require("../controller/industrycontent.js");
 const project_contain = require("../controller/project_contain.js")
 
 
+const team = require("../controller/team.js");
+const webteam = require("../controller/web_team.js");
+
+
 const address = require("../controller/address.js");
 
 
@@ -46,6 +50,25 @@ router.get("/getbyidhomecontent/:hc_id",contenthome.getbyidcontenthome);
 router.post("/createhomecontent",contenthome.createcontenthome);
 router.put("/updatebyidhomecontent/:hc_id?",contenthome.updatebyidcontenthome);
 router.delete("/deletebyidhomecontent/:hc_id",contenthome. deletebyicontenthome);
+
+
+
+//web_team
+router.get("/getallwebteam",webteam.getallwebteam);
+router.get("/getbyidwebteam/:t_id",webteam.getbyidwebteam);
+router.post("/createwebteam",webteam.createwebteam);
+router.put("/updatebyidwebteam/:t_id?",webteam.updatebyidwebteam);
+router.put("/updatewebteam-status/:t_id",webteam.updatebyidwebteamstatus);
+router.delete("/deletebyidwebteam/:t_id",webteam.deletebyidwebteam);
+
+//team
+router.get("/getallteam",team.getallteam);
+router.get("/getbyidteam/:id",team.getbyidteam);
+router.post("/createteam",team.createteam);
+router.put("/updatebyidteam/:id?",team.updatebyidteam);
+router.put("/updateteam-status/:id",team.updatebyidteamstatus);
+router.delete("/deletebyidteam/:id",team.deletebyidteam);
+
 
 
 
@@ -202,7 +225,6 @@ router.post("/createservicecontent", industryCategory.createservicecontent);
 router.put("/updatebyidservicecontent/:sc_id", industryCategory.updatebyidservicecontent);
 router.delete("/deletebyidservicecontent/:sc_id", industryCategory.deletebyidservicecontent);
 router.put("/updateservicecontentorder", industryCategory.updateservicecontentorder);
-router.post("/addservicecontentmap", industryCategory.addservicecontentmap);
 
 
 

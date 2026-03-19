@@ -1,42 +1,121 @@
 const connection = require("../../connection");
 
+const getAllHome = async (req, res) => {
+  try {
+    // Fetch data
+    const [homeRows] = await connection.query("SELECT * FROM home WHERE status = 1");
+    const [contentRows] = await connection.query(
+      "SELECT * FROM home_content WHERE status = 1 ORDER BY CAST(sort_order AS UNSIGNED) ASC"
+    );
+    const [addressRows] = await connection.query("SELECT * FROM address WHERE status = 1");
+    const [footerRows] = await connection.query("SELECT * FROM web_footer WHERE status = 1");
+    const [serviceContentMapRows] = await connection.query(
+      "SELECT * FROM service_content WHERE parent_id = 0 AND status = 1 ORDER BY CAST(sort_order AS UNSIGNED) ASC"
+    );
 
-const getAllHome = async(req,res) =>{
-    try {
+     const [AboutcontentRowsRaw ] = await connection.query("SELECT * FROM about_content WHERE status = 1 ORDER BY sort_order ASC");
 
-        const [home] = await connection.query(`SELECT * FROM web_home where status=1`);
-        const [slider] = await connection.query(`SELECT * FROM web_slider where status=1`);
-        const [project] = await connection.query(`SELECT * FROM projects where status=1`);
-        const [testimonials] = await connection.query(`SELECT * FROM testimonials where status=1`);
-        const [awards] = await connection.query(`SELECT * FROM  awards where status=1`);
-        const [associate] = await connection.query(`SELECT * FROM associate where status=1`);
-        const [factFigure] = await connection.query(`SELECT * FROM facts_figure where status=1`);
+     const [parentRows] = await connection.query(
+      "SELECT * FROM service_content WHERE sc_id = 1 AND status = 1"
+    );
+    const parent = parentRows[0] || null;
 
-        if(home.length>0 || slider.length>0 || project.length>0 || testimonials.length>0 || awards.length>0 || associate.length>0){
-            res.status(200).json({
-                home:home,
-                slider:slider,
-                project:project,
-                testimonials:testimonials,
-                awards:awards,
-                associate:associate,
-                factFigure:factFigure
-               
-            })
-        }else{
-            res.status(404).json({
-                message : "Record Not Found"
-            })
-        }
 
-    } catch (error) {
-        res.status(500).json({
-            error : error.message
-        })
-        
+
+//missionSlider
+    let missionSlider = [];
+
+if (homeRows.length && homeRows[0].mission_slider) {
+  try {
+    missionSlider = JSON.parse(homeRows[0].mission_slider);
+  } catch (err) {
+    missionSlider = [];
+  }
+}
+
+
+
+
+    // Footer parse
+    const footer = footerRows.length > 0 ? footerRows[0] : null;
+    if (footer && footer.footer_logo) {
+      try {
+        footer.footer_logo = JSON.parse(footer.footer_logo);
+      } catch {
+        footer.footer_logo = [];
+      }
     }
 
-}
-   
+    // Content image parsing
+    const content = contentRows.map(row => {
+      const getFirst = str => {
+        try {
+          return JSON.parse(str || "[]")[0] || "";
+        } catch {
+          return "";
+        }
+      };
+      return {
+        ...row,
+        image1Url: getFirst(row.image1),
+        image2Url: getFirst(row.image_2),
+      };
+    });
 
-module.exports ={getAllHome}
+  const AboutcontentRows = AboutcontentRowsRaw.map(row => {
+      let image = "";
+      try {
+        const arr = JSON.parse(row.image || "[]");
+        image = arr[0] || "";
+      } catch {
+        image = "";
+      }
+
+      return {
+        ...row,
+        image
+      };
+    });
+
+
+
+    // Service Content Map image parsing
+    const serviceContentMap = serviceContentMapRows.map(row => {
+      let image = "";
+      try {
+        const arr = JSON.parse(row.image || "[]");
+        image = arr[0] || "";
+      } catch {
+        image = "";
+      }
+
+         let card_images = "";
+      try {
+        const arr = JSON.parse(row.card_images || "[]");
+        card_images = arr[0] || "";
+      } catch {
+        card_images = "";
+      }
+
+
+      return { ...row, image , card_images};
+    });
+
+    // Render home page
+    res.render("home", {
+      home: homeRows[0] || null,
+      content,
+      addressList: addressRows,
+      footer,
+      AboutcontentRows,
+      serviceContentMap,
+      parent ,
+      missionSlider   
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).render("500", { message: err.message });
+  }
+};
+
+module.exports = { getAllHome };

@@ -1,0 +1,464 @@
+<section class="p-0 bg-dark-gray">
+  <article class="content">
+    <div
+      id="architecture-slider_wrapper"
+      class="rev_slider_wrapper fullwidthbanner-container"
+      style="background: #232323; padding: 0px"
+    >
+      <div
+        id="architecture-slider"
+        class="rev_slider fullwidthabanner"
+        data-version="5.4.5"
+      >
+        <ul>
+          <% sliders.forEach(slider => { %>
+          <li
+            data-index="<%= slider.slider_id %>"
+            data-transition="fadethroughdark"
+            data-slotamount="default"
+            data-hideafterloop="0"
+            data-hideslideonmobile="off"
+            data-easein="default"
+            data-easeout="default"
+            data-masterspeed="default"
+            data-thumb="http://works.themepunch.com/revolution_5_3/wp-content/"
+            data-rotate="0"
+            data-saveperformance="off"
+            data-title
+            data-param1
+            data-param2
+            data-param3
+            data-param4
+            data-param5
+            data-param6
+            data-param7
+            data-param8
+            data-param9
+            data-param10
+            data-description
+          >
+            <img
+              src="/api/transform/<%= slider.slider_image %>"
+              alt="<%= slider.title %>"
+              data-bgposition="center center"
+              data-kenburns="on"
+              data-duration="2500"
+              data-ease="Power3.easeInOut"
+              data-scalestart="100"
+              data-scaleend="100"
+              data-rotatestart="0"
+              data-rotateend="0"
+              data-blurstart="10"
+              data-blurend="0"
+              data-offsetstart="100 100"
+              data-offsetend="0 0"
+              data-bgparallax="3"
+              class="rev-slidebg"
+              data-no-retina
+            />
+
+            <div
+              id="rrzm_<%= slider.slider_id %>"
+              class="rev_row_zone rev_row_zone_middle"
+            >
+              <div
+                class="tp-caption architecture-slider-text-row"
+                id="slide-<%= slider.slider_id %>-layer-01"
+                data-x="['left','left','center','center']"
+                data-hoffset="['0','0','0','0']"
+                data-y="['bottom','middle','middle','middle']"
+                data-voffset="['0','0','0','0']"
+                data-width="none"
+                data-height="none"
+                data-whitespace="nowrap"
+                data-type="row"
+                data-columnbreak="2"
+                data-responsive_offset="on"
+                data-responsive="off"
+                data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                data-margintop="[370,200,200,0]"
+                data-marginright="[0,0,0,0]"
+                data-marginbottom="[150,0,0,0]"
+                data-marginleft="[0,50,0,0]"
+                data-textAlign="['left','left','center','center']"
+                data-paddingtop="[0,0,0,0]"
+                data-paddingright="[0,0,50,0]"
+                data-paddingbottom="[0,0,0,0]"
+                data-paddingleft="[0,0,50,0]"
+              >
+                <div
+                  class="tp-caption"
+                  id="slide-<%= slider.slider_id %>-layer-02"
+                  data-x="['left','left','center','center']"
+                  data-hoffset="['0','0','0','0']"
+                  data-y="['bottom','middle','middle','middle']"
+                  data-voffset="['0','0','0','0']"
+                  data-width="none"
+                  data-height="none"
+                  data-whitespace="nowrap"
+                  data-type="column"
+                  data-responsive_offset="on"
+                  data-responsive="off"
+                  data-frames='[{"delay":"+0","speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                  data-columnwidth="100%"
+                  data-verticalalign="top"
+                  data-margintop="[0,0,0,0]"
+                  data-marginright="[0,0,0,0]"
+                  data-marginbottom="[0,0,0,0]"
+                  data-marginleft="[0,0,0,0]"
+                  data-textAlign="['left','left','center','center']"
+                  data-paddingtop="[0,0,0,0]"
+                  data-paddingright="[0,0,0,0]"
+                  data-paddingbottom="[0,0,0,0]"
+                  data-paddingleft="[0,0,0,0]"
+                >
+                  <div
+                    class="tp-caption tp-resizeme alt-font"
+                    id="slide-<%= slider.slider_id %>-layer-03"
+                    data-frames='[{"delay":2200,"split":"chars","splitdelay":0.1,"speed":1500,"split_direction":"forward","frame":"0","style":"textAlign:inherit","from":"x:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","split":"words","splitdelay":0.02,"speed":300,"split_direction":"backward","frame":"999","to":"auto:auto;fb:0;","ease":"Power3.easeInOut"}]'
+                    data-visibility="['on', 'on', 'on', 'on']"
+                    data-fontsize="['170','150','160','120']"
+                    data-lineheight="['170','160','160','120']"
+                    data-fontweight="['500','700', '700','700']"
+                    data-color="['#FFF','#FFF','#fff','#fff']"
+                    data-textAlign="['left','left','center','center']"
+                    data-letterspacing="['-12','-8','-8','-6']"
+                    data-x="['left','left','center','center']"
+                    data-y="['middle','middle','middle','bottom']"
+                    data-hoffset="['0','0','0','0']"
+                    data-voffset="['0','0','0','0']"
+                    data-width="['500','500','100%','100%']"
+                    data-height="['auto','auto','auto','auto']"
+                    data-whitespace="['normal', 'normal', 'normal', 'normal']"
+                    data-margintop="[0, 0, 0, 0]"
+                    data-marginright="[0, 0, 0, 0]"
+                    data-marginbottom="[30, 50, 0, 0]"
+                    data-marginleft="[0, 0, 0, 0]"
+                    data-responsive_offset="off"
+                    data-responsive="on"
+                  >
+                    <%= slider.title %>
+                  </div>
+
+                  <a
+                    class="tp-caption text-uppercase text-white btn border-0 btn-switch-text left-icon d-table d-lg-inline-block"
+                    href="/<%= slider.slug %>"
+                    id="slide-<%= slider.slider_id %>-layer-05"
+                    data-x="['left','left','center','center']"
+                    data-y="['middle','middle','middle','bottom']"
+                    data-hoffset="['0','0','0','0']"
+                    data-voffset="['0','0','0','0']"
+                    data-color="['#ffffff','#ffffff','#ffffff','#ffffff']"
+                    data-fontsize="['14','16','14','16']"
+                    data-lineheight="['42','55','50','55']"
+                    data-textAlign="['left','left','center','center']"
+                    data-width="['auto','auto','100%','100%']"
+                    data-height="['auto']"
+                    data-whitespace="['nowrap','nowrap','nowrap','nowrap']"
+                    data-fontweight="['500','700','700','700']"
+                    data-letterspacing="['1','1','1','1']"
+                    data-type="button"
+                    data-margintop="[0,0,50,40]"
+                    data-marginright="[0,0,0,0]"
+                    data-marginbottom="[0,0,0,0]"
+                    data-marginleft="[0,0,0,0]"
+                    data-responsive_offset="off"
+                    data-responsive="on"
+                    data-frames='[{"delay":"4000","speed":3000,"frame":"0","from":"x:50px;rY:0deg;opacity:0;fbr:200%;","to":"o:1;fbr:100;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fbr:100;","ease":"Power3.easeInOut"}]'
+                    ><span>
+                      <span
+                        class="border-radius-50 w-50px h-50px md-w-45px md-h-45px border border-2 border-color-white-color d-flex align-items-center justify-content-center me-10px"
+                        ><i class="fa-solid fa-arrow-right me-0 top-0"></i
+                      ></span>
+                      <span
+                        class="btn-double-text"
+                        data-text="<%= slider.btnText %>"
+                        >Explore</span
+                      >
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="tp-caption tp-resizeme alt-font text-outline text-outline-width-2px text-outline-color-base-color architecture-number"
+              id="slide-<%= slider.slider_id %>-layer-06"
+              data-whiteboard='{"hand_function":"draw","jitter_repeat":"0","jitter_distance":"0","jitter_offset":"0","jitter_distance_horizontal":"0","jitter_offset_horizontal":"0","hand_angle":"0","goto_next_layer":"on","hand_direction":"top_to_bottom"}'
+              data-frames='[{"from":"x:[100%];","mask":"x:[-100%];y:0%;s:inherit;e:inherit;","speed":2500,"to":"o:1;","delay":1500,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power2.easeInOut"}]'
+              data-visibility="['on','off','off','off']"
+              data-fontsize="['200','150','200','120']"
+              data-lineheight="['220','360','300','200']"
+              data-fontweight="['700','700', '700','700']"
+              data-color="['#FFF','#FFF', '#000', '#000']"
+              data-textAlign="['left','center','center','center']"
+              data-letterspacing="['0','-5','-10','-8']"
+              data-x="['left','left','left','left']"
+              data-y="['middle','middle','bottom','bottom']"
+              data-hoffset="['-20','-15','0','0']"
+              data-voffset="['45','220','0','0']"
+              data-width="['500px', 'auto', 'auto', 'auto']"
+              data-height="['auto', 'auto', 'auto', 'auto']"
+              data-whitespace="['normal', 'nowrap', 'normal', 'normal']"
+              data-responsive_offset="off"
+              data-responsive="off"
+              data-basealign="slide"
+            >
+              <%= slider.slider_id %>
+            </div>
+
+            <div
+              class="tp-caption rev-btn d-flex justify-content-center align-items-center text-derk-gray btn btn-large bg-white btn-slide-right"
+              id="slide-<%= slider.slider_id %>-layer-07"
+              data-x="['right','right','center','center']"
+              data-hoffset="['0','0','40','40']"
+              data-y="['middle','middle','bottom','bottom']"
+              data-voffset="['60','60','0','0']"
+              data-width="['120','80','80','80']"
+              data-height="['120','80','80','80']"
+              data-whitespace="nowrap"
+              data-fontsize="['28','18','22','15']"
+              data-lineheight="['44','60','50','55']"
+              data-type="button"
+              data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]'
+              data-responsive_offset="off"
+              data-responsive="off"
+              data-frames='[{"delay":4200,"speed":1000,"sfxcolor":"#ffffff","sfx_effect":"blockfromright","frame":"0","from":"z:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":500,"sfxcolor":"#ffffff","sfx_effect":"blocktoleft","frame":"999","to":"z:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"500","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgb(255,255,255);bg:rgba(255,255,255,0);"}]'
+              data-textAlign="['center','center','center','center']"
+              data-basealign="slide"
+              style="border: none"
+            >
+              <i class="bi bi-arrow-right ms-0"></i>
+              <span class="bg-black"></span>
+            </div>
+
+            <div
+              class="tp-caption rev-btn alt-font bg-base-color text-black d-flex justify-content-center align-items-center text-derk-gray"
+              id="slide-<%= slider.slider_id %>-layer-08"
+              data-x="['right','right','center','center']"
+              data-hoffset="['120','80','-40','-40']"
+              data-y="['middle','middle','bottom','bottom']"
+              data-voffset="['60','60','0','00']"
+              data-width="['120','80','80','80']"
+              data-height="['120','80','80','80']"
+              data-whitespace="nowrap"
+              data-fontsize="['40','18','16','15']"
+              data-fontweight="['700','700','700','700']"
+              data-letterspacing="['-3','0','0','0']"
+              data-lineheight="['44','60','50','55']"
+              data-type="button"
+              data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]'
+              data-responsive_offset="off"
+              data-responsive="off"
+              data-frames='[{"delay":4400,"style":"c:rgb(239,255,2);bc:rgb(239,255,2);","speed":1000,"sfxcolor":"#efff02","sfx_effect":"blockfromright","frame":"0","ease":"Power3.easeInOut"},{"delay":"wait","speed":500,"sfxcolor":"#ffffff","sfx_effect":"blocktoleft","frame":"999","to":"z:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"500","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgb(0,0,0);bc:rgb(0,0,0);"}]'
+              data-textAlign="['center','center','center','center']"
+              data-basealign="slide"
+            ></div>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- search ? -->
+<div class="container">
+  <div
+    class="row row-cols-1 row-cols-lg-1 row-cols-md-2 justify-content-center overlap-section z-index-1 overlap-section-three-fourth"
+    data-anime='{ "el": "childs", "willchange": "transform", "perspective": [1200,1200], "translateY": [0, 0], "scale": [1.1, 1], "rotateX": [30, 0], "opacity": [0,1], "duration": 1000, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+  >
+    <div class="col icon-with-text-style-04 transition-inner-all">
+      <div
+        class="bg-nero-grey h-100 justify-content-start box-shadow-quadruple-large box-shadow-quadruple-large-hover border-radius-5px"
+      >
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active tab-link" data-tab="commercial"
+              >Commercial</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link tab-link" data-tab="residential">Residential</a>
+          </li>
+        </ul>
+        <!-- Commercial Tab Content -->
+        <div class="tab-content active" id="commercial">
+          <form class="contact-form-style-03 p-3" id="submitForm">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <% var category_id = 0 %>
+                <label
+                  for="commercialType"
+                  class="form-label fs-11 ls-2px text-uppercase text-white mb-0"
+                  >Property Type</label
+                >
+                <div class="position-relative form-group mb-30px">
+                  <span class="form-icon"
+                    ><i class="bi bi-emoji-smile"></i
+                  ></span>
+                  <select
+                    class="fs-15 ps-0 border-radius-0px border-color-charcoal-grey bg-transparent form-control"
+                    name="category"
+                  >
+                    <option value="" disabled selected>
+                      Select Property Type
+                    </option>
+
+                    <% var project_category = project_category.data %> <%
+                    for(var j = 0; j < project_category.length; j++) { %> <% if
+                    ( project_category[j].parent_id == 1) { %>
+
+                    <option value="<%= project_category[j].cat_id %>">
+                      <%= project_category[j].cat_title %>
+                    </option>
+                    <% } %> <% }%>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label
+                  for="commercialLocation"
+                  class="form-label fs-11 ls-2px text-uppercase text-white mb-0"
+                  >Location</label
+                >
+                <div class="position-relative form-group mb-30px">
+                  <span class="form-icon"
+                    ><i class="bi bi-emoji-smile"></i
+                  ></span>
+                  <select
+                    class="fs-15 ps-0 border-radius-0px border-color-charcoal-grey bg-transparent form-control"
+                    name="location"
+                  >
+                    <option value="" selected>Select Location</option>
+                    <% var project_location = project_location.data %> <%
+                    project_location.forEach(function(location) { %>
+
+                    <option value="<%= location.pl_id %>">
+                      <%= location.name %>
+                    </option>
+                    <% }); %>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4 text-center text-md-center">
+                <input type="hidden" name="parent_id" value="1" />
+                <button
+                  class="btn btn-small btn-base-color btn-box-shadow btn-round-edge-small primary-font fw-700 submit"
+                  id="submitbtn"
+                  type="submit"
+                >
+                  Find Properties
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Residential Tab Content -->
+        <div class="tab-content" id="residential">
+          <form id="submitForm2" class="contact-form-style-03 p-3">
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                <label
+                  id="residentialType"
+                  class="form-label fs-11 ls-2px text-uppercase text-white mb-0"
+                  >Property Type</label
+                >
+                <div class="position-relative form-group mb-30px">
+                  <span class="form-icon"
+                    ><i class="bi bi-emoji-smile"></i
+                  ></span>
+                  <select
+                    class="fs-15 ps-0 border-radius-0px border-color-charcoal-grey bg-transparent form-control"
+                    for="residentialType"
+                    name="category"
+                  >
+                    <option value="" disabled selected>
+                      Select Property Type
+                    </option>
+
+                    <% for(var j = 0; j < project_category.length; j++) { %> <%
+                    if ( project_category[j].parent_id == 2) { %>
+
+                    <option value="<%= project_category[j].cat_id %>">
+                      <%= project_category[j].cat_title %>
+                    </option>
+                    <% } %> <% }%>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label
+                  id="bhk"
+                  class="form-label fs-11 ls-2px text-uppercase text-white mb-0"
+                  >BHK Type</label
+                >
+                <div class="position-relative form-group mb-30px">
+                  <span class="form-icon"
+                    ><i class="bi bi-emoji-smile"></i
+                  ></span>
+                  <select
+                    class="fs-15 ps-0 border-radius-0px border-color-charcoal-grey bg-transparent form-control"
+                    for="bhk"
+                    name="sub_category"
+                  >
+                    <option value="" disabled selected>Select BHK Type</option>
+                    <% var sub_category = sub_category.data %> <% for(var j = 0;
+                    j < sub_category.length; j++) { %>
+
+                    <option value="<%= sub_category[j].sub_cat_id %>">
+                      <%= sub_category[j].title %> %>
+                    </option>
+
+                    <% }%>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label
+                  id="residentiall"
+                  class="form-label fs-11 ls-2px text-uppercase text-white mb-0"
+                  >Location</label
+                >
+                <div class="position-relative form-group mb-30px">
+                  <span class="form-icon"
+                    ><i class="bi bi-emoji-smile"></i
+                  ></span>
+                  <select
+                    class="fs-15 ps-0 border-radius-0px border-color-charcoal-grey bg-transparent form-control"
+                    for="residentiall"
+                    name="location"
+                  >
+                    <option value="" disabled selected>Select Location</option>
+                    <% for(var j = 0; j < project_location.length; j++) { %>
+
+                    <option value="<%= project_location[j].pl_id %>">
+                      <%= project_location[j].name %>
+                    </option>
+
+                    <% }%>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4 text-center text-md-center">
+                <input type="hidden" name="parent_id" value="2" />
+                <button
+                  class="btn btn-small btn-base-color btn-box-shadow btn-round-edge-small primary-font fw-700 submit"
+                  id="submitbtn2"
+                  type="submit"
+                >
+                  Find Properties
+                </button>
+              </div>
+              <div class="col-12">
+                <div class="form-results mt-20px d-none"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="feature-box-overlay border-radius-6px"></div>
+      </div>
+    </div>
+  </div>
+</div>

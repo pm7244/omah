@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>creo.cometdigisol.com</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Place favicon.ico in the root directory -->
+<link rel="shortcut icon" type="image/x-icon" href="/images/logo/white.png" />
+<!-- CSS here -->
+<link rel="stylesheet" href="/css/vendor/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/vendor/animate.min.css" />
+<link rel="stylesheet" href="/css/plugins/swiper.min.css" />
+<link rel="stylesheet" href="/css/plugins/nice-select.css" />
+<link rel="stylesheet" href="/css/plugins/nouislider.min.css" />
+<link rel="stylesheet" href="/css/vendor/magnific-popup.css" />
+<link rel="stylesheet" href="/css/vendor/odometer.min.css" />
+<link rel="stylesheet" href="/css/vendor/fontawesome-pro.css" />
+<link rel="stylesheet" href="/css/vendor/spacing.css" />
+<link rel="stylesheet" href="/css/vendor/remixicon.css" />
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/mobile-responsive.css" />
+
+<style>
+  .verticals-grid {
+    display: stretch;
+    grid-template-columns: 2fr 8fr 2fr;
+    padding: 10px 20px;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .left-verticals,
+  .right-verticals {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .vertical-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 14px;
+  }
+
+  .vertical-item img {
+    width: 100px;
+  }
+
+  .vertical-label {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .brand-left .vertical-label {
+    order: 2;
+    margin-left: 10px;
+  }
+
+  .brand-left img {
+    order: 1;
+  }
+
+  .brand-right img {
+    order: 1;
+  }
+
+  .brand-right .vertical-label {
+    order: 2;
+    margin-left: 10px;
+  }
+
+  .center-placeholder {
+    height: -webkit-fill-available;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    background-size: cover;
+
+
+
+
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .slides {
+    position: relative;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .slide.active {
+    display: block;
+  }
+
+  .slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .slider .prev {
+    left: 10px;
+  }
+
+  .slider .next {
+    right: 10px;
+  }
+
+  .verticals-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    /* 3-6-3 layout */
+
+    align-items: center;
+
+  }
+
+  .left-verticals,
+  .right-verticals {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .vertical-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+
+  }
+
+  .vertical-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .vertical-item img {
+    margin-top: 7px;
+    width: 80px;
+    height: auto;
+  }
+
+  /* Slider Styles */
+  .hero-swiper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-swiper .swiper-slide {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    min-height: 500px;
+  }
+
+  .rs-banner-bg-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    z-index: 1;
+  }
+
+  .rs-banner-item-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .rs-banner-content {
+    position: relative;
+    z-index: 3;
+  }
+
+  .center-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: white !important;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+
+  .swiper-pagination-bullet {
+    background: white !important;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+  }
+
+  .slider .prev {
+    left: 10px;
+  }
+
+  .slider .next {
+    right: 10px;
+  }
+
+  .search-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  .search-box {
+    padding: 6px 10px;
+    width: 600px !important;
+  }
+
+  .search-btn {
+    padding: 6px 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+
+<style>
+  .main-grid {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    align-items: center;
+    background: white;
+    border-color: black;
+
+  }
+
+  /* Left column (logo) */
+  .left-logo {
+    text-align: center;
+  }
+
+  .left-logo img {
+    max-width: 100px;
+    height: auto;
+  }
+
+  /* Right content */
+  .right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-color: black;
+  }
+
+  /* Top bar */
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .top-header .flag {
+    font-weight: bold;
+  }
+
+  .top-header .catalogue button {
+    background-color: #0ea5e9;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    border-radius: 4px;
+  }
+
+  /* Middle: Search + contact */
+  .middle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+  }
+
+  .search-container {
+    display: flex;
+  }
+
+  .search-container input {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .search-container button {
+    padding: 5px 10px;
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+  }
+
+  .contact-info {
+    text-align: right;
+    font-size: 13px;
+    padding: 0 20px;
+  }
+
+  /* Bottom nav */
+  .bottom-header nav {
+    background: black;
+    padding: 8px;
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+  }
+
+  .bottom-header nav a {
+    color: white;
+    text-decoration: none;
+  }
+</style>
+</head>
+
+<body class="rs-smoother-yes rtl">
+
+
+
+  <!-- Header area start -->
+  <%- include('include/header') %>
+
+    <!-- Header area end -->
+    <section>
+
+      <div class="our-verticals-section" style="background-color: black; padding: 20px 0;">
+        <div class="container">
+          <h2 class="verticals-heading"
+            style="color: white; text-align: center; margin: 0; font-size: 2.5rem; font-weight: bold;">OUR VERTICALS
+          </h2>
+        </div>
+      </div>
+
+      <% const half=Math.ceil(web_verticals.length / 2); const leftVerticals=web_verticals.slice(0, half); const
+        rightVerticals=web_verticals.slice(half); %>
+
+
+        <div class="verticals-grid">
+          <!-- Left Side -->
+          <div class="left-verticals">
+            <% leftVerticals.forEach(item=> { %>
+              <div class="vertical-item brand-left">
+                <strong>
+                  <%= item.name %>
+                </strong>
+                <% if (item.logo) { %>
+                  <img src="/images/verticals/<%= item.logo %>" alt="<%= item.name %>" style="width: 120px;" />
+                  <% } %>
+              </div>
+              <% }) %>
+          </div>
+
+
+
+
+          <!-- Center -->
+          <div class="center-placeholder">
+            <div class="swiper hero-swiper" data-loop="true" data-speed="2000" data-autoplay="true" data-effect="fade"
+              data-delay="3000">
+              <div class="swiper-wrapper">
+                <% if (slider && slider.length> 0) { %>
+                  <% slider.forEach(item=> { %>
+                    <div class="swiper-slide">
+                      <div class="rs-banner-item-wrapper">
+                        <div class="rs-banner-bg-thumb"
+                          style="background-image: url('/images/bg/<%= item.slider_image %>'); background-size: cover; background-position: center;">
+                        </div>
+
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-xxl-8 col-xl-10 col-lg-11">
+                              <div class="rs-banner-item">
+                                <div class="rs-banner-content text-center">
+                                  <h1 class="rs-banner-title" style="color: white; font-size: 30px;">
+                                    <%= item.slider_title || 'Default Title' %>
+                                  </h1>
+
+                                  <% if (item.slider_description) { %>
+                                    <div class="rs-banner-descrip">
+                                      <!-- <p style="color: white; font-size: 12px;">
+                                    <%= item.slider_description %>
+                                  </p> -->
+                                    </div>
+                                    <% } %>
+
+                                      <div class="rs-banner-btn" style="margin-top: 10px;">
+                                        <a class="rs-btn has-theme-red has-icon has-bg has-skew"
+                                          href="<%= item.slider_link || '#' %>">
+                                          <%= item.slider_button_text || 'Explore More' %>
+                                            <span class="icon-box">
+                                              <svg class="icon-first" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 32 32">
+                                                <path
+                                                  d="M31.71,15.29l-10-10L20.29,6.71,28.59,15H0v2H28.59l-8.29,8.29,1.41,1.41,10-10A1,1,0,0,0,31.71,15.29Z" />
+                                              </svg>
+                                              <svg class="icon-second" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 32 32">
+                                                <path
+                                                  d="M31.71,15.29l-10-10L20.29,6.71,28.59,15H0v2H28.59l-8.29,8.29,1.41,1.41,10-10A1,1,0,0,0,31.71,15.29Z" />
+                                              </svg>
+                                            </span>
+                                        </a>
+                                      </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <% }) %>
+                      <% } %>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <!-- Right Side -->
+          <div class="right-verticals">
+            <% rightVerticals.forEach(item=> { %>
+              <div class="vertical-item brand-right">
+                <strong>
+                  <%= item.name %>
+                </strong>
+                <% if (item.logo) { %>
+                  <img src="/images/verticals/<%= item.logo %>" alt="<%= item.name %>" style="width: 120px;" />
+                  <% } %>
+              </div>
+              <% }) %>
+          </div>
+
+            
+        </div>
+    </section>
+
+    <!-- Mobile Hero Section -->
+    <section class="mobile-hero">
+      <div class="swiper hero-swiper" data-loop="true" data-speed="2000" data-autoplay="true" data-effect="fade"
+        data-delay="3000">
+        <div class="swiper-wrapper">
+          <% if (slider && slider.length> 0) { %>
+            <% slider.forEach(item=> { %>
+              <div class="swiper-slide">
+                <div class="rs-banner-item-wrapper">
+                  <div class="rs-banner-bg-thumb" data-background="/images/bg/<%= item.slider_image %>"></div>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="rs-banner-item">
+                          <div class="rs-banner-content text-center">
+                            <h1 class="rs-banner-title" style="color: white; font-size: 28px;">
+                              <%= item.slider_title || 'Default Title' %>
+                            </h1>
+                            <div class="rs-banner-btn" style="margin-top: 25px;">
+                              <a class="rs-btn has-theme-red has-icon has-bg has-skew"
+                                href="<%= item.slider_link || '#' %>" style="padding: 15px 30px;">
+                                <%= item.slider_button_text || 'Explore More' %>
+                                  <span class="icon-box">
+                                    <svg class="icon-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                      <path
+                                        d="M31.71,15.29l-10-10L20.29,6.71,28.59,15H0v2H28.59l-8.29,8.29,1.41,1.41,10-10A1,1,0,0,0,31.71,15.29Z" />
+                                    </svg>
+                                    <svg class="icon-second" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                      <path
+                                        d="M31.71,15.29l-10-10L20.29,6.71,28.59,15H0v2H28.59l-8.29,8.29,1.41,1.41,10-10A1,1,0,0,0,31.71,15.29Z" />
+                                    </svg>
+                                  </span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+                <% } %>
+
+
+        </div>
+        <!-- Swiper pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Mobile Verticals Section -->
+    <section class="mobile-verticals">
+      <h2 class="mobile-verticals-title">Our Verticals</h2>
+      <div class="mobile-verticals-grid">
+        <div class="mobile-vertical-card">
+          <img src="/images/verticals/edge6.png" alt="FRP Grating">
+          <strong>FRP Grating</strong>
+        </div>
+        <div class="mobile-vertical-card">
+          <img src="/images/verticals/edge2.png" alt="FRP Handrail">
+          <strong>FRP Handrail</strong>
+        </div>
+        <div class="mobile-vertical-card">
+          <img src="/images/verticals/edge2.png" alt="FRP Fencing">
+          <strong>FRP Fencing</strong>
+        </div>
+        <div class="mobile-vertical-card">
+          <img src="/images/verticals/edge4.png" alt="FRP Structural">
+          <strong>FRP Structural</strong>
+        </div>
+        <div class="mobile-vertical-card">
+          <img src="/images/verticals/edge7.png" alt="Drainage">
+          <strong>Drainage</strong>
+        </div>
+        <div class="mobile-vertical-card">
+          <img src="/images/verticals/edge6.png" alt="Cable Support">
+          <strong>Cable Support</strong>
+        </div>
+        <div class="mobile-vertical-card">
+          <img src="/images/verticals/edge5.png" alt="FRP Ladders">
+          <strong>FRP Ladders</strong>
+        </div>
+        <div class="mobile-vertical-card">
+          <img src="/images/verticals/edge3.png" alt="FRP Studio">
+          <strong>FRP Studio</strong>
+        </div>
+      </div>
+    </section>
+    </div>
+    </section>
+
+    <!-- Offcanvas area start -->
+    <div class="fix">
+      <div class="offcanvas-area has-theme-blue" data-lenis-prevent>
+        <div class="offcanvas-wrapper">
+          <div class="offcanvas-content">
+            <div class="offcanvas-top d-flex justify-content-between align-items-center mb-25">
+              <div class="offcanvas-logo">
+                <a href="#"><img src="/images/logo/logobig.png" alt="logo" /></a>
+              </div>
+              <div class="offcanvas-close">
+                <button class="offcanvas-close-icon animation--flip">
+                  <span class="offcanvas-m-lines">
+                    <span class="offcanvas-m-line line--1"></span><span class="offcanvas-m-line line--2"></span><span
+                      class="offcanvas-m-line line--3"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="offcanvas-about mb-30 d-none d-sm-block">
+              <p>
+                We empower industries such as Building and Infrastructure,
+                Roads, Power, Cooling Towers, Architecture, Railways, Aerospace,
+                Marine, Solar, Manufacturing Industries.
+              </p>
+            </div>
+            <div class="offcanvas-gallery d-none d-sm-block">
+              <div class="offcanvas-gallery-thumb-wrapper">
+                <div class="offcanvas-popup-thumb">
+                  <a class="popup-image" href="/images/gallery/gallery-thumb-01.png">
+                    <img src="/images/gallery/gallery-thumb-01.png" alt="image" />
+                  </a>
+                </div>
+                <div class="offcanvas-popup-thumb">
+                  <a class="popup-image" href="/images/gallery/gallery-thumb-02.png">
+                    <img src="/images/gallery/gallery-thumb-02.png" alt="image" />
+                  </a>
+                </div>
+                <div class="offcanvas-popup-thumb">
+                  <a class="popup-image" href="/images/gallery/gallery-thumb-03.png">
+                    <img src="/images/gallery/gallery-thumb-03.png" alt="image" />
+                  </a>
+                </div>
+                <div class="offcanvas-popup-thumb">
+                  <a class="popup-image" href="/images/gallery/gallery-thumb-04.png">
+                    <img src="/images/gallery/gallery-thumb-04.png" alt="image" />
+                  </a>
+                </div>
+                <div class="offcanvas-popup-thumb">
+                  <a class="popup-image" href="/images/gallery/gallery-thumb-05.png">
+                    <img src="/images/gallery/gallery-thumb-05.png" alt="image" />
+                  </a>
+                </div>
+                <div class="offcanvas-popup-thumb">
+                  <a class="popup-image" href="/images/gallery/gallery-thumb-01.png">
+                    <img src="/images/gallery/gallery-thumb-01.png" alt="image" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="mobile-menu">
+              <div class="rs-offcanvas-menu mb-25">
+                <nav></nav>
+              </div>
+            </div>
+            <div class="offcanvas-contact mb-30">
+              <h4 class="offcanvas-title-meta">Contact Info</h4>
+              <ul>
+                <li class="d-flex align-items-center gap-15">
+                  <div class="offcanvas-contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18" fill="none">
+                      <path
+                        d="M11.8768 9.68475C11.3059 10.835 10.5331 11.9818 9.74128 13.0109C8.95198 14.0368 8.15999 14.9249 7.5643 15.5572C7.48514 15.6412 7.40956 15.7206 7.33802 15.7951C7.26648 15.7206 7.1909 15.6412 7.11174 15.5572C6.51605 14.9249 5.72406 14.0368 4.93476 13.0109C4.14299 11.9818 3.37019 10.835 2.79925 9.68475C2.22242 8.52266 1.89032 7.43373 1.89032 6.5C1.89032 3.50846 4.32934 1.08333 7.33802 1.08333C10.3467 1.08333 12.7857 3.50846 12.7857 6.5C12.7857 7.43373 12.4536 8.52266 11.8768 9.68475ZM7.33802 17.3333C7.33802 17.3333 13.8753 11.1732 13.8753 6.5C13.8753 2.91015 10.9484 0 7.33802 0C3.7276 0 0.800781 2.91015 0.800781 6.5C0.800781 11.1732 7.33802 17.3333 7.33802 17.3333Z"
+                        fill="#6D6D6D"></path>
+                      <path
+                        d="M7.33802 8.66667C6.13455 8.66667 5.15894 7.69662 5.15894 6.5C5.15894 5.30338 6.13455 4.33333 7.33802 4.33333C8.54149 4.33333 9.5171 5.30338 9.5171 6.5C9.5171 7.69662 8.54149 8.66667 7.33802 8.66667ZM7.33802 9.75C9.14323 9.75 10.6066 8.29492 10.6066 6.5C10.6066 4.70507 9.14323 3.25 7.33802 3.25C5.53281 3.25 4.0694 4.70507 4.0694 6.5C4.0694 8.29492 5.53281 9.75 7.33802 9.75Z"
+                        fill="#6D6D6D"></path>
+                    </svg>
+                  </div>
+                  <div class="offcanvas-contact-text">
+                    <a href="#">
+                      1st Floor, Sangeeta Bldg, Tagore Road, Santacruz West,
+                      Mumbai 400054, INDIA
+                    </a>
+                  </div>
+                </li>
+                <li class="d-flex align-items-center gap-15">
+                  <div class="offcanvas-contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M3.65387 1.32849C3.40343 1.00649 2.92745 0.976861 2.639 1.26531L1.60508 2.29923C1.1216 2.78271 0.94387 3.46766 1.1551 4.06847C2.00338 6.48124 3.39215 8.74671 5.32272 10.6773C7.25329 12.6078 9.51876 13.9966 11.9315 14.8449C12.5323 15.0561 13.2173 14.8784 13.7008 14.3949L14.7347 13.361C15.0231 13.0726 14.9935 12.5966 14.6715 12.3461L12.3653 10.5524C12.2008 10.4245 11.9866 10.3793 11.7845 10.4298L9.59541 10.9771C9.00082 11.1257 8.37183 10.9515 7.93845 10.5181L5.48187 8.06155C5.04849 7.62817 4.87427 6.99919 5.02292 6.40459L5.57019 4.21553C5.62073 4.01336 5.57552 3.79918 5.44758 3.63468L3.65387 1.32849ZM1.88477 0.511076C2.62689 -0.231039 3.8515 -0.154797 4.49583 0.673634L6.28954 2.97983C6.6187 3.40304 6.73502 3.95409 6.60498 4.47423L6.05772 6.66329C5.99994 6.8944 6.06766 7.13888 6.2361 7.30732L8.69268 9.7639C8.86113 9.93235 9.1056 10.0001 9.33671 9.94229L11.5258 9.39502C12.0459 9.26499 12.597 9.3813 13.0202 9.71047L15.3264 11.5042C16.1548 12.1485 16.231 13.3731 15.4889 14.1152L14.455 15.1492C13.7153 15.8889 12.6089 16.2137 11.5778 15.8512C9.01754 14.9511 6.61438 13.4774 4.56849 11.4315C2.5226 9.38562 1.04895 6.98246 0.148838 4.42225C-0.213682 3.39112 0.11113 2.28472 0.85085 1.545L1.88477 0.511076Z"
+                        fill="#6D6D6D"></path>
+                      <path
+                        d="M11 0.5C11 0.223858 11.2239 0 11.5 0H15.5C15.7761 0 16 0.223858 16 0.5V4.5C16 4.77614 15.7761 5 15.5 5C15.2239 5 15 4.77614 15 4.5V1.70711L10.8536 5.85355C10.6583 6.04882 10.3417 6.04882 10.1464 5.85355C9.95118 5.65829 9.95118 5.34171 10.1464 5.14645L14.2929 1H11.5C11.2239 1 11 0.776142 11 0.5Z"
+                        fill="#6D6D6D"></path>
+                    </svg>
+                  </div>
+                  <div class="offcanvas-contact-text">
+                    <a href="tel:+919082471218"> +91 90824 71218 </a>
+                  </div>
+                </li>
+                <li class="d-flex align-items-center gap-15">
+                  <div class="offcanvas-contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M2 2C0.895431 2 0 2.89543 0 4V12L2.58386e-05 12.0103C0.00555998 13.1101 0.898859 14 2 14H7.5C7.77614 14 8 13.7761 8 13.5C8 13.2239 7.77614 13 7.5 13H2C1.53715 13 1.14774 12.6855 1.03376 12.2586L6.67417 8.7876L8 9.5831L15 5.3831V8.5C15 8.77614 15.2239 9 15.5 9C15.7761 9 16 8.77614 16 8.5V4C16 2.89543 15.1046 2 14 2H2ZM5.70808 8.20794L1 11.1052V5.3831L5.70808 8.20794ZM1 4.2169V4C1 3.44772 1.44772 3 2 3H14C14.5523 3 15 3.44772 15 4V4.2169L8 8.4169L1 4.2169Z"
+                        fill="#6D6D6D"></path>
+                      <path
+                        d="M14.2467 14.2686C15.2567 14.2686 15.8339 13.4116 15.8339 12.2442V12.0344C15.8339 10.4297 14.6402 9 12.5197 9H12.4847C10.421 9 9 10.3598 9 12.4322V12.6465C9 14.8195 10.4385 16 12.3579 16H12.4016C12.9963 16 13.4204 15.9257 13.639 15.8251V15.0949C13.3941 15.2042 12.9656 15.2742 12.4585 15.2742H12.4147C11.0812 15.2742 9.84385 14.4872 9.84385 12.6202V12.4628C9.84385 10.8057 10.9019 9.73891 12.4847 9.73891H12.524C14.0587 9.73891 15.0075 10.7883 15.0075 12.065V12.183C15.0075 13.158 14.6839 13.5734 14.3691 13.5734C14.1374 13.5734 13.9582 13.4247 13.9582 13.1537V10.9631H13.0531V11.5315H13.0225C12.9394 11.2342 12.6552 10.9019 12.0693 10.9019C11.2911 10.9019 10.8101 11.4572 10.8101 12.3011V12.8301C10.8101 13.722 11.2998 14.2642 12.0693 14.2642C12.5415 14.2642 12.9656 14.0369 13.0837 13.6215H13.1274C13.2455 14.0412 13.7439 14.2686 14.2467 14.2686ZM11.7939 12.6814V12.4541C11.7939 11.9076 12.0212 11.6627 12.3666 11.6627C12.664 11.6627 12.9394 11.8551 12.9394 12.371V12.7383C12.9394 13.3111 12.6858 13.4816 12.3754 13.4816C12.0212 13.4816 11.7939 13.2673 11.7939 12.6814Z"
+                        fill="#6D6D6D"></path>
+                    </svg>
+                  </div>
+                  <div class="offcanvas-contact-text">
+                    <a href="mailto:info@creocomposites.com">info@creocomposites.com</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="offcanvas-social">
+              <h4 class="offcanvas-title-meta">Subscribe & Follow</h4>
+              <ul>
+                <li>
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-youtube"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-overlay"></div>
+    <div class="offcanvas-overlay-white"></div>
+    <!-- Offcanvas area start -->
+
+    <!-- Body main wrapper start -->
+    <main>
+      <!-- banner area start -->
+
+      <!-- banner area end -->
+
+      <!-- banner area start -->
+      <section class="rs-banner-area rs-banner-one p-relative rs-swiper">
+
+      </section>
+      <!-- banner area end -->
+
+
+      <!-- about area start -->
+      <div class="rs-about-area rs-about rs-about-three section-space-bottom">
+        <div class="container">
+          <div class="row align-items-xl-center g-5">
+            <div class="col-xl-6 col-lg-5">
+              <div class="rs-about-thumb rs-image scroll_reveal reveal_left reveal-active">
+                <img decoding="async" src="/images/about/about-thumb-03.png" alt="image" />
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-7">
+
+              <div class="rs-about-content-wrapper">
+                <h2 class="rs-section-title has-theme-blue rs-split-text-enable split-in-fade"
+                  style="padding-bottom: 20px;">
+                  <%= home[0].title %>
+                </h2>
+                <div class="rs-about-tab">
+                  <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="pills-item-one-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-item-one" type="button" role="tab" aria-controls="pills-item-one"
+                        aria-selected="true">
+                        Our History
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-item-two-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-item-two" type="button" role="tab" aria-controls="pills-item-two"
+                        aria-selected="false">
+                        Mission
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-item-three-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-item-three" type="button" role="tab" aria-controls="pills-item-three"
+                        aria-selected="false">
+                        Vision
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="rs-aobut-tab-content-wrapper">
+                  <div class="tab-content rs-about-tab-anim" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-item-one" role="tabpanel"
+                      aria-labelledby="pills-item-one-tab" tabindex="0">
+                      <div class="rs-about-tab-content" style="text-align: justify">
+                        <p>
+                          <%= home[0].history_des || "No history available." %>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-item-two" role="tabpanel" aria-labelledby="pills-item-two-tab"
+                      tabindex="0">
+                      <div class="rs-about-tab-content" style="text-align: justify" ;>
+                        <p>
+                          <%= home[0].mission_des %>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-item-three" role="tabpanel"
+                      aria-labelledby="pills-item-three-tab" tabindex="0">
+                      <div class="rs-about-tab-content" style="text-align: justify">
+                        <p>
+                          <%= home[0].vision_des %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="rs-about-btn">
+                  <a class="rs-btn has-theme-blue has-icon has-bg" href="#">Explore More
+                    <span class="icon-box">
+                      <svg class="icon-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <path
+                          d="M31.71,15.29l-10-10L20.29,6.71,28.59,15H0v2H28.59l-8.29,8.29,1.41,1.41,10-10A1,1,0,0,0,31.71,15.29Z">
+                        </path>
+                      </svg>
+                      <svg class="icon-second" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <path
+                          d="M31.71,15.29l-10-10L20.29,6.71,28.59,15H0v2H28.59l-8.29,8.29,1.41,1.41,10-10A1,1,0,0,0,31.71,15.29Z">
+                        </path>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- about area start -->
+
+      <!-- services area start -->
+      <section class="rs-services-area rs-services-three section-space primary-bg rs-swiper has-theme-blue">
+        <div class="container">
+          <div class="row g-5">
+            <div class="col-xl-3 col-lg-3">
+              <div class="rs-services-content-wrapper">
+                <div class="rs-section-title-wrapper">
+                  <span class="rs-section-subtitle has-theme-blue justify-content-start">
+                    Our Verticles
+                  </span>
+                  <h2 class="rs-section-title has-theme-blue rs-split-text-enable split-in-fade">
+                    <%= home[0].Verticles_title %>
+                  </h2>
+                  <p class="descrip">
+                    <%= home[0].Verticles_des %>
+                  </p>
+                  <!-- If we need navigation buttons -->
+                  <div class="rs-services-navigation">
+                    <button class="swiper-button-prev rs-swiper-btn has-bg-white has-small hover-blue">
+                      <i class="fa-regular fa-arrow-left"></i>
+                    </button>
+                    <button class="swiper-button-next rs-swiper-btn has-bg-white has-small hover-blue">
+                      <i class="fa-regular fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-9">
+              <div class="rs-services-slide-wrapper process-counts">
+                <div class="swiper" data-clone-slides="false" data-loop="false" data-speed="1500" data-autoplay="true"
+                  data-dots-dynamic="false" data-hover-pause="true" data-effect="false" data-delay="2500" data-item="3"
+                  data-item-xl="2" data-item-lg="2" data-item-md="2" data-item-sm="1" data-item-xs="1"
+                  data-item-mobile="1" data-margin="30" data-margin-xl="30">
+                  <div class="swiper-wrapper">
+
+
+                    <% verticals.forEach(function(item) { %>
+                      <div class="swiper-slide">
+                        <div class="rs-services-item">
+                          <div class="rs-services-thumb">
+                            <a href="/services/<%= item.v_slug %>  ">
+                              <img src="<%= '/images/services/' + (item.v_image[0] || 'default.jpg') %>"
+                                alt="<%= item.v_title %>" />
+                            </a>
+
+                          </div>
+                          <div class="rs-services-content">
+                            <h5 class="rs-services-title">
+                              <a href="#">
+                                <%= item.v_title %>
+                              </a>
+                            </h5>
+                            <p class="descrip">
+                              <%= item.v_des %>
+                            </p>
+                            <div class="rs-services-number"></div>
+                            <div class="rs-services-btn-wrapper">
+                              <div class="rs-services-text-btn underline has-theme-blue">
+                                <a class="rs-text-btn" href="#">View Details</a>
+                              </div>
+                              <a class="rs-square-btn has-icon has-light-bg" href="#">
+                                <span class="icon-box">
+                                  <!-- SVGs remain unchanged -->
+                                  <svg class="icon-first" xmlns="http://www.w3.org/2000/svg" width="12" height="10"
+                                    viewBox="0 0 12 10" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M0 5C0 4.60551 0.319797 4.28571 0.714286 4.28571L8.98985 4.28571L5.92349 1.21936C5.64455 0.940417 5.64455 0.488155 5.92349 0.209209C6.20244 -0.0697365 6.6547 -0.0697365 6.93365 0.209209L11.2194 4.49492C11.4983 4.77387 11.4983 5.22613 11.2194 5.50508L6.93365 9.79079C6.6547 10.0697 6.20244 10.0697 5.92349 9.79079C5.64455 9.51184 5.64455 9.05958 5.92349 8.78064L8.98985 5.71429L0.714286 5.71429C0.319797 5.71429 0 5.39449 0 5Z"
+                                      fill="#616161" />
+                                  </svg>
+                                  <svg class="icon-second" xmlns="http://www.w3.org/2000/svg" width="12" height="10"
+                                    viewBox="0 0 12 10" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M0 5C0 4.60551 0.319797 4.28571 0.714286 4.28571L8.98985 4.28571L5.92349 1.21936C5.64455 0.940417 5.64455 0.488155 5.92349 0.209209C6.20244 -0.0697365 6.6547 -0.0697365 6.93365 0.209209L11.2194 4.49492C11.4983 4.77387 11.4983 5.22613 11.2194 5.50508L6.93365 9.79079C6.6547 10.0697 6.20244 10.0697 5.92349 9.79079C5.64455 9.51184 5.64455 9.05958 5.92349 8.78064L8.98985 5.71429L0.714286 5.71429C0.319797 5.71429 0 5.39449 0 5Z"
+                                      fill="#616161" />
+                                  </svg>
+                                </span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <% }); %>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- services area end -->
+
+      <!-- Service section start -->
+      <!-- Service section start -->
+      <!-- blog area start -->
+      <section id="homeblog" class="rs-blog-area section-space rs-blog-two rs-swiper">
+        <div class="container">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-xl-8 col-lg-9 col-md-10">
+              <div class="rs-section-title-wrapper text-center section-title-space">
+                <span class="rs-section-subtitle has-theme-red">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="15" viewBox="0 0 11 15" fill="none">
+                    <path d="M3.14286 10L0 15L8.78104e-07 0L3.14286 5V10Z" fill="#EA5501"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M6.28571 10L3.14286 15L3.14286 10L4.71428 7.5L3.14286 5L3.14286 0L6.28571 5L6.28571 10ZM6.28571 10L7.85714 7.5L6.28571 5V0L11 7.5L6.28571 15V10Z"
+                      fill="#EA5501"></path>
+                  </svg>
+                  OUR SERVICES
+                </span>
+                <h2 class="rs-section-title rs-split-text-enable split-in-fade">
+                  <%= home[0].service_title %>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="rs-blog-slider">
+                <div class="swiper" data-clone-slides="false" data-loop="true" data-speed="1500" data-autoplay="true"
+                  data-dots-dynamic="false" data-hover-pause="true" data-effect="false" data-delay="2500" data-item="3"
+                  data-item-xl="3" data-item-lg="3" data-item-md="2" data-item-sm="1" data-item-xs="1"
+                  data-item-mobile="1" data-margin="30" data-margin-xl="30">
+                  <div class="swiper-wrapper">
+                    <% services.forEach(service=> { %>
+                      <div class="swiper-slide">
+                        <div class="rs-blog-item">
+                          <div class="rs-blog-thumb">
+                            <a href="/services/<%= service.slug %>">
+                              <img src="<%= '/images/services/service2/' + (service.image[0] || 'default.png') %>"
+                                alt="image">
+
+                            </a>
+                          </div>
+                          <div class="rs-blog-content">
+                            <div class="rs-blog-tag has-theme-red">
+                              <a href="/services/<%= service.slug %>">
+                                <%= service.title %>
+                              </a>
+                            </div>
+                            <p class="rs-blog-title has-black">
+                              <a href="/services/<%= service.slug %>">
+                                <%= service.des %>
+                              </a>
+                            </p>
+                            <div class="rs-blog-btn-wrapper">
+                              <a class="rs-square-btn has-icon has-light-grey" href="/services/<%= service.slug %>">
+                                <span class="icon-box">
+                                  <i class="ri-arrow-right-line icon-first"></i>
+                                  <i class="ri-arrow-right-line icon-second"></i>
+                                </span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <% }) %>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- blog area end -->
+      <!-- Service section end -->
+
+
+
+      <!-- why choose area start -->
+      <section class="rs-why-choose-area section-space rs-why-choose-one primary-bg">
+        <div class="container">
+          <div class="row align-items-xl-center g-5">
+            <div class="col-xl-7 col-lg-7">
+              <div class="rs-why-choose-content-wrapper">
+                <div class="rs-section-title-wrapper section-title-space">
+                  <span class="rs-section-subtitle has-theme-blue justify-content-start">
+                    Why FRP?
+                  </span>
+                  <h2 class="rs-section-title has-theme-blue rs-split-text-enable split-in-fade">
+                    <%= home[0].frp_title %>
+                  </h2>
+                </div>
+                <div class="rs-why-choose-item-wrapper">
+                  <% if (whyfrp && whyfrp.length) { %>
+                    <% whyfrp.forEach(item=> { %>
+
+                      <div class="rs-why-choose-item">
+                        <div class="rs-why-choose-icon has-white">
+                          <img style="width: 70%;" src="/images/icon/<%= item.icon || 'default.jpg' %>"
+                            alt="<%= item.title %>" />
+                        </div>
+                        <div class="rs-why-choose-content">
+                          <h5 class="rs-why-choose-title">
+                            <%= item.title %>
+                          </h5>
+                          <p>
+                            <%= item.des %>
+                          </p>
+                        </div>
+                      </div>
+
+
+                      <% }) %>
+                        <% } %>
+
+                </div>
+                <div class="rs-why-choose-progress">
+                  <div class="single-progress">
+                    <div class="progress-top">
+                      <h6 class="progress-title">Providing Quality</h6>
+                      <span class="progress-number">95%</span>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".3s"
+                        role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-5 col-lg-5">
+              <div class="rs-why-choose-thumb-wrapper">
+                <div class="rs-why-choose-thumb">
+                  <img src="/images/why-choose/why-choose-thumb-01.png" alt="image" />
+                </div>
+                <div class="rs-why-choose-small-thumb">
+                  <img src="/images/why-choose/why-choose-thumb-02.jpeg" alt="image" />
+                  <div class="rs-why-choose-btn">
+                    <a href="https://www.youtube.com/watch?v=ts9axPikKio"
+                      class="rs-play-btn popup-video has-theme-blue"><i class="ri-play-fill"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- why choose area end -->
+
+      <!-- portfolio area start -->
+      <section class="rs-portfolio-area section-space rs-portfolio-two">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-6">
+              <div class="rs-section-title-wrapper text-center section-title-space">
+                <span class="rs-section-subtitle has-theme-blue">
+                  Application
+                </span>
+                <h2 class="rs-section-title has-theme-blue rs-split-text-enable split-in-fade">
+                  <%= home[0].application_title %>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="row g-5">
+            <% for (let i=0; i < application.length; i++) { %>
+              <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="rs-portfolio-item wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
+                  <div class="rs-portfolio-thumb">
+                    <img src="<%= '/images/application/' + (application[i].image || 'default.jpg') %>"
+                      alt="<%= application[i].title %>" class="img-fluid" />
+
+                    <div class="rs-portfolio-content">
+                      <div class="rs-portfolio-tag">
+
+                        <a href="#">
+                          <%= application[i].tagline %>
+                        </a>
+                      </div>
+                      <div class="rs-portfolio-title-info">
+                        <p class="rs-portfolio-title">
+                          <a href="#">
+                            <%= application[i].title %>
+                          </a>
+                        </p>
+                        <div class="rs-portfolio-btn">
+                          <a href="/images/portfolio/portfolio-thumb-05.png"
+                            class="rs-btn has-circle has-small-btn popup-image">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                              <path d="M6 6V0H8V6H14V8H8V14H6V8H0V6H6Z" fill="#071230"></path>
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <% } %>
+
+          </div>
+        </div>
+      </section>
+      <!-- portfolio area end -->
+
+
+
+      <div class="rs-testimonial-bg-thumb-wrapper">
+        <div class="rs-testimonial-bg-thumb" data-background="/images/bg/testimonials-bg-01.png"></div>
+
+        <!-- testimonial area start -->
+        <section class="rs-testimonial-area section-space rs-testimonial-one has-theme-blue rs-swiper">
+          <div class="container">
+            <div class="row g-5 section-title-space align-items-center">
+              <div class="col-xl-7 col-lg-7">
+                <div class="rs-section-title-wrapper">
+                  <span class="rs-section-subtitle justify-content-start">
+                    Testimonials
+                  </span>
+                  <h2 class="rs-section-title rs-split-text-enable split-in-fade">
+                    <%= home[0].testimonials_title %>
+                  </h2>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="swiper" data-clone-slides="false" data-loop="true" data-speed="1500" data-autoplay="true"
+                  data-dots-dynamic="false" data-hover-pause="true" data-effect="false" data-delay="2500" data-item="3"
+                  data-item-xl="3" data-item-lg="3" data-item-md="2" data-item-sm="1" data-item-xs="1"
+                  data-item-mobile="1" data-margin="30" data-margin-xl="30">
+                  <div class="swiper-wrapper">
+
+
+                    <% testimonial.forEach(item=> { %>
+                      <div class="swiper-slide">
+                        <div class="rs-testimonial-item">
+                          <div class="rs-testimonial-content">
+                            <div class="rs-testimonial-top">
+                              <div class="rs-testimonial-avater-wrapper">
+                                <div class="rs-testimonial-avater-thumb">
+                                  <img src="<%= '/images/user/' + (item.image || 'user-thumb-01.png') %>" alt="image" />
+                                </div>
+                                <div class="rs-testimonial-avater-info">
+                                  <h6 class="rs-testimonial-avater-title">
+                                    <%= item.title %>
+                                  </h6>
+                                  <span class="rs-testimonial-avater-designation">
+                                    <%= item.post %>
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="rs-testimonial-icon">
+                                <!-- optional icon/logo if needed -->
+                              </div>
+                            </div>
+                            <div class="rs-testimonial-description">
+                              <p>
+                                <%= item.des %>
+                              </p>
+                            </div>
+                            <div class="rs-testimonial-rating-wrapper">
+                              <div class="rs-rating">
+                                <% for (let i=0; i < 4; i++) { %>
+                                  <span><i class="ri-star-fill"></i></span>
+                                  <% } %>
+                                    <span><i class="ri-star-half-line"></i></span>
+                              </div>
+                              <div class="rs-testimonial-quote">
+                                <!-- SVG Quote Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="43" viewBox="0 0 60 43"
+                                  fill="none">
+                                  <path d="M57.3913 0H33.9130C32.4746 0 31.3043 1.14482 ..." fill="#1F1F1F" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <% }) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- testimonial area start -->
+
+
+        <!-- brand area start -->
+        <section class="rs-brand-area rs-brand-one section-space-bottom has-theme-blue rs-swiper ">
+          <div class="container">
+            <div class="row g-5 section-title-space justify-content-center">
+              <div class="col-xl-7 col-lg-7">
+                <div class="rs-section-title-wrapper text-center">
+                  <span class="rs-section-subtitle"> Our Valued Partners </span>
+                  <h2 class="rs-section-title rs-split-text-enable split-in-fade">
+                    <%= home[0].partners_title %>
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="rs-brand-wrapper">
+                  <div class="swiper" data-clone-slides="false" data-loop="true" data-speed="1500" data-autoplay="false"
+                    data-dots-dynamic="false" data-center-mode="false" data-hover-pause="true" data-effect="false"
+                    data-delay="1500" data-item="6" data-item-xl="4" data-item-lg="4" data-item-md="3" data-item-sm="2"
+                    data-item-xs="2" data-item-mobile="1">
+                    <div class="swiper-wrapper">
+                      <% if (partners && partners.length) { %>
+                        <% partners.forEach(item=> { %>
+                          <div class="swiper-slide">
+                            <div class="rs-brand-item">
+                              <div class="rs-brand-thumb">
+                                <img src="<%= '/images/brand/' + (item.logo || 'default.jpg') %>"
+                                  alt="<%= item.name %>" />
+                              </div>
+                            </div>
+                          </div>
+                          <% }); %>
+                            <% } %>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- brand area end -->
+      </div>
+
+      <!-- blog area start -->
+      <section class="rs-blog-area section-space rs-blog-one has-theme-blue">
+        <div class="container">
+          <div class="row g-5 section-title-space align-items-center">
+            <div class="col-xl-7 col-lg-7">
+              <div class="rs-section-title-wrapper">
+                <span class="rs-section-subtitle justify-content-start has-theme-blue">
+                  Updates
+                </span>
+                <h2 class="rs-section-title has-theme-blue rs-split-text-enable split-in-fade">
+                  <%= home[0].blog_title %>
+                </h2>
+              </div>
+            </div>
+            <div class="col-xl-5 col-lg-5">
+              <div class="rs-blog-btn">
+                <a class="rs-btn has-theme-blue has-icon has-bg" href="#">View All Post
+                  <span class="icon-box">
+                    <svg class="icon-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                      <path
+                        d="M31.71,15.29l-10-10L20.29,6.71,28.59,15H0v2H28.59l-8.29,8.29,1.41,1.41,10-10A1,1,0,0,0,31.71,15.29Z">
+                      </path>
+                    </svg>
+                    <svg class="icon-second" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                      <path
+                        d="M31.71,15.29l-10-10L20.29,6.71,28.59,15H0v2H28.59l-8.29,8.29,1.41,1.41,10-10A1,1,0,0,0,31.71,15.29Z">
+                      </path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row g-5">
+            <% if (blogs.length> 0) { %>
+              <!-- First blog (left column) -->
+              <div class="col-xl-6 col-lg-6">
+                <div class="rs-blog-item has-thumb-height wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="1s">
+                  <div class="has-bg rs-blog-bg-thumb"
+                    data-background="<%= '/images/blog/' + (blogs[0].author_photo || 'default.jpg') %>"></div>
+
+                  <div class="rs-blog-content has-position">
+                    <div class="rs-blog-meta">
+                      <div class="rs-blog-meta-item has-white">
+                        <span>
+                          By
+                          <a class="rs-blog-meta-author" href="#">
+                            <%= blogs[0].author_name %>
+                          </a>
+                        </span>
+                      </div>
+                      <div class="rs-blog-meta-item has-white">
+                        <span>
+                          <%= blogs[0].display_date %>
+                        </span>
+                      </div>
+                    </div>
+                    <h3 class="rs-blog-title has-white has-big underline">
+                      <a href="/blog/<%= blogs[0].slug %>">
+                        <%= blogs[0].title %>
+                      </a>
+                    </h3>
+                    <p class="rs-blog-description has-white">
+                      <%= blogs[0].des %>
+                    </p>
+                    <div class="rs-blog-tag has-white has-theme-blue">
+                      <a href="#">
+                        <%= blogs[0].tag.split(',')[0] %>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Remaining blogs (right column) -->
+              <div class="col-xl-6 col-lg-6">
+                <div class="row g-5 wow fadeInRight" data-wow-delay=".3s" data-wow-duration="1s">
+                  <% blogs.slice(1).forEach(blog=> { %>
+                    <div class="col-12">
+                      <div class="rs-blog-item has-grid">
+                        <div class="rs-blog-content has-padding order-1 order-sm-0">
+                          <div class="rs-blog-meta">
+                            <div class="rs-blog-meta-item">
+                              <span>
+                                By
+                                <a class="rs-blog-meta-author" href="#">
+                                  <%= blog.author_name %>
+                                </a>
+                              </span>
+                            </div>
+                            <div class="rs-blog-meta-item">
+                              <span>
+                                <%= blog.display_date %>
+                              </span>
+                            </div>
+                          </div>
+                          <h5 class="rs-blog-title underline has-theme-blue">
+                            <a href="/blog/<%= blog.slug %>">
+                              <%= blog.title %>
+                            </a>
+                          </h5>
+                          <p class="rs-blog-description">
+                            <%= blog.des %>
+                          </p>
+                          <div class="rs-blog-tag has-theme-blue">
+                            <a href="#">
+                              <%= blog.tag.split(',')[0] %>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="rs-blog-thumb order-0 order-sm-1">
+                          <a href="/blog/<%= blog.slug %>">
+                            <img src="<%= '/images/blog/' + (blog.author_photo || 'default.jpg') %>" alt="image" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <% }) %>
+                </div>
+              </div>
+              <% } %>
+          </div>
+
+
+        </div>
+      </section>
+      <!-- blog area end -->
+
+      <!-- contact area start -->
+    </main>
+
+
+    <%- include('include/footer') %>
+      <!-- footer area end -->
+      </div>
+
+      <!-- back to top -->
+      <!-- Backtotop start -->
+      <div class="backtotop-wrap cursor-pointer has-theme-blue">
+        <svg class="backtotop-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+          <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+      </div>
+      <!-- Backtotop end -->
+
+      <script>
+        // Dropdown functionality
+        document.addEventListener("DOMContentLoaded", function () {
+          // Mobile Menu Toggle
+          const hamburgerMenu = document.getElementById("hamburgerMenu");
+          const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+          let isMobileMenuOpen = false;
+
+          if (hamburgerMenu && mobileMenuOverlay) {
+            hamburgerMenu.addEventListener("click", function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+
+              isMobileMenuOpen = !isMobileMenuOpen;
+
+              if (isMobileMenuOpen) {
+                hamburgerMenu.classList.add("active");
+                mobileMenuOverlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+              } else {
+                hamburgerMenu.classList.remove("active");
+                mobileMenuOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+              }
+            });
+
+            // Close mobile menu when clicking on overlay
+            mobileMenuOverlay.addEventListener("click", function (e) {
+              if (e.target === mobileMenuOverlay) {
+                hamburgerMenu.classList.remove("active");
+                mobileMenuOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+                isMobileMenuOpen = false;
+              }
+            });
+
+            // Close mobile menu when clicking on menu links
+            const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+            mobileNavLinks.forEach((link) => {
+              link.addEventListener("click", function () {
+                hamburgerMenu.classList.remove("active"); rs - header - inner
+                mobileMenuOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+                isMobileMenuOpen = false;
+
+                // Remove active class from all links
+                mobileNavLinks.forEach((l) => l.classList.remove("active"));
+                // Add active class to clicked link
+                this.classList.add("active");
+              });
+            });
+
+            // Close mobile menu on window resize
+            window.addEventListener("resize", function () {
+              if (window.innerWidth > 768 && isMobileMenuOpen) {
+                hamburgerMenu.classList.remove("active");
+                mobileMenuOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+                isMobileMenuOpen = false;
+              }
+            });
+          }
+          const brandItems = document.querySelectorAll(".brand-item");
+          let activeDropdown = null;
+
+          brandItems.forEach((item) => {
+            const dropdownId = item.getAttribute("data-dropdown");
+            const dropdown = document.getElementById(dropdownId);
+
+            item.addEventListener("click", function (e) {
+              e.stopPropagation();
+
+              // Close any active dropdown
+              if (activeDropdown && activeDropdown !== dropdown) {
+                activeDropdown.classList.remove("active");
+              }
+
+              // Toggle current dropdown
+              dropdown.classList.toggle("active");
+              activeDropdown = dropdown.classList.contains("active")
+                ? dropdown
+                : null;
+            });
+
+            // Prevent dropdown from closing when clicking inside it
+            dropdown.addEventListener("click", function (e) {
+              e.stopPropagation();
+            });
+          });
+
+          // Language selector functionality
+          const languageBtn = document.getElementById("languageBtn");
+          const languageDropdown = document.getElementById("languageDropdown");
+          const selectedLang = document.getElementById("selectedLang");
+          let activeLanguageDropdown = false;
+
+          languageBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            languageDropdown.classList.toggle("active");
+            activeLanguageDropdown =
+              languageDropdown.classList.contains("active");
+          });
+
+          // Language option selection
+          const languageOptions = document.querySelectorAll(".language-option");
+          languageOptions.forEach((option) => {
+            option.addEventListener("click", function (e) {
+              e.stopPropagation();
+              const langCode = this.getAttribute("data-lang");
+              const langText = this.querySelector("span").textContent;
+              const flagClass = this.querySelector(".language-flag").className;
+
+              // Update selected language
+              selectedLang.textContent = langText;
+              languageBtn.querySelector(".language-flag").className = flagClass;
+
+              // Close dropdown
+              languageDropdown.classList.remove("active");
+              activeLanguageDropdown = false;
+
+              // Store selected language
+              localStorage.setItem("selectedLanguage", langCode);
+
+              // Show confirmation
+              showLanguageConfirmation(langText);
+            });
+          });
+
+          // Load saved language preference
+          const savedLang = localStorage.getItem("selectedLanguage");
+          if (savedLang) {
+            const savedOption = document.querySelector(
+              `[data-lang="${savedLang}"]`
+            );
+            if (savedOption) {
+              savedOption.click();
+            }
+          }
+
+          // Function to show language change confirmation
+          function showLanguageConfirmation(language) {
+            // Create a temporary notification
+            const notification = document.createElement("div");
+            notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #22c55e;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 10000;
+                    font-size: 14px;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                `;
+            notification.textContent = `Language changed to ${language}`;
+            document.body.appendChild(notification);
+
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+              notification.style.opacity = "0";
+              notification.style.transform = "translateX(100%)";
+              setTimeout(() => {
+                if (notification.parentNode) {
+                  notification.parentNode.removeChild(notification);
+                }
+              }, 300);
+            }, 3000);
+          }
+
+          // Close dropdowns when clicking outside
+          document.addEventListener("click", function () {
+            if (activeDropdown) {
+              activeDropdown.classList.remove("active");
+              activeDropdown = null;
+            }
+            if (activeLanguageDropdown) {
+              languageDropdown.classList.remove("active");
+              activeLanguageDropdown = false;
+            }
+          });
+
+          // Search functionality
+
+          // Mobile menu toggle (if needed)
+          const navLinks = document.querySelectorAll(".nav-link");
+          navLinks.forEach((link) => {
+            link.addEventListener("click", function (e) {
+              e.preventDefault();
+              navLinks.forEach((l) => l.classList.remove("active"));
+              this.classList.add("active");
+            });
+          });
+
+          // Smooth scrolling for anchor links
+          document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute("href"));
+              if (target) {
+                target.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }
+            });
+          });
+        });
+      </script>
+      <!-- <script>
+    const slides = document.querySelectorAll('.slide');
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+    let index = 0;
+    let interval;
+
+    function showSlide(i) {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === i);
+      });
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+
+    function prevSlide() {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    }
+
+    function startSlider() {
+      interval = setInterval(nextSlide, 3000); // auto every 3 seconds
+    }
+
+    function stopSlider() {
+      clearInterval(interval);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      stopSlider();
+      nextSlide();
+      startSlider();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      stopSlider();
+      prevSlide();
+      startSlider();
+    });
+
+    // Start autoplay
+    startSlider();
+  </script> -->
+
+
+      <script>
+        // Initialize hero swiper
+        document.addEventListener('DOMContentLoaded', function () {
+          const heroSwiper = new Swiper('.hero-swiper', {
+            loop: true,
+            autoplay: {
+              delay: 3000,
+              disableOnInteraction: false,
+            },
+            effect: 'fade',
+            fadeEffect: {
+              crossFade: true
+            },
+            speed: 2000,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+          });
+        });
+      </script>
+
+      <!-- JS here -->
+      <script src="/js/vendor/jquery-3.7.1.min.js"></script>
+      <script src="/js/plugins/waypoints.min.js"></script>
+      <script src="/js/vendor/bootstrap.bundle.min.js"></script>
+      <script src="/js/plugins/meanmenu.min.js"></script>
+      <script src="/js/plugins/swiper.min.js"></script>
+      <script src="/js/plugins/wow.min.js"></script>
+      <script src="/js/vendor/magnific-popup.min.js"></script>
+      <script src="/js/vendor/isotope.pkgd.min.js"></script>
+      <script src="/js/vendor/imagesloaded.pkgd.min.js"></script>
+      <script src="/js/plugins/nice-select.min.js"></script>
+      <script src="/js/plugins/jarallax.min.js"></script>
+      <script src="/js/vendor/ajax-form.js"></script>
+      <script src="/js/plugins/easypie.js"></script>
+      <script src="/js/plugins/headding-title.js"></script>
+      <script src="/js/plugins/lenis.min.js"></script>
+      <script src="/js/plugins/gsap.min.js"></script>
+      <script src="/js/plugins/rs-anim-int.js"></script>
+      <script src="/js/plugins/rs-scroll-trigger.min.js"></script>
+      <script src="/js/plugins/rs-splitText.min.js"></script>
+      <script src="/js/plugins/jquery.lettering.js"></script>
+      <script src="/js/plugins/parallax-effect.min.js"></script>
+      <script src="/js/plugins/jquery.appear.min.js"></script>
+      <script src="/js/plugins/marquee.min.js"></script>
+      <script src="/js/plugins/chart.umd.min.js"></script>
+      <script src="/js/plugins/nouislider.min.js"></script>
+      <script src="/js/vendor/purecounter.js"></script>
+      <script src="/js/vendor/odometer.min.js"></script>
+      <script src="/js/mobile-menu.js"></script>
+      <script src="/js/main.js"></script>
+</body>
+
+</html>

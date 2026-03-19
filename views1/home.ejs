@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+  <%- include('include/head') %>
+
+<body>
+  <div data-barba="wrapper">
+ 
+    <!-- - Cursor Follower-->
+    <!-- start header -->
+    <%- include('include/header') %>
+      <!-- end header -->
+      <!-- PAGE MAIN -->
+      <div class="js-smooth-scroll bg-white" id="page-wrapper" data-barba="container">
+        <main class="page-wrapper__content">
+          <!-- section MASTHEAD FULLSCREEN -->
+          <section class="section section-masthead section-fullheight text-left bg-dark-1"
+            data-arts-os-animation="data-arts-os-animation" data-arts-theme-text="light"
+            data-background-color="var(--color-dark-1)">
+            <div class="section-masthead__inner section-fullheight__inner container-fluid">
+              <header class="row section-masthead__header justify-content-left">
+                <div class="col-lg-6">
+                  <section
+                    class="section section-content clearfix pt-medium pb-medium container-fluid container-fluid_paddings"
+                    data-arts-os-animation="data-arts-os-animation">
+                    <div class="section-content__inner">
+                      <div class="w-100"></div>
+                      <div class="section__headline mb-1 mb-md-2"></div>
+                      <div class="w-100"></div>
+
+                      <div class="w-100"></div>
+                      <div class="section-content__text " data-split-text-type="lines" data-split-text-set="lines">
+                        <div class="section-content__heading  mb-1" data-split-text-type="lines,words" 
+                          data-split-text-set="words">
+                          <h3 style="color: #ffffff;">
+                            <%= home.hero_title %>
+                          </h3>
+                        </div>
+
+                        <p style="color: #ffffff;">
+                          <%= home.hero_text %>
+                        </p>
+                        <!-- <p>Here at OMAH, we like to test the limits of how much food can move
+                                                    us. We go beyond food. We create experiences that stay with you.</p> -->
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+                <!-- Scroll Button -->
+                <div class="section-masthead__wrapper-scroll-down section-masthead__wrapper-scroll-down_left">
+                  <div class="circle-button js-circle-button" data-arts-os-animation="true">
+                    <div class="circle-button__outer">
+                      <div class="circle-button__wrapper-label">
+                        <div class="circle-button__label small-caps">Scroll Down</div>
+                      </div>
+                    </div>
+                    <div class="circle-button__inner">
+                      <div class="circle-button__circle" data-arts-scroll-down data-arts-cursor
+                        data-arts-cursor-hide-native="true" data-arts-cursor-scale="0">
+                        <svg class="svg-circle" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                          <circle class="circle" cx="30" cy="30" r="29" fill="none"></circle>
+                        </svg>
+                      </div>
+                      <div class="circle-button__icon circle-button__icon-touch">
+                        <svg enable-background="new 0 0 64 64" height="512" viewBox="0 0 64 64" width="512"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="m32 8c-1.104 0-2 .896-2 2v39.899l-14.552-15.278c-.761-.799-2.026-.832-2.828-.069-.8.762-.831 2.027-.069 2.827l16.62 17.449c.756.756 1.76 1.172 2.829 1.172 1.068 0 2.073-.416 2.862-1.207l16.586-17.414c.762-.8.73-2.065-.069-2.827-.799-.763-2.065-.731-2.827.069l-14.552 15.342v-39.963c0-1.104-.896-2-2-2z">
+                          </path>
+                        </svg>
+                      </div>
+                      <div class="circle-button__icon circle-button__icon-mouse">
+                        <svg class="svg-mouse" width="23px" height="35px" viewBox="0 0 23 35"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path class="svg-mouse__border"
+                            d="M11.5,0 C5.15875132,0 0,5.23135343 0,11.6610111 L0,23.3396542 C0,29.7691456 5.15875132,35 11.5,35 C17.8412487,35 23,29.7693119 23,23.3396542 L23,11.6610111 C23,5.23135343 17.8410847,0 11.5,0 Z M21.7222404,23.3396542 C21.7222404,29.0545544 17.136538,33.7037222 11.5,33.7037222 C5.86346203,33.7037222 1.27775956,29.0545544 1.27775956,23.3396542 L1.27775956,11.6610111 C1.27775956,5.946111 5.86346203,1.29627781 11.5,1.29627781 C17.136538,1.29627781 21.7222404,5.94594466 21.7222404,11.6610111 L21.7222404,23.3396542 Z">
+                          </path>
+                          <path class="svg-mouse__wheel"
+                            d="M11.5,4 C11.2238902,4 11,4.28321727 11,4.63321727 L11,10.3667827 C11,10.7167827 11.2238902,11 11.5,11 C11.7761098,11 12,10.7167827 12,10.3667827 L12,4.63321727 C11.9998717,4.28321727 11.7761098,4 11.5,4 Z">
+                          </path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </header>
+            </div>
+
+            <!-- VIDEO BACKGROUND -->
+            <div class="section-image section-masthead__background section-masthead__background_fullscreen">
+              <div class="section-image__wrapper js-transition-img" data-arts-parallax data-arts-parallax-factor="0.15">
+                <video autoplay loop muted playsinline preload="auto"
+                  style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:1;">
+                  <source src="<%= JSON.parse(home.video)[0] %>" type="video/mp4">
+
+                </video>
+
+              </div>
+              <div class="overlay overlay_dark-30 section-masthead__overlay"></div>
+            </div>
+          </section>
+
+          
+<div class="container-fluid no-gutters">
+  <% content.forEach(item => {
+    // Parse image1 and image2
+    let image1 = JSON.parse(item.image1 || "[]")[0] || "";
+    let image2 = JSON.parse(item.image_2 || "[]")[0] || "";
+    let isImageRight = item.image_position === "right";
+    // Get slugs with fallback
+    // If slug2 is empty, use slug1 for right image (Grand Luxury Wedding case)
+    let leftSlug = item.slug1 || item.slug || "";
+    let rightSlug = item.slug2 || item.slug1 || item.slug || "";
+  %>
+
+    <!-- IMAGE1 or IMAGE2 type -->
+    <% if (item.type === "image1" || item.type === "image2") { %>
+      <div class="row no-gutters align-items-center">
+        <!-- Left Image -->
+        <div class="col-lg-6 order-lg-1 bg-white">
+          <section class="section section-image section_h-800 position-relative">
+            <div class="section-image__wrapper position-relative" style="height: 100%;">
+              <div style="position: relative; height: 100%;">
+                <img src="/<%= image1 %>" alt="<%= item.image1_title %>"
+                  style="width: 100%; height: 100%; object-fit: cover;" />
+                <div style="position: absolute; bottom: 0; left: 20px; color: white;">
+                  <strong><%= item.image1_title %></strong><br>
+                  <a href="/details/<%= leftSlug %>" style="color: white; text-decoration: underline;">
+                    <%= item.image1_btn %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Image -->
+        <div class="col-lg-6 order-lg-1 bg-white">
+          <section class="section section-image section_h-800 position-relative">
+            <div class="section-image__wrapper position-relative" style="height: 100%;">
+              <img src="/<%= image2 %>" alt="<%= item.image2_title %>"
+                style="width: 100%; height: 100%; object-fit: cover;" />
+              <div style="position: absolute; bottom: 0; left: 20px; color: white;">
+                <strong><%= item.image2_title %></strong><br>
+                <a href="/details/<%= rightSlug %>" style="color: white; text-decoration: underline;">
+                  <%= item.image2_btn %>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- TEXT-IMAGE type (with dynamic image position) -->
+    <% if (item.type === "text-image") { %>
+      <div class="row no-gutters" style="background-color: #09382F;">
+
+        <% if (!isImageRight) { %>
+          <!-- IMAGE LEFT -->
+          <div class="col-lg-6 order-lg-1 bg-white">
+            <section class="section section-image section_h-800 position-relative">
+              <div class="section-image__wrapper position-relative" style="height: 100%;">
+                <div style="position: relative; height: 100%;">
+                  <img src="/<%= image1 %>" alt="<%= item.image1_title %>"
+                    style="width: 100%; height: 100%; object-fit: cover;" />
+                  <div style="position: absolute; bottom: 0; left: 20px; color: white;">
+                    <strong><%= item.image1_title %></strong><br>
+                    <a href="/details/<%= leftSlug %>" style="color: white; text-decoration: underline;">
+                      <%= item.image1_btn %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        <% } %>
+
+        <!-- TEXT CONTENT -->
+        <div class="col-lg-6">
+          <section class="section section-content clearfix pt-medium pb-medium container-fluid container-fluid_paddings"
+            data-arts-os-animation>
+            <div class="section-content__inner">
+              <div class="section-content__heading split-text js-split-text mb-1">
+                <p style="color: #ffffff;"><%= item.text_des %></p>
+              </div>
+              <div class="section-content__text split-text js-split-text">
+                <a href="/details/<%= rightSlug %>" class="btn btn-primary">
+                  <h2 style="color: #ffffff;"><%= item.text_btn %></h2>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <% if (isImageRight) { %>
+          <!-- IMAGE RIGHT -->
+          <div class="col-lg-6 order-lg-1 bg-white">
+            <section class="section section-image section_h-800 position-relative">
+              <div class="section-image__wrapper position-relative" style="height: 100%;">
+                <div style="position: relative; height: 100%;">
+                  <img src="/<%= image1 %>" alt="<%= item.image1_title %>"
+                    style="width: 100%; height: 100%; object-fit: cover;" />
+                  <div style="position: absolute; bottom: 0; left: 20px; color: white;">
+                    <strong><%= item.image1_title %></strong><br>
+                    <a href="/details/<%= leftSlug %>" style="color: white; text-decoration: underline;">
+                      <%= item.image1_btn %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        <% } %>
+
+      </div>
+    <% } %>
+
+  <% }); %>
+</div>
+
+
+
+<% if (serviceContentMap && serviceContentMap.length > 0) { %>
+  <% serviceContentMap.forEach(function(item) { %>
+    <section class="section section-masthead section-fullheight text-left bg-dark-1"
+      data-arts-os-animation="data-arts-os-animation" 
+      data-arts-theme-text="light"
+      data-background-color="var(--color-dark-1)"
+      style="background-image: url('https://res.cloudinary.com/djcc1bova/image/upload/v1751628137/1_tkvye0.png');">
+      
+      <div class="section-masthead__inner section-fullheight__inner container-fluid">
+        <header class="row section-masthead__header justify-content-center">
+          <div class="col">
+            <div class="section-content__heading split-text js-split-text mb-1"
+              data-split-text-type="lines,words" data-split-text-set="words">
+              
+              <h2 style="color: #ffffff;">
+                <a href="/details/<%= item.slug %>" style="color: inherit; text-decoration: none;">
+                  <%= item.title %>
+                </a>
+              </h2>
+
+              <div class="section-content__text split-text js-split-text" data-split-text-type="lines"
+                data-split-text-set="lines">
+                <p style="color: #ffffff;">
+                  <%= item.des %>
+                </p>
+               <a href="/details/<%= item.slug %>" class="view-details"
+                  style="color: #ffff; text-decoration: underline;">View details</a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <% if (item.image) { %>
+        <div class="section-image section-masthead__background section-masthead__background_fullscreen">
+          <div class="section-image__wrapper js-transition-img" data-arts-parallax="data-arts-parallax"
+            data-arts-parallax-factor="0.15">
+            <img src="/<%= item.image %>" alt="Background"
+              style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:1;"
+              class="js-transition-img__transformed-el" />
+          </div>
+          <div class="overlay overlay_dark-30 section-masthead__overlay"></div>
+        </div>
+      <% } %>
+    </section>
+  <% }); %>
+<% } %>
+
+
+
+
+
+
+        </main>
+        <!-- PAGE FOOTER -->
+        <%- include('include/footer') %>
+          <!-- - PAGE FOOTER -->
+      </div>
+      <!-- - PAGE MAIN -->
+  </div>
+  <canvas id="js-webgl"></canvas>
+  <!-- PhotoSwipe -->
+
+  <!-- - PhotoSwipe -->
+
+
+  <!-- - Slider Textures Shaders -->
+  <!-- VENDOR SCRIPTS -->
+  <script src="js/vendor.js"></script>
+  <!-- - VENDOR SCRIPTS -->
+  <!-- COMPONENTS -->
+  <script src="js/components.js"></script>
+  <!-- - COMPONENTS -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?callback=Function.prototype&amp;key=AIzaSyBwR_TrF6h7-pMxkKv_q2t8BXX3w6QuFOc"
+    async></script>
+</body>
+
+</html>

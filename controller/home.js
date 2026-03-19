@@ -36,10 +36,10 @@ const getbyidhome = async (req, res) => {
       });
     }
 
-   const data = await connection.query(
-  "SELECT * FROM home WHERE id = ? AND status >= 0",
-  [id]
-);
+    const data = await connection.query(
+      "SELECT * FROM home WHERE id = ? AND status >= 0",
+      [id]
+    );
     if (data[0][0]?.id) {
       return res.json({
         status: true,
@@ -64,6 +64,11 @@ const createhome = async (req, res) => {
     const clientIP = getIP(req);
     const {
       video,
+      mission_slider,
+      mission_title,
+      mission_des,
+      hero_image,
+      heroimage_text,
       hero_title,
       hero_sub_title,
       hero_text,
@@ -77,6 +82,11 @@ const createhome = async (req, res) => {
     const [data] = await connection.query(
       `INSERT INTO home (
         video,
+      mission_slider,
+      mission_title,
+      mission_des,
+      hero_image,
+      heroimage_text,
         hero_title,
         hero_sub_title,
         hero_text,
@@ -84,9 +94,14 @@ const createhome = async (req, res) => {
         meta_des,
         ip,
         status
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)`,
       [
         video,
+        mission_slider,
+        mission_title,
+        mission_des,
+        hero_image,
+        heroimage_text,
         hero_title,
         hero_sub_title,
         hero_text,
@@ -126,6 +141,11 @@ const updatebyidhome = async (req, res) => {
 
     const {
       video,
+      mission_slider,
+      mission_title,
+      mission_des,
+      hero_image,
+      heroimage_text,
       hero_title,
       hero_sub_title,
       hero_text,
@@ -138,6 +158,11 @@ const updatebyidhome = async (req, res) => {
     const [data] = await connection.query(
       `UPDATE home SET 
         video = ?, 
+         mission_slider = ?,
+      mission_title = ?,
+      mission_des = ?,
+      hero_image = ?,
+      heroimage_text=?,
         hero_title = ?, 
         hero_sub_title = ?, 
         hero_text = ?, 
@@ -148,6 +173,11 @@ const updatebyidhome = async (req, res) => {
       WHERE id = ?`,
       [
         video,
+        mission_slider,
+        mission_title,
+        mission_des,
+        hero_image,
+        heroimage_text,
         hero_title,
         hero_sub_title,
         hero_text,

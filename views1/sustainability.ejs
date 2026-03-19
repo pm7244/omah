@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>creo.cometdigisol.com</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Place favicon.ico in the root directory -->
+<link rel="shortcut icon" type="image/x-icon" href="/images/logo/white.png" />
+<!-- CSS here -->
+<link rel="stylesheet" href="/css/vendor/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/vendor/animate.min.css" />
+<link rel="stylesheet" href="/css/plugins/swiper.min.css" />
+<link rel="stylesheet" href="/css/plugins/nice-select.css" />
+<link rel="stylesheet" href="/css/plugins/nouislider.min.css" />
+<link rel="stylesheet" href="/css/vendor/magnific-popup.css" />
+<link rel="stylesheet" href="/css/vendor/odometer.min.css" />
+<link rel="stylesheet" href="/css/vendor/fontawesome-pro.css" />
+<link rel="stylesheet" href="/css/vendor/spacing.css" />
+<link rel="stylesheet" href="/css/vendor/remixicon.css" />
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/mobile-responsive.css" />
+
+<style>
+  @media (min-width: 992px) {
+    .blog-desktop-padding {
+      padding-top: 35px;
+      /* Adjust as needed */
+    }
+  }
+
+
+  .rs-services-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: start;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .rs-services-thumb img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .rs-services-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .rs-services-title {
+    font-size: 18px;
+    margin: 12px 0 8px;
+  }
+
+  .rs-services-content p.descrip {
+    flex-grow: 1;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .rs-services-btn-wrapper {
+    margin-top: 12px;
+  }
+
+  .rs-text-btn,
+  .rs-square-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .rs-text-btn {
+    color: #0077cc;
+  }
+
+  .rs-text-btn:hover {
+    text-decoration: underline;
+  }
+
+  .rs-square-btn {
+    background: #f1f1f1;
+    margin-left: 8px;
+  }
+
+  .rs-square-btn:hover {
+    background: #0077cc;
+    color: #fff;
+  }
+
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  /* .swiper-slide {
+      display: flex;
+      height: auto;
+    } */
+  .rs-services-item {
+    height: 100%;
+  }
+
+
+
+
+  .verticals-grid {
+    display: stretch;
+    /* grid-template-columns: 2fr 8fr 2fr; */
+    padding: 10px 20px;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .left-verticals,
+  .right-verticals {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .vertical-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 14px;
+  }
+
+  .vertical-item img {
+    width: 100px;
+  }
+
+  .vertical-label {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .brand-left .vertical-label {
+    order: 2;
+    margin-left: 10px;
+  }
+
+  .brand-left img {
+    order: 1;
+  }
+
+  .brand-right img {
+    order: 1;
+  }
+
+  .brand-right .vertical-label {
+    order: 2;
+    margin-left: 10px;
+  }
+
+  .center-placeholder {
+    height: -webkit-fill-available;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    background-size: cover;
+
+
+
+
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .slides {
+    position: relative;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .slide.active {
+    display: block;
+  }
+
+  .slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .slider .prev {
+    left: 10px;
+  }
+
+  .slider .next {
+    right: 10px;
+  }
+
+  .verticals-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    /* 3-6-3 layout */
+
+    align-items: center;
+
+  }
+
+  .left-verticals,
+  .right-verticals {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .vertical-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 8px;
+
+  }
+
+  .vertical-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .vertical-item img {
+    /* margin-top: 7px; */
+    width: 80px;
+    height: auto;
+  }
+
+  /* Slider Styles */
+  .hero-swiper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-swiper .swiper-slide {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    min-height: 500px;
+  }
+
+  .rs-banner-bg-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    z-index: 1;
+  }
+
+  .rs-banner-item-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .rs-banner-content {
+    position: relative;
+    z-index: 3;
+  }
+
+  .center-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: white !important;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+
+  .swiper-pagination-bullet {
+    background: white !important;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+  }
+
+  .slider .prev {
+    left: 10px;
+  }
+
+  .slider .next {
+    right: 10px;
+  }
+
+  .search-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  .search-box {
+    padding: 6px 10px;
+    width: 600px !important;
+  }
+
+  .search-btn {
+    padding: 6px 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+
+
+
+<style>
+  .main-grid {
+    display: grid;
+    /* grid-template-columns: 2fr 10fr; */
+    align-items: center;
+    background: white;
+    border-color: black;
+
+  }
+
+  /* Left column (logo) */
+  .left-logo {
+    text-align: center;
+  }
+
+  .left-logo img {
+    max-width: 100px;
+    height: auto;
+  }
+
+  /* Right content */
+  .right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-color: black;
+  }
+
+  /* Top bar */
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .top-header .flag {
+    font-weight: bold;
+  }
+
+  .top-header .catalogue button {
+    background-color: #0ea5e9;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    border-radius: 4px;
+  }
+
+  /* Middle: Search + contact */
+  .middle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+  }
+
+  .search-container {
+    display: flex;
+  }
+
+  .search-container input {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .search-container button {
+    padding: 5px 10px;
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+  }
+
+  .contact-info {
+    text-align: right;
+    font-size: 13px;
+    padding: 0 20px;
+  }
+
+  /* Bottom nav */
+  .bottom-header nav {
+    background: black;
+    /* padding: 8px; */
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+  }
+
+  .bottom-header nav a {
+    color: white;
+    text-decoration: none;
+  }
+</style>
+</head>
+
+<body class="rs-smoother-yes rtl">
+    <%- include('include/header') %>
+
+
+    <!-- Body main wrapper start -->
+    <main>
+
+        <!-- breadcrumb area start -->
+        <section class="rs-breadcrumb-area rs-breadcrumb-one p-relative">
+            <div class="rs-breadcrumb-bg" data-background="/images/bg/sustainability.png"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-6 col-xl-8 col-lg-8">
+                        <div class="rs-breadcrumb-content-wrapper">
+                            <div class="rs-breadcrumb-title-wrapper">
+                                <h1 class="rs-breadcrumb-title">Sustainability</h1>
+                            </div>
+                            <div class="rs-breadcrumb-menu">
+                                <nav>
+                                    <ul>
+                                        <li><span><a href="/">Home</a></span></li>
+                                        <li><span>Sustainability</span></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb area end -->
+
+                <!-- breadcrumb area end -->
+   <section class="rs-work-step-area rs-work-step-one  has-different-style" style="margin-top: 20px;" >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 style="text-align: center; margin-top: 20px;">Building a Sustainable Future</h3>
+              
+            </div>
+            <p style="text-align: center; margin-top: 5px;">Unlike steel, concrete, and wood, which often harm the environment, Fiber Reinforced Polymer (FRP) is a cleaner, greener material that supports sustainable development.Steel, concrete, and wood leave a heavy environmental footprint. FRP, on the other hand, delivers strength and durability while reducing ecological impact.</p>
+          </div>
+        </div>
+
+       </section>
+
+
+
+        <!-- work step area start -->
+        <section class="rs-work-step-area rs-work-step-one section-space has-different-style" style="margin-top: 100px;">
+            <div class="container">
+                <div class="rs-work-step-wrapper">
+                    <div class="row g-5 process-counts">
+                        <div class="col-xl-4 col-lg-4 col-md-6" >
+                            <div class="rs-work-step-item wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s" style="background-color: #fff;">
+                                <h5 class="rs-work-step-title">Energy Efficiency And Lower Carbon Footprint</h5>
+                                <div class="rs-work-step-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="512" viewBox="0 0 512 512" width="512">
+                                        <path d="m246.222 279.354v-210.019c0-4.418-3.582-8-8-8-59.12 0-114.701 23.022-156.505 64.827s-64.827 97.386-64.827 156.506 23.023 114.701 64.827 156.505 97.385 64.827 156.505 64.827 114.702-23.023 156.505-64.827c3.124-3.124 3.124-8.189 0-11.313zm-8 208.646c-113.221 0-205.333-92.112-205.333-205.333 0-110.54 87.808-200.958 197.333-205.179v205.179c0 2.122.843 4.157 2.343 5.657l145.084 145.084c-38.055 35.266-87.255 54.592-139.427 54.592zm248.889-231.111h-213.333c-3.236 0-6.153 1.949-7.391 4.938s-.554 6.43 1.734 8.718l150.849 150.85c1.562 1.562 3.609 2.343 5.657 2.343s4.095-.781 5.657-2.343c41.804-41.804 64.827-97.385 64.827-156.505 0-4.419-3.582-8.001-8-8.001zm-62.591 147.428-131.428-131.428h185.867c-1.872 49.188-20.982 95.324-54.439 131.428zm-150.742-166.984h213.333c4.418 0 8-3.582 8-8 0-59.12-23.022-114.702-64.827-156.506s-97.386-64.827-156.506-64.827c-4.418 0-8 3.582-8 8v213.333c0 4.418 3.582 8 8 8zm8-213.179c106.868 4.118 193.061 90.311 197.179 197.179h-197.179z">
+                                        </path>
+                                    </svg>
+                                </div>
+                           <div class="rs-work-step-descrip">
+    <ul>
+        <li style="margin-top: 20px; margin-bottom: 20px;">Lightweight = Lower Energy in Transport And Installation – Reduces fuel consumption and emissions.</li>
+        <li style="margin-top: 20px; margin-bottom: 20px;">Low Maintenance = Fewer Resources Used – No need for frequent painting, coating, or repairs.</li>
+        <li style="margin-top: 20px; margin-bottom: 20px;">Longer Lifespan = Reduced Manufacturing Demand – FRP structures last 2-3 times longer than steel or concrete, reducing frequent replacements.</li>
+    </ul>
+</div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="rs-work-step-item wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s" style="background-color: #fff;">
+                                <h5 class="rs-work-step-title">Recycling & Circular Economy</h5>
+                                <div class="rs-work-step-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path clip-rule="evenodd" d="m193.99 213.76c17.27 0 31.32-14.05 31.32-31.32s-14.05-31.32-31.32-31.32-31.32 14.05-31.32 31.32 14.05 31.32 31.32 31.32zm0-52.64c11.75 0 21.32 9.56 21.32 21.32 0 11.75-9.56 21.32-21.32 21.32s-21.32-9.56-21.32-21.32c.01-11.75 9.57-21.32 21.32-21.32zm-49.53 2.36-9.43.88c-5.82.54-10.3 4.98-10.9 10.79-.52 5.03-.5 10.12.06 15.15.65 5.81 5.17 10.21 10.99 10.71l9.44.8c.69.06 1.02.49 1.16.84s.23.88-.22 1.42l-6.05 7.28c-3.73 4.5-3.76 10.8-.08 15.34 3.19 3.93 6.81 7.52 10.77 10.68 4.56 3.64 10.87 3.56 15.33-.21l7.24-6.1c.53-.45 1.06-.37 1.41-.23s.78.46.85 1.16l.88 9.43c.54 5.82 4.98 10.3 10.79 10.9 2.42.25 4.86.38 7.3.38 2.62 0 5.24-.15 7.85-.43 5.81-.65 10.21-5.17 10.71-10.99l.8-9.44c.06-.7.49-1.02.84-1.16s.88-.23 1.42.22l7.29 6.05c4.5 3.73 10.8 3.77 15.34.08 3.93-3.19 7.52-6.81 10.68-10.77 3.64-4.56 3.56-10.87-.21-15.33l-6.1-7.24c-.45-.53-.37-1.06-.23-1.41s.46-.78 1.16-.85l9.43-.88c5.82-.54 10.3-4.98 10.9-10.79.52-5.03.5-10.12-.06-15.15-.65-5.81-5.17-10.21-10.99-10.71l-9.44-.8c-.7-.06-1.02-.49-1.16-.84-.15-.35-.23-.88.22-1.42l6.05-7.29c3.73-4.5 3.77-10.8.08-15.34-3.19-3.93-6.81-7.52-10.77-10.68-4.56-3.64-10.87-3.56-15.33.21l-7.24 6.1c-.53.45-1.06.38-1.41.23-.35-.14-.78-.46-.85-1.16l-.88-9.43c-.54-5.82-4.98-10.3-10.79-10.9-5.03-.52-10.12-.5-15.15.06-5.81.65-10.21 5.17-10.7 10.99l-.8 9.44c-.06.7-.49 1.02-.84 1.16-.35.15-.88.23-1.42-.22l-7.29-6.05c-4.5-3.73-10.8-3.76-15.34-.08-3.93 3.19-7.52 6.81-10.68 10.77-3.64 4.57-3.56 10.87.21 15.33l6.1 7.24c.45.53.37 1.06.23 1.41-.15.35-.47.78-1.17.85zm8.57-8.71-6.1-7.24c-.66-.78-.67-1.85-.04-2.65 2.71-3.39 5.79-6.5 9.17-9.24.8-.65 1.86-.64 2.65.01l7.29 6.05c3.28 2.72 7.75 3.39 11.67 1.75s6.58-5.3 6.94-9.54l.8-9.44c.09-1.02.83-1.78 1.85-1.9 4.32-.48 8.7-.5 13.01-.05 1.02.11 1.77.86 1.86 1.88l.88 9.43c.39 4.24 3.08 7.87 7.01 9.48s8.4.9 11.65-1.84l7.23-6.1c.78-.66 1.85-.68 2.65-.04 3.4 2.71 6.5 5.79 9.24 9.17.65.79.64 1.86-.02 2.65l-6.05 7.29c-2.72 3.28-3.39 7.75-1.75 11.67s5.3 6.58 9.54 6.94l9.44.8c1.02.09 1.78.83 1.9 1.85.48 4.32.5 8.7.05 13.01-.11 1.02-.86 1.77-1.88 1.86l-9.43.88c-4.24.39-7.87 3.08-9.48 7.01s-.91 8.4 1.84 11.65l6.1 7.24c.66.78.67 1.85.04 2.65-2.71 3.4-5.79 6.5-9.17 9.24-.8.65-1.86.64-2.65-.01l-7.29-6.05c-3.28-2.72-7.75-3.39-11.67-1.75s-6.58 5.3-6.94 9.54l-.8 9.44c-.09 1.02-.83 1.78-1.85 1.9-4.32.48-8.7.5-13.01.05-1.02-.11-1.77-.86-1.86-1.88l-.88-9.43c-.39-4.24-3.08-7.87-7.01-9.48-1.4-.57-2.86-.85-4.31-.85-2.64 0-5.24.92-7.34 2.69l-7.23 6.1c-.78.66-1.85.68-2.65.04-3.4-2.71-6.5-5.79-9.24-9.17-.65-.8-.64-1.86.01-2.65l6.05-7.29c2.72-3.28 3.39-7.75 1.75-11.67s-5.3-6.58-9.54-6.94l-9.44-.8c-1.02-.09-1.78-.83-1.9-1.85-.48-4.32-.5-8.7-.05-13.01.11-1.02.86-1.77 1.88-1.86l9.43-.88c4.24-.39 7.87-3.08 9.48-7.02 1.62-3.92.92-8.39-1.83-11.64zm336.24 306.92-41.1-41.1c-2.71-2.71-6.33-4.21-10.18-4.21-1.04 0-2.06.12-3.05.33l-26.5-26.5c9.81-14.3 15.56-31.6 15.56-50.22 0-35.88-21.35-66.87-52.01-80.94v-156.48c0-27.92-22.71-50.63-50.63-50.63h-61.83c-3.22-6.9-10.2-11.7-18.3-11.7h-13.36c-2.43-16.52-16.7-29.24-33.88-29.24s-31.45 12.72-33.88 29.24h-13.36c-8.1 0-15.08 4.8-18.3 11.7h-61.82c-27.92 0-50.63 22.71-50.63 50.63v347.8c0 27.92 22.71 50.63 50.63 50.63h254.73c27.92 0 50.63-22.71 50.63-50.63v-29.43c4.64-2.13 9.06-4.64 13.23-7.5l26.51 26.51c-1 4.62.29 9.64 3.87 13.23l41.1 41.1c4.49 4.49 10.39 6.74 16.29 6.74s11.8-2.25 16.29-6.74c4.34-4.34 6.73-10.12 6.73-16.29s-2.4-11.96-6.74-16.3zm-75.27-121.7c0 43.56-35.44 79-79 79s-79-35.44-79-79 35.44-79 79-79 79 35.44 79 79zm-52.02-237.42v152.62c-4.62-1.47-9.41-2.58-14.32-3.28v-149.34c0-14.51-11.8-26.31-26.31-26.31h-59.93v-14.32h59.93c22.41 0 40.63 18.22 40.63 40.63zm-225.43-42.13c0-5.62 4.58-10.2 10.2-10.2h17.99c2.76 0 5-2.24 5-5 0-13.37 10.88-24.24 24.24-24.24 13.37 0 24.24 10.88 24.24 24.24 0 2.76 2.24 5 5 5h17.99c5.62 0 10.2 4.58 10.2 10.2v17.32c0 5.62-4.58 10.2-10.2 10.2h-94.47c-5.62 0-10.2-4.58-10.2-10.2v-17.32zm10.2 37.52h94.47c8.1 0 15.08-4.8 18.3-11.7h61.83c8.99 0 16.31 7.32 16.31 16.31v148.47c-.89-.03-1.77-.04-2.67-.04-49.07 0-89 39.92-89 89s39.92 89 89 89c.89 0 1.78-.02 2.67-.04v21.42c0 8.99-7.32 16.31-16.31 16.31h-254.72c-8.99 0-16.31-7.32-16.31-16.31v-347.8c0-8.99 7.32-16.31 16.31-16.31h61.83c3.21 6.89 10.19 11.69 18.29 11.69zm215.23 352.41c0 22.4-18.23 40.63-40.63 40.63h-254.72c-22.4 0-40.63-18.23-40.63-40.63v-347.8c0-22.4 18.23-40.63 40.63-40.63h59.93v14.32h-59.93c-14.51 0-26.31 11.8-26.31 26.31v347.8c0 14.51 11.8 26.31 26.31 26.31h254.73c14.51 0 26.31-11.8 26.31-26.31v-22.28c4.91-.7 9.7-1.81 14.32-3.28v25.56zm40.3-52.18 23.97 23.97-9.08 9.08-23.97-23.97c3.24-2.8 6.27-5.84 9.08-9.08zm79.92 89.01c-5.08 5.08-13.35 5.08-18.43 0l-41.1-41.1c-1.71-1.71-1.71-4.5 0-6.22l12.22-12.22c.86-.86 1.98-1.29 3.11-1.29s2.25.43 3.11 1.29l41.1 41.1c2.45 2.45 3.8 5.72 3.8 9.22-.01 3.5-1.36 6.77-3.81 9.22zm-215.29-147.21c0 37.54 30.54 68.09 68.09 68.09s68.09-30.54 68.09-68.09c0-37.54-30.54-68.09-68.09-68.09s-68.09 30.55-68.09 68.09zm126.18 0c0 32.03-26.06 58.09-58.09 58.09s-58.09-26.06-58.09-58.09 26.06-58.09 58.09-58.09 58.09 26.06 58.09 58.09zm-83.3-11.61c-2.34-3.08-5.74-5.07-9.57-5.59s-7.64.47-10.72 2.81-5.07 5.74-5.59 9.57c-.53 3.83.47 7.64 2.81 10.72l21.19 27.9c2.51 3.3 6.31 5.38 10.45 5.69.37.03.73.04 1.1.04 3.75 0 7.38-1.46 10.09-4.09l46.5-45.1c2.78-2.7 4.33-6.32 4.39-10.19.05-3.87-1.4-7.53-4.1-10.31s-6.32-4.33-10.19-4.39c-3.85-.03-7.53 1.4-10.3 4.1l-34.75 33.7zm53.01-11.67c.86-.84 2.02-1.31 3.2-1.27 1.2.02 2.32.5 3.16 1.36s1.29 2 1.27 3.2-.5 2.32-1.36 3.16l-46.49 45.09c-.94.91-2.18 1.35-3.47 1.25-1.3-.1-2.45-.73-3.24-1.77l-21.19-27.9c-.72-.95-1.03-2.13-.87-3.31.16-1.19.78-2.24 1.73-2.96s2.13-1.04 3.32-.87c1.19.16 2.24.78 2.96 1.73l14.71 19.36c.87 1.14 2.18 1.85 3.6 1.96s2.83-.4 3.86-1.4zm-280.3-18.54c0-2.76 2.24-5 5-5h141.42c2.76 0 5 2.24 5 5s-2.24 5-5 5h-141.42c-2.77 0-5-2.24-5-5zm88.16 127.85c0 2.76-2.24 5-5 5h-78.16c-2.76 0-5-2.24-5-5s2.24-5 5-5h78.16c2.76 0 5 2.23 5 5zm68.16-31.97c0 2.76-2.24 5-5 5h-146.32c-2.76 0-5-2.24-5-5s2.24-5 5-5h146.32c2.76 0 5 2.24 5 5zm-156.32-31.96c0-2.76 2.24-5 5-5h135.66c2.76 0 5 2.24 5 5s-2.24 5-5 5h-135.66c-2.77 0-5-2.23-5-5zm0-31.96c0-2.76 2.24-5 5-5h133.94c2.76 0 5 2.24 5 5s-2.24 5-5 5h-133.94c-2.77 0-5-2.24-5-5zm371.68 42.39c1.63 3.65 5.13 5.92 9.13 5.92s7.49-2.27 9.13-5.92l19.37-43.29c.29-.64.44-1.34.44-2.04v-246.32c0-15.95-12.98-28.93-28.93-28.93s-28.93 12.98-28.93 28.93v246.32c0 .7.15 1.4.44 2.04zm9.13-4.09-16.22-36.25h32.44zm-18.93-46.24v-207.46h37.87v207.46zm18.93-260.25c10.44 0 18.93 8.49 18.93 18.93v23.86h-37.87v-23.86c.01-10.44 8.5-18.93 18.94-18.93zm-277.42-19.08c0-4.48 3.63-8.11 8.11-8.11s8.11 3.63 8.11 8.11-3.63 8.11-8.11 8.11c-4.49 0-8.11-3.63-8.11-8.11z" fill-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="rs-work-step-descrip">
+                                       <ul>
+        <li style="margin-top: 20px; margin-bottom: 20px;">Recycled Composites – Innovations in grinding & repurposing FRP into new products (e.g., road aggregates, filler materials).</li>
+        <li style="margin-top: 20px; margin-bottom: 20px;">Bio-Based Resins – New developments in bio-epoxy and natural fiber composites reduce reliance on petroleum-based resins.</li>
+        <li style="margin-top: 20px; margin-bottom: 20px;"> Thermoplastic FRP (TP-FRP) – Unlike traditional thermoset FRP, TP-FRP can be heated and reshaped, making it recyclable.</li>
+    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="rs-work-step-item wow fadeInUp" data-wow-delay=".7s" data-wow-duration="1s"style="background-color: #fff;">
+                                <h5 class="rs-work-step-title">FRP in Sustainable Applications</h5>
+                                <div class="rs-work-step-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <g data-name="23 Computer repair" id="_23_Computer_repair">
+                                            <g>
+                                                <path d="M25,23a1,1,0,0,0-1,1V46H2V36H21a1,1,0,0,0,0-2H2V24H12a1,1,0,0,0,0-2H2V13a1,1,0,0,1,1-1h8a1,1,0,0,0,0-2H3a3,3,0,0,0-3,3V55a1,1,0,0,0,2,0V48H24V61a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V59a1,1,0,0,0-2,0v2a3,3,0,0,0,3,3H23a3,3,0,0,0,3-3V24A1,1,0,0,0,25,23Z">
+                                                </path>
+                                                <path d="M61,21H29a1,1,0,0,0,0,2H61a1,1,0,0,1,1,1V47H29a1,1,0,0,0,0,2H62v3a1,1,0,0,1-1,1H29a1,1,0,0,0,0,2H40.613l-1.561,4.684A1,1,0,0,0,40,61h8a1,1,0,0,0,.948-1.316L47.387,55H61a3,3,0,0,0,3-3V24A3,3,0,0,0,61,21ZM46.612,59H41.388l1.332-4h2.56Z">
+                                                </path>
+                                                <circle cx="5" cy="19" r="1"></circle>
+                                                <circle cx="9" cy="19" r="1"></circle>
+                                                <path d="M17,55a4,4,0,1,0-4,4A4,4,0,0,0,17,55Zm-6,0a2,2,0,1,1,2,2A2,2,0,0,1,11,55Z">
+                                                </path>
+                                                <path d="M10.5,8h5a1,1,0,0,0,0-2H12.183a8.988,8.988,0,0,1,15.265.5,1,1,0,0,0,.865.5H53.5a1,1,0,0,0,0-2H28.872A10.989,10.989,0,0,0,9.584,6.6,1,1,0,0,0,10.5,8Z">
+                                                </path>
+                                                <path d="M41.5,17a1,1,0,0,0,0-2H28.313a1,1,0,0,0-.865.5,8.989,8.989,0,0,1-15.266.5h7.48a1,1,0,0,0,.895-.553l2-4a1,1,0,0,0,0-.894l-2-4a1,1,0,1,0-1.789.894L20.544,11l-1.5,3H10.5a1,1,0,0,0-.917,1.4A10.99,10.99,0,0,0,28.872,17Z">
+                                                </path>
+                                                <path d="M53.5,15h-8a1,1,0,0,0,0,2h8a1,1,0,0,0,0-2Z"></path>
+                                                <path d="M42,39a1,1,0,0,0,.707-.293l7-7a1,1,0,0,0-1.414-1.414L42,36.586l-2.293-2.293a1,1,0,0,0-1.414,1.414l3,3A1,1,0,0,0,42,39Z">
+                                                </path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="rs-work-step-descrip">
+                                <ul>
+                              <li style="margin-top: 20px; margin-bottom: 20px;">Renewable Energy – Used in wind turbines, solar panel structures, hydro components.</li>
+                              <li style="margin-top: 20px; margin-bottom: 20px;">Eco-Friendly Infrastructure – FRP pedestrian bridges, modular housing, corrosion-free water tanks.</li>
+                              <li style="margin-top: 20px; margin-bottom: 20px;">Electric Vehicle & Transportation – Lightweight FRP reduces fuel/electricity consumption.</li>
+                          </ul>
+                         </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- work step area end -->
+
+
+
+  <!-- portfolio area start -->
+        <section class="rs-portfolio-area section-space">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="rs-portfolio-details-wrapper">
+                      
+                            <div class="rs-portfolio-details-content">
+                                <h3 class="rs-portfolio-details-title">Conclusion : </h3>
+                                <p class="description">FRP is a Future-Proof Green Material 
+While recycling challenges remain, ongoing innovations in bio-based resins and recyclable
+composites make FRP an increasingly sustainable choice. Its long life, low maintenance, and
+reduced environmental impact make it a smart alternative for industries moving towards green
+solutions.</p>
+                                
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="rs-sidebar-wrapper rs-sidebar-sticky">
+           
+
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- portfolio area end -->
+
+
+         
+
+
+
+
+    </main>
+    <!-- Body main wrapper end -->
+
+ <%- include('include/footer') %>
+
+
+    <!-- back to top -->
+    <!-- Backtotop start -->
+    <div class="backtotop-wrap cursor-pointer">
+        <svg class="backtotop-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- Backtotop end -->
+
+    <!-- JS here -->
+    <script src="/js/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/js/plugins/waypoints.min.js"></script>
+    <script src="/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/js/plugins/meanmenu.min.js"></script>
+    <script src="/js/plugins/swiper.min.js"></script>
+    <script src="/js/plugins/wow.min.js"></script>
+    <script src="/js/vendor/magnific-popup.min.js"></script>
+    <script src="/js/vendor/isotope.pkgd.min.js"></script>
+    <script src="/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/plugins/nice-select.min.js"></script>
+    <script src="/js/plugins/jarallax.min.js"></script>
+    <script src="/js/vendor/ajax-form.js"></script>
+    <script src="/js/plugins/easypie.js"></script>
+    <script src="/js/plugins/headding-title.js"></script>
+    <script src="/js/plugins/lenis.min.js"></script>
+    <script src="/js/plugins/gsap.min.js"></script>
+    <script src="/js/plugins/rs-anim-int.js"></script>
+    <script src="/js/plugins/rs-scroll-trigger.min.js"></script>
+    <script src="/js/plugins/rs-splitText.min.js"></script>
+    <script src="/js/plugins/jquery.lettering.js"></script>
+    <script src="/js/plugins/parallax-effect.min.js"></script>
+    <script src="/js/plugins/jquery.appear.min.js"></script>
+    <script src="/js/plugins/marquee.min.js"></script>
+    <script src="/js/plugins/chart.umd.min.js"></script>
+    <script src="/js/plugins/nouislider.min.js"></script>
+    <script src="/js/vendor/purecounter.js"></script>
+    <script src="/js/vendor/odometer.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>creo.cometdigisol.com</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Place favicon.ico in the root directory -->
+<link rel="shortcut icon" type="image/x-icon" href="/images/logo/white.png" />
+<!-- CSS here -->
+<link rel="stylesheet" href="/css/vendor/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/vendor/animate.min.css" />
+<link rel="stylesheet" href="/css/plugins/swiper.min.css" />
+<link rel="stylesheet" href="/css/plugins/nice-select.css" />
+<link rel="stylesheet" href="/css/plugins/nouislider.min.css" />
+<link rel="stylesheet" href="/css/vendor/magnific-popup.css" />
+<link rel="stylesheet" href="/css/vendor/odometer.min.css" />
+<link rel="stylesheet" href="/css/vendor/fontawesome-pro.css" />
+<link rel="stylesheet" href="/css/vendor/spacing.css" />
+<link rel="stylesheet" href="/css/vendor/remixicon.css" />
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/mobile-responsive.css" />
+
+<style>
+  @media (min-width: 992px) {
+    .blog-desktop-padding {
+      padding-top: 35px;
+      /* Adjust as needed */
+    }
+  }
+
+
+  .rs-services-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: start;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .rs-services-thumb img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .rs-services-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .rs-services-title {
+    font-size: 18px;
+    margin: 12px 0 8px;
+  }
+
+  .rs-services-content p.descrip {
+    flex-grow: 1;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .rs-services-btn-wrapper {
+    margin-top: 12px;
+  }
+
+  .rs-text-btn,
+  .rs-square-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .rs-text-btn {
+    color: #0077cc;
+  }
+
+  .rs-text-btn:hover {
+    text-decoration: underline;
+  }
+
+  .rs-square-btn {
+    background: #f1f1f1;
+    margin-left: 8px;
+  }
+
+  .rs-square-btn:hover {
+    background: #0077cc;
+    color: #fff;
+  }
+
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  /* .swiper-slide {
+      display: flex;
+      height: auto;
+    } */
+  .rs-services-item {
+    height: 100%;
+  }
+
+
+
+
+  .verticals-grid {
+    display: stretch;
+    /* grid-template-columns: 2fr 8fr 2fr; */
+    padding: 10px 20px;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .left-verticals,
+  .right-verticals {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .vertical-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 14px;
+  }
+
+  .vertical-item img {
+    width: 100px;
+  }
+
+  .vertical-label {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .brand-left .vertical-label {
+    order: 2;
+    margin-left: 10px;
+  }
+
+  .brand-left img {
+    order: 1;
+  }
+
+  .brand-right img {
+    order: 1;
+  }
+
+  .brand-right .vertical-label {
+    order: 2;
+    margin-left: 10px;
+  }
+
+  .center-placeholder {
+    height: -webkit-fill-available;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    background-size: cover;
+
+
+
+
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .slides {
+    position: relative;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .slide.active {
+    display: block;
+  }
+
+  .slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .slider .prev {
+    left: 10px;
+  }
+
+  .slider .next {
+    right: 10px;
+  }
+
+  .verticals-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    /* 3-6-3 layout */
+
+    align-items: center;
+
+  }
+
+  .left-verticals,
+  .right-verticals {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .vertical-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+
+  }
+
+  .vertical-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .vertical-item img {
+    /* margin-top: 7px; */
+    width: 80px;
+    height: auto;
+  }
+
+  /* Slider Styles */
+  .hero-swiper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .hero-swiper .swiper-slide {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    min-height: 500px;
+  }
+
+  .rs-banner-bg-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    z-index: 1;
+  }
+
+  .rs-banner-item-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .rs-banner-content {
+    position: relative;
+    z-index: 3;
+  }
+
+  .center-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: white !important;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+
+  .swiper-pagination-bullet {
+    background: white !important;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+  }
+
+  .slider .prev {
+    left: 10px;
+  }
+
+  .slider .next {
+    right: 10px;
+  }
+
+  .search-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  .search-box {
+    padding: 6px 10px;
+    width: 600px !important;
+  }
+
+  .search-btn {
+    padding: 6px 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+
+
+
+<style>
+  .main-grid {
+    display: grid;
+    /* grid-template-columns: 2fr 10fr; */
+    align-items: center;
+    background: white;
+    border-color: black;
+
+  }
+
+  /* Left column (logo) */
+  .left-logo {
+    text-align: center;
+  }
+
+  .left-logo img {
+    max-width: 100px;
+    height: auto;
+  }
+
+  /* Right content */
+  .right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-color: black;
+  }
+
+  /* Top bar */
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .top-header .flag {
+    font-weight: bold;
+  }
+
+  .top-header .catalogue button {
+    background-color: #0ea5e9;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    border-radius: 4px;
+  }
+
+  /* Middle: Search + contact */
+  .middle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+  }
+
+  .search-container {
+    display: flex;
+  }
+
+  .search-container input {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .search-container button {
+    padding: 5px 10px;
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+  }
+
+  .contact-info {
+    text-align: right;
+    font-size: 13px;
+    padding: 0 20px;
+  }
+
+  /* Bottom nav */
+  .bottom-header nav {
+    background: black;
+    /* padding: 8px; */
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+  }
+
+  .bottom-header nav a {
+    color: white;
+    text-decoration: none;
+  }
+</style>
+
+<style>
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .table-container {
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    /* Forces columns to auto-shrink */
+    word-wrap: break-word;
+  }
+
+  thead {
+    background-color: #2a4d8f;
+    color: #fff;
+  }
+
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f6ff;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+
+    th,
+    td {
+      padding: 6px 8px;
+      /* reduce padding */
+      font-size: 12px;
+      /* smaller text */
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    th,
+    td {
+      padding: 4px 6px;
+      font-size: 11px;
+    }
+
+    h2 {
+      font-size: 14px;
+    }
+  }
+</style>
+</head>
+
+<body class="rs-smoother-yes rtl">
+  <%- include('include/header') %>
+    <!-- Body main wrapper start -->
+    <main>
+
+      <!-- breadcrumb area start -->
+      <section class="rs-breadcrumb-area rs-breadcrumb-one p-relative">
+        <div class="rs-breadcrumb-bg" data-background="/images/bg/application.png"></div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-xxl-6 col-xl-8 col-lg-8">
+              <div class="rs-breadcrumb-content-wrapper">
+                <div class="rs-breadcrumb-title-wrapper">
+                  <h1 class="rs-breadcrumb-title">Application</h1>
+                </div>
+                <div class="rs-breadcrumb-menu">
+                  <nav>
+                    <ul>
+                      <li><span><a href="/">Home</a></span></li>
+                      <li><span><%= applications.breadcrumb %></span></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rs-work-step-area rs-work-step-one section-space has-different-style" style="margin-top: 20px;">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 style="text-align: center; margin-top: 20px;">FRP Composites Applications Across Industries</h3>
+
+            </div>
+            <p class="description" style="text-align: center; margin-top: 5px;">In construction and road projects, FRP
+              offers a strong and sustainable alternative to steel with re-bars, beams, gratings, and other structural
+              elements known for their high mechanical strength.</p>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- portfolio area start -->
+      <section class="rs-portfolio-area rs-portfolio-six section-space has-theme-orange" style="margin-top: 20px;">
+        <div class="container">
+          <div class="row g-5 process-counts">
+
+
+            <% applications.forEach(item=> { %>
+              <div class="col-xl-6 col-lg-6 col-md-6">
+                <div class="rs-portfolio-item wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
+
+                  <div class="rs-portfolio-thumb" data-background="/api/transform/<%= item.images[0] %>"></div>
+
+                  <div class="rs-portfolio-content">
+                    <div class="rs-portfolio-number"></div>
+                    <h5 class="rs-portfolio-title">
+                      <a href="/applications/<%= item.a_slug %>">
+                        <%= item.title %>
+                      </a>
+                    </h5>
+                    <div class="rs-portfolio-tag"></div>
+                    <div class="rs-services-btn-wrapper">
+                      <div class="rs-portfolio-text-btn">
+                        <a class="rs-text-btn" href="/applications/<%= item.a_slug %>">View Details</a>
+                      </div>
+                      <a class="rs-square-btn has-icon" href="/applications/<%= item.a_slug %>">
+                        <span class="icon-box">
+                          <!-- SVG icons here -->
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+
+
+          </div>
+        </div>
+      </section>
+      <!-- portfolio area end -->
+      <!-- table area start -->
+      <section style="font-family: Arial, sans-serif; margin: 20px;  margin: 80px;">
+        <h4 style="text-align: center; margin-bottom: 15px;"> FRP Industry Applications Table with Manufacturing Process
+        </h4>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Industry</th>
+                <th>Key Benefits</th>
+                <th>Example Products</th>
+                <th>Manufacturing Process</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Industry">Aerospace and Defense</td>
+                <td data-label="Key Benefits">Lightweight, high strength-to-weight ratio, corrosion & fatigue
+                  resistance, radar transparency</td>
+                <td data-label="Example Products">Radomes, interior panels, wing structures, fairings, missile casings,
+                  blast-resistant panels</td>
+                <td data-label="Manufacturing Process">Hand lay-up, Autoclave curing, Prepreg lay-up</td>
+              </tr>
+              <tr>
+                <td data-label="Industry">Mass Transportation</td>
+                <td data-label="Key Benefits">Corrosion resistance, weight reduction for fuel efficiency, vibration
+                  damping, fire-retardant</td>
+                <td data-label="Example Products">Cable trays, flooring panels, wall claddings, handrails, roof panels,
+                  train nose cones</td>
+                <td data-label="Manufacturing Process">Pultrusion, Vacuum infusion, Hand lay-up</td>
+              </tr>
+              <tr>
+                <td data-label="Industry">Water and Sewage Systems</td>
+                <td data-label="Key Benefits">Corrosion-proof, chemical resistance, long life, non-slip, low maintenance
+                </td>
+                <td data-label="Example Products">Manhole covers, gully gratings, drainage channels, sewage tanks,
+                  handrails, walkways</td>
+                <td data-label="Manufacturing Process">Compression molding, Pultrusion, Filament winding</td>
+              </tr>
+              <tr>
+                <td data-label="Industry">Electrical, Electronics, and Telecom</td>
+                <td data-label="Key Benefits">Electrical insulation, RF transparency, weather resistance, lightweight
+                  installation</td>
+                <td data-label="Example Products">Cable trays, ladders, utility poles, enclosures, antenna radomes,
+                  cross-arms</td>
+                <td data-label="Manufacturing Process">Pultrusion, Resin transfer molding (RTM), Hand lay-up</td>
+              </tr>
+              <tr>
+                <td data-label="Industry">Oil, Gas, and Renewable Energy</td>
+                <td data-label="Key Benefits">Corrosion resistance in saline/chemical environments, non-sparking, UV
+                  resistance</td>
+                <td data-label="Example Products">Offshore platforms, cable trays, pipe systems, storage tanks, wind
+                  turbine blades</td>
+                <td data-label="Manufacturing Process">Filament winding, Vacuum infusion, Pultrusion</td>
+              </tr>
+              <tr>
+                <td data-label="Industry">Automobile and EV Infrastructure</td>
+                <td data-label="Key Benefits">Lightweight for fuel efficiency, corrosion resistance, electrical
+                  insulation</td>
+                <td data-label="Example Products">Body panels, bumpers, roof systems, charging station enclosures,
+                  battery casings</td>
+                <td data-label="Manufacturing Process">Resin transfer molding (RTM), SMC molding, Pultrusion</td>
+              </tr>
+              <tr>
+                <td data-label="Industry">Building Construction and Architecture</td>
+                <td data-label="Key Benefits">Durable, customizable shapes/colors, UV & moisture resistance,
+                  fire-retardant</td>
+                <td data-label="Example Products">Façade panels, roofing sheets, window frames, structural beams,
+                  handrails</td>
+                <td data-label="Manufacturing Process">Pultrusion, Hand lay-up, Vacuum infusion</td>
+              </tr>
+              <tr>
+                <td data-label="Industry">Marine and Offshore</td>
+                <td data-label="Key Benefits">Saltwater corrosion resistance, lightweight, low maintenance, non-magnetic
+                </td>
+                <td data-label="Example Products">Boat hulls, decks, gangways, ladders, gratings, subsea pipes</td>
+                <td data-label="Manufacturing Process">Hand lay-up, Vacuum infusion, Filament winding</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+      <!-- table area start -->
+
+
+    </main>
+    <!-- Body main wrapper end -->
+
+    <%- include('include/footer') %>
+
+      <!-- back to top -->
+      <!-- Backtotop start -->
+      <div class="backtotop-wrap cursor-pointer has-theme-blue">
+        <svg class="backtotop-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+          <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+      </div>
+      <!-- Backtotop end -->
+
+      <script>
+        // Dropdown functionality
+        document.addEventListener("DOMContentLoaded", function () {
+          // Mobile Menu Toggle
+          const hamburgerMenu = document.getElementById("hamburgerMenu");
+          const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+          let isMobileMenuOpen = false;
+
+          if (hamburgerMenu && mobileMenuOverlay) {
+            hamburgerMenu.addEventListener("click", function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+
+              isMobileMenuOpen = !isMobileMenuOpen;
+
+              if (isMobileMenuOpen) {
+                hamburgerMenu.classList.add("active");
+                mobileMenuOverlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+              } else {
+                hamburgerMenu.classList.remove("active");
+                mobileMenuOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+              }
+            });
+
+            // Close mobile menu when clicking on overlay
+            mobileMenuOverlay.addEventListener("click", function (e) {
+              if (e.target === mobileMenuOverlay) {
+                hamburgerMenu.classList.remove("active");
+                mobileMenuOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+                isMobileMenuOpen = false;
+              }
+            });
+
+            // Close mobile menu when clicking on menu links
+            const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+            mobileNavLinks.forEach((link) => {
+              link.addEventListener("click", function () {
+                hamburgerMenu.classList.remove("active"); rs - header - inner
+                mobileMenuOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+                isMobileMenuOpen = false;
+
+                // Remove active class from all links
+                mobileNavLinks.forEach((l) => l.classList.remove("active"));
+                // Add active class to clicked link
+                this.classList.add("active");
+              });
+            });
+
+            // Close mobile menu on window resize
+            window.addEventListener("resize", function () {
+              if (window.innerWidth > 768 && isMobileMenuOpen) {
+                hamburgerMenu.classList.remove("active");
+                mobileMenuOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+                isMobileMenuOpen = false;
+              }
+            });
+          }
+          const brandItems = document.querySelectorAll(".brand-item");
+          let activeDropdown = null;
+
+          brandItems.forEach((item) => {
+            const dropdownId = item.getAttribute("data-dropdown");
+            const dropdown = document.getElementById(dropdownId);
+
+            item.addEventListener("click", function (e) {
+              e.stopPropagation();
+
+              // Close any active dropdown
+              if (activeDropdown && activeDropdown !== dropdown) {
+                activeDropdown.classList.remove("active");
+              }
+
+              // Toggle current dropdown
+              dropdown.classList.toggle("active");
+              activeDropdown = dropdown.classList.contains("active")
+                ? dropdown
+                : null;
+            });
+
+            // Prevent dropdown from closing when clicking inside it
+            dropdown.addEventListener("click", function (e) {
+              e.stopPropagation();
+            });
+          });
+
+          // Language selector functionality
+          const languageBtn = document.getElementById("languageBtn");
+          const languageDropdown = document.getElementById("languageDropdown");
+          const selectedLang = document.getElementById("selectedLang");
+          let activeLanguageDropdown = false;
+
+          languageBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            languageDropdown.classList.toggle("active");
+            activeLanguageDropdown =
+              languageDropdown.classList.contains("active");
+          });
+
+          // Language option selection
+          const languageOptions = document.querySelectorAll(".language-option");
+          languageOptions.forEach((option) => {
+            option.addEventListener("click", function (e) {
+              e.stopPropagation();
+              const langCode = this.getAttribute("data-lang");
+              const langText = this.querySelector("span").textContent;
+              const flagClass = this.querySelector(".language-flag").className;
+
+              // Update selected language
+              selectedLang.textContent = langText;
+              languageBtn.querySelector(".language-flag").className = flagClass;
+
+              // Close dropdown
+              languageDropdown.classList.remove("active");
+              activeLanguageDropdown = false;
+
+              // Store selected language
+              localStorage.setItem("selectedLanguage", langCode);
+
+              // Show confirmation
+              showLanguageConfirmation(langText);
+            });
+          });
+
+          // Load saved language preference
+          const savedLang = localStorage.getItem("selectedLanguage");
+          if (savedLang) {
+            const savedOption = document.querySelector(
+              `[data-lang="${savedLang}"]`
+            );
+            if (savedOption) {
+              savedOption.click();
+            }
+          }
+
+          // Function to show language change confirmation
+          function showLanguageConfirmation(language) {
+            // Create a temporary notification
+            const notification = document.createElement("div");
+            notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #22c55e;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 10000;
+                    font-size: 14px;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                `;
+            notification.textContent = `Language changed to ${language}`;
+            document.body.appendChild(notification);
+
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+              notification.style.opacity = "0";
+              notification.style.transform = "translateX(100%)";
+              setTimeout(() => {
+                if (notification.parentNode) {
+                  notification.parentNode.removeChild(notification);
+                }
+              }, 300);
+            }, 3000);
+          }
+
+          // Close dropdowns when clicking outside
+          document.addEventListener("click", function () {
+            if (activeDropdown) {
+              activeDropdown.classList.remove("active");
+              activeDropdown = null;
+            }
+            if (activeLanguageDropdown) {
+              languageDropdown.classList.remove("active");
+              activeLanguageDropdown = false;
+            }
+          });
+
+          // Search functionality
+
+          // Mobile menu toggle (if needed)
+          const navLinks = document.querySelectorAll(".nav-link");
+          navLinks.forEach((link) => {
+            link.addEventListener("click", function (e) {
+              e.preventDefault();
+              navLinks.forEach((l) => l.classList.remove("active"));
+              this.classList.add("active");
+            });
+          });
+
+          // Smooth scrolling for anchor links
+          document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute("href"));
+              if (target) {
+                target.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }
+            });
+          });
+        });
+      </script>
+      <!-- <script>
+    const slides = document.querySelectorAll('.slide');
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+    let index = 0;
+    let interval;
+
+    function showSlide(i) {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === i);
+      });
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+
+    function prevSlide() {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    }
+
+    function startSlider() {
+      interval = setInterval(nextSlide, 3000); // auto every 3 seconds
+    }
+
+    function stopSlider() {
+      clearInterval(interval);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      stopSlider();
+      nextSlide();
+      startSlider();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      stopSlider();
+      prevSlide();
+      startSlider();
+    });
+
+    // Start autoplay
+    startSlider();
+  </script> -->
+
+
+      <script>
+        // Initialize hero swiper
+        document.addEventListener('DOMContentLoaded', function () {
+          const heroSwiper = new Swiper('.hero-swiper', {
+            loop: true,
+            autoplay: {
+              delay: 3000,
+              disableOnInteraction: false,
+            },
+            effect: 'fade',
+            fadeEffect: {
+              crossFade: true
+            },
+            speed: 2000,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+          });
+        });
+      </script>
+
+      <!-- JS here -->
+      <script src="/js/vendor/jquery-3.7.1.min.js"></script>
+      <script src="/js/plugins/waypoints.min.js"></script>
+      <script src="/js/vendor/bootstrap.bundle.min.js"></script>
+      <script src="/js/plugins/meanmenu.min.js"></script>
+      <script src="/js/plugins/swiper.min.js"></script>
+      <script src="/js/plugins/wow.min.js"></script>
+      <script src="/js/vendor/magnific-popup.min.js"></script>
+      <script src="/js/vendor/isotope.pkgd.min.js"></script>
+      <script src="/js/vendor/imagesloaded.pkgd.min.js"></script>
+      <script src="/js/plugins/nice-select.min.js"></script>
+      <script src="/js/plugins/jarallax.min.js"></script>
+      <script src="/js/vendor/ajax-form.js"></script>
+      <script src="/js/plugins/easypie.js"></script>
+      <script src="/js/plugins/headding-title.js"></script>
+      <script src="/js/plugins/lenis.min.js"></script>
+      <script src="/js/plugins/gsap.min.js"></script>
+      <script src="/js/plugins/rs-anim-int.js"></script>
+      <script src="/js/plugins/rs-scroll-trigger.min.js"></script>
+      <script src="/js/plugins/rs-splitText.min.js"></script>
+      <script src="/js/plugins/jquery.lettering.js"></script>
+      <script src="/js/plugins/parallax-effect.min.js"></script>
+      <script src="/js/plugins/jquery.appear.min.js"></script>
+      <script src="/js/plugins/marquee.min.js"></script>
+      <script src="/js/plugins/chart.umd.min.js"></script>
+      <script src="/js/plugins/nouislider.min.js"></script>
+      <script src="/js/vendor/purecounter.js"></script>
+      <script src="/js/vendor/odometer.min.js"></script>
+      <script src="/js/mobile-menu.js"></script>
+      <script src="/js/main.js"></script>
+</body>
+
+</html>

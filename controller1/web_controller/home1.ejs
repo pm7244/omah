@@ -1,0 +1,143 @@
+const connection = require("../../connection");
+
+const getAllHome = async (req, res) => {
+  try {
+    const [home] = await connection.query(`SELECT * FROM web_home WHERE status=1`);
+    const [footerResult] = await connection.query(`SELECT * FROM web_footer WHERE status=1`);
+    const [address] = await connection.query(`SELECT * FROM address WHERE status=1`);
+    const [verticalsResult] = await connection.query(`SELECT * FROM verticles WHERE status=1`);
+    const [servicesResult] = await connection.query(`SELECT * FROM service WHERE status=1`);
+    const [whyfrpResult] = await connection.query(`SELECT * FROM whyfrp WHERE status=1`);
+    const [applicationResult] = await connection.query(`SELECT * FROM application WHERE status=1`);
+    const [testimonialResult] = await connection.query(`SELECT * FROM testimonials WHERE status=1`);
+    const [partnersResult] = await connection.query(`SELECT * FROM partners WHERE status=1`);
+    const [blogResult] = await connection.query(`SELECT * FROM blog WHERE status=1`);
+    const [sliderResult] = await connection.query(`SELECT * FROM web_slider WHERE status=1`);
+    const [webVerticalsResult] = await connection.query(`SELECT * FROM web_verticals WHERE status=1`);
+
+   
+    const blogs = blogResult.map(item => {
+      try {
+        const parsedPhoto = item.author_photo ? JSON.parse(item.author_photo) : [];
+        item.author_photo = parsedPhoto[0] || 'default.jpg';
+      } catch {
+        item.author_photo = 'default.jpg';
+      }
+      return item;
+    });
+
+    const partners = partnersResult.map(item => {
+      try {
+        const parsedLogo = item.logo ? JSON.parse(item.logo) : [];
+        item.logo = parsedLogo[0] || 'default.jpg';
+      } catch {
+        item.logo = 'default.jpg';
+      }
+      return item;
+    });
+
+    const application = applicationResult.map(item => {
+      try {
+        item.image = item.image ? JSON.parse(item.image) : [];
+      } catch {
+        item.image = item.image ? [item.image] : [];
+      }
+      return item;
+    });
+
+    let footer = footerResult.length > 0 ? footerResult[0] : {};
+    if (footer.footer_logo) {
+      try {
+        footer.footer_logo = JSON.parse(footer.footer_logo);
+      } catch {
+        footer.footer_logo = [];
+      }
+    }
+
+    const verticals = verticalsResult.map(item => {
+      try {
+        item.v_image = item.v_image ? JSON.parse(item.v_image) : [];
+      } catch {
+        item.v_image = [];
+      }
+      return item;
+    });
+
+    const services = servicesResult.map(item => {
+      try {
+        item.image = item.image ? JSON.parse(item.image) : [];
+      } catch {
+        item.image = item.image ? [item.image] : [];
+      }
+      return item;
+    });
+
+    const whyfrp = whyfrpResult.map(item => {
+      try {
+        const parsedIcon = item.icon ? JSON.parse(item.icon) : [];
+        item.icon = parsedIcon[0] || 'default.jpg';
+      } catch {
+        item.icon = 'default.jpg';
+      }
+      return item;
+    });
+
+    const testimonial = testimonialResult.map(item => {
+      try {
+        const parsedImage = item.image ? JSON.parse(item.image) : [];
+        item.image = parsedImage[0] || 'default.jpg';
+      } catch {
+        item.image = item.image || 'default.jpg';
+      }
+      return item;
+    });
+
+    const slider = sliderResult.map(item => {
+      try {
+        const parsedImage = item.slider_image ? JSON.parse(item.slider_image) : [];
+        item.slider_image = parsedImage[0] || 'default.jpg';
+      } catch {
+        item.slider_image = item.slider_image || 'default.jpg';
+      }
+      return item;
+    });
+
+    
+    const web_verticals = webVerticalsResult.map(item => {
+      try {
+        const parsedLogo = item.logo ? JSON.parse(item.logo) : [];
+        item.logo = parsedLogo[0] || 'default.jpg';
+      } catch {
+        item.logo = 'default.jpg';
+      }
+      return item;
+    });
+
+    // ✅ Render everything
+    if (
+      home.length || footerResult.length || address.length || verticals.length ||
+      services.length || whyfrp.length || application.length || testimonial.length
+    ) {
+      res.render("home", {
+        home,
+        footer,
+        address,
+        verticals,
+        services,
+        whyfrp,
+        application,
+        testimonial,
+        partners,
+        blogs,
+        slider,
+        web_verticals, 
+      });
+    } else {
+      res.status(404).json({ message: "Record Not Found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { getAllHome };
